@@ -1,0 +1,9 @@
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.deps.json
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csprojAssemblyReference.cache
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfoInputs.cache
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfo.cs
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.CoreCompileInputs.cache
