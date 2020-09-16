@@ -1,7 +1,7 @@
 ﻿namespace Hotel.Domain.Common
 {
     using FluentAssertions;
-    using Hotel.Domain.Common;
+    using Common;
     using Xunit;
 
     public class EntitySpecs

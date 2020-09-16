@@ -1,5 +1,6 @@
 ﻿namespace Hotel.Domain.Common
 {
+    using Hotel.Models;
     using System;
 
     public static class Guard
@@ -39,6 +40,18 @@
             ThrowException<TException>($"{name} must be between {min} and {max}.");
         }
 
+        public static void ForValidUrl<TException>(string url, string name = "Value")
+           where TException : BaseDomainException, new()
+        {
+            if (url.Length <= ModelConstants.Common.MaxUrlLength &&
+                Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            {
+                return;
+            }
+
+            ThrowException<TException>($"{name} must be a valid URL.");
+        }
+
         public static void AgainstOutOfRange<TException>(decimal number, decimal min, decimal max, string name = "Value")
             where TException : BaseDomainException, new()
         {
@@ -50,16 +63,28 @@
             ThrowException<TException>($"{name} must be between {min} and {max}.");
         }
 
-        public static void ForValidUrl<TException>(string url, string name = "Value")
-            where TException : BaseDomainException, new()
+        public static void AgainstOutOfRangeStartAndEndDates<TException>(DateTime startDate, DateTime endDate)
+           where TException : BaseDomainException, new()
         {
-            //if (url.Length <= ModelConstants.Common.MaxUrlLength && 
-            //    Uri.IsWellFormedUriString(url, UriKind.Absolute))
-            //{
-            //    return;
-            //}
+            if (startDate < endDate && startDate >= DateTime.Now)
+            {
+                return;
+            }
 
-            ThrowException<TException>($"{name} must be a valid URL.");
+            ThrowException<TException>($"Start date and End date are not correct!");
+        }
+
+        public static void ForValidEmail<TException>(string email, string name = "Value")
+           where TException : BaseDomainException, new()
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+
+            if (addr.Address == email)
+            {
+                return;
+            }
+
+            ThrowException<TException>($"{name} must be a valid user name.");
         }
 
         public static void Against<TException>(object actualValue, object unexpectedValue, string name = "Value")

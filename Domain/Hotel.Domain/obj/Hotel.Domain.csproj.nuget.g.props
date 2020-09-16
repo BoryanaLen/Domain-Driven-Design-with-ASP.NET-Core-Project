@@ -20,5 +20,7 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\bariz\.nuget\packages\xunit.analyzers\0.10.0</Pkgxunit_analyzers>
+    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\bariz\.nuget\packages\newtonsoft.json\9.0.1</PkgNewtonsoft_Json>
+    <PkgFakeItEasy_Analyzer_CSharp Condition=" '$(PkgFakeItEasy_Analyzer_CSharp)' == '' ">C:\Users\bariz\.nuget\packages\fakeiteasy.analyzer.csharp\6.0.0</PkgFakeItEasy_Analyzer_CSharp>
   </PropertyGroup>
 </Project>

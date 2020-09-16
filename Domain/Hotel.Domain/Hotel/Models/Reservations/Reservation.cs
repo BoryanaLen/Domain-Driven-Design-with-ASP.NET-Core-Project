@@ -1,10 +1,14 @@
 ﻿namespace Hotel.Domain.Hotel.Models.Reservations
 {
     using Common;
-    using Room;
+    using Exceptions;
+    using Rooms;
 
     using System;
     using System.Collections.Generic;
+
+    using static ModelConstants.Reservation;
+    using static ModelConstants.Common;
 
     public class Reservation : Entity<int>, IAggregateRoot
     {
@@ -13,17 +17,17 @@
             DateTime endDate,
             int adults,
             int kids,
-            HotelUser user,
+            Customer customer,
             PaymentType paymentType,
             decimal pricePerDay,
             decimal advancedPayment,
             bool isPaid
             )
         {
-            this.Validate(startDate, endDate, adults, kids, pricePerDay, advancedPayment, pricePerDay);
-            this.ValidatePaymentType(paymentType);
+            this.Validate(startDate, endDate, adults, kids, pricePerDay, advancedPayment);
+            //this.ValidateCustomer(customer);
 
-            this.User = user;
+            this.Customer = customer;
             this.PaymentType = paymentType;
 
             this.StartDate = startDate;
@@ -52,7 +56,7 @@
             this.AdvancedPayment = advancedPayment;
             this.IsPaid = isPaid;
 
-            this.User = default!;
+            this.Customer = default!;
             this.PaymentType = default!;
         }
 
@@ -64,7 +68,7 @@
 
         public int Kids { get; private set; }
 
-        public HotelUser User { get; private set; }
+        public Customer Customer { get; private set; }
 
         public PaymentType PaymentType { get; private set; }
 
@@ -84,31 +88,69 @@
 
         public decimal AmountForPayment => this.TotalAmount - this.AdvancedPayment;
 
-        public Reservation UpdateUser(HotelUser user)
+        public Reservation UpdateCustomer(Customer customer)
         {
-            //this.ValidateUser(category);
-            this.User = user;
+            //this.ValidateCustomer(customer);
+            this.Customer = customer;
 
             return this;
         }
 
         public Reservation UpdatePaymentType(PaymentType paymentType)
         {
-            this.ValidatePaymentType(paymentType);
+            //this.ValidatePaymentType(paymentType);
             this.PaymentType = paymentType;
 
             return this;
         }
 
         
-        private void Validate(DateTime startDate, DateTime endDate, int adults, int kids, decimal pricePerDay, decimal advancedPayment, decimal pricePerDay)
+        private void Validate(DateTime startDate, DateTime endDate, int adults, int kids, decimal pricePerDay, decimal advancedPayment)
         {
-            this.ValidateModel(model);
-            this.ValidateImageUrl(imageUrl);
+            this.ValidateStartDateAndEndDate(startDate, endDate);
+            this.ValidateAdults(adults);
+            this.ValidateKids(kids);
             this.ValidatePricePerDay(pricePerDay);
+            this.ValidateAdvancedPayment(advancedPayment);
         }
 
-       
+        private void ValidateStartDateAndEndDate(DateTime startDate, DateTime endDate)
+            => Guard.AgainstOutOfRangeStartAndEndDates<InvalidReservationException>(
+                startDate,
+                endDate);
+
+        private void ValidateAdults(int adulds)
+           => Guard.AgainstOutOfRange<InvalidRoomException>(
+               adulds,
+               MinNumberOfAdults,
+               MaxNumberOfAdults,
+               nameof(this.Adults));
+
+        private void ValidateKids(int kids)
+          => Guard.AgainstOutOfRange<InvalidReservationException>(
+              kids,
+              MaxNumberOfKids,
+              MinNumberOfKids,
+              nameof(this.Kids));
+
+        private void ValidatePricePerDay(decimal pricePerDay)
+            => Guard.AgainstOutOfRange<InvalidReservationException>(
+                pricePerDay,
+                Zero,
+                decimal.MaxValue,
+                nameof(this.PricePerDay));
+
+        private void ValidateAdvancedPayment(decimal advancedPayment)
+           => Guard.AgainstOutOfRange<InvalidReservationException>(
+               advancedPayment,
+               Zero,
+               this.TotalAmount,
+               nameof(this.AdvancedPayment));
+
+        private void ValidateCustomer(Customer customer)
+        {
+           
+        }
 
     }
 }

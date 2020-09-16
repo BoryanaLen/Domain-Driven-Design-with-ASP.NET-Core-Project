@@ -7,15 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FakeItEasy" Version="6.2.1" />
+    <PackageReference Include="FakeItEasy.Analyzer.CSharp" Version="6.0.0" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="Scrutor" Version="3.2.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Hotel.Administration\Models\Payments\" />
     <Folder Include="Hotel.Administration\Models\Rooms\" />
-    <Folder Include="Hotel\Factories\" />
+    <Folder Include="Hotel\Factories\Reservations\" />
     <Folder Include="Hotel\Specifications\" />
   </ItemGroup>
 

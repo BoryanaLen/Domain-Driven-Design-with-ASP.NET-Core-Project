@@ -1,29 +1,77 @@
-﻿namespace Hotel.Domain.Hotel.Models.Room
+﻿namespace Hotel.Domain.Hotel.Models.Rooms
 {
     using Common;
+    using Exceptions;
+    using Rooms;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using static ModelConstants.Room;
 
     public class Room : Entity<int>, IAggregateRoot
     {
-        private const int RoomNumberMaxLength = 20;
-        private const int DescriptionMaxLength = 1400;
+        private static readonly IEnumerable<RoomType> AllowedRoomTypes
+             = new RoomTypeData().GetData().Cast<RoomType>();
 
-        public Room()
+        internal Room(
+            string roomNumber,
+            string description,
+            RoomType roomType
+            )
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.Validate(roomNumber, description);
+            this.ValidateRoomType(roomType);           
+
+            this.RoomNumber = roomNumber;
+            this.Description = description;
+
+            this.RoomType = roomType;
         }
 
-        public string RoomNumber { get; set; }
+        private Room(
+            string roomNumber,
+            string description
+            )
+        {
+            this.RoomNumber = roomNumber;
+            this.Description = description;
 
-        public string RoomTypeId { get; set; }
+            this.RoomType = default!;
+        }
 
-        public virtual RoomType RoomType { get; set; }
+        public string RoomNumber { get; set; }      
 
         public string Description { get; set; }
 
-        public string HotelDataId { get; set; }
+        public RoomType RoomType { get; set; }
 
-        public HotelData HotelData { get; set; }
+        private void Validate(string roomNumber, string description)
+        {
+            Guard.ForStringLength<InvalidRoomException>(
+                roomNumber,
+                MinRoomNumberLength,
+                MaxRoomNumberLength,
+                nameof(this.RoomNumber));
 
-        public ICollection<ReservationRoom> ReservationRooms { get; set; }
+            Guard.ForStringLength<InvalidRoomException>(
+                description,
+                MinDescriptionLength,
+                MaxDescriptionLength,
+                nameof(this.Description));
+        }
+
+        private void ValidateRoomType(RoomType roomType)
+        {
+            var roomTypeName = roomType?.Name;
+
+            if (AllowedRoomTypes.Any(c => c.Name == roomTypeName))
+            {
+                return;
+            }
+
+            var allowedRoomTypesNames = string.Join(", ", AllowedRoomTypes.Select(c => $"'{c.Name}'"));
+
+            throw new InvalidRoomException($"'{roomTypeName}' is not a valid room type. Allowed values are: {allowedRoomTypesNames}.");
+        }
     }
 }

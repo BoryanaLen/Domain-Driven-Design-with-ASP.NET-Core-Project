@@ -7,3 +7,12 @@ C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\ne
 C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.dll
 C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.pdb
 C:\Users\bariz\OneDrive\Desktop\MyProject\Hotel\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.CoreCompileInputs.cache
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csprojAssemblyReference.cache
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfoInputs.cache
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.AssemblyInfo.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.deps.json
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.dll
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\bin\Debug\netstandard2.1\Hotel.Domain.pdb
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Domain\Hotel.Domain\obj\Debug\netstandard2.1\Hotel.Domain.csproj.CoreCompileInputs.cache

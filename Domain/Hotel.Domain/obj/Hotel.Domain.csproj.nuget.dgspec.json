@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\MyProject\\Hotel\\Domain\\Hotel.Domain\\Hotel.Domain.csproj": {}
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Domain\\Hotel.Domain\\Hotel.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\MyProject\\Hotel\\Domain\\Hotel.Domain\\Hotel.Domain.csproj": {
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Domain\\Hotel.Domain\\Hotel.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\MyProject\\Hotel\\Domain\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Domain\\Hotel.Domain\\Hotel.Domain.csproj",
         "projectName": "Hotel.Domain",
-        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\MyProject\\Hotel\\Domain\\Hotel.Domain\\Hotel.Domain.csproj",
+        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Domain\\Hotel.Domain\\Hotel.Domain.csproj",
         "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\MyProject\\Hotel\\Domain\\Hotel.Domain\\obj\\",
+        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Domain\\Hotel.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +43,14 @@
       "frameworks": {
         "netstandard2.1": {
           "dependencies": {
+            "FakeItEasy": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            },
+            "FakeItEasy.Analyzer.CSharp": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "FluentAssertions": {
               "target": "Package",
               "version": "[5.10.3, )"
@@ -50,6 +58,14 @@
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[3.1.8, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.7.1, )"
+            },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[3.2.2, )"
             },
             "xunit": {
               "target": "Package",
