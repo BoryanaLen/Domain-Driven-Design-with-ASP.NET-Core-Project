@@ -12,6 +12,8 @@
 
     public class Reservation : Entity<int>, IAggregateRoot
     {
+        private readonly HashSet<Room> rooms;
+
         internal Reservation(
             DateTime startDate,
             DateTime endDate,
@@ -25,7 +27,6 @@
             )
         {
             this.Validate(startDate, endDate, adults, kids, pricePerDay, advancedPayment);
-            //this.ValidateCustomer(customer);
 
             this.Customer = customer;
             this.PaymentType = paymentType;
@@ -37,6 +38,8 @@
             this.PricePerDay = pricePerDay;
             this.AdvancedPayment = advancedPayment;
             this.IsPaid = isPaid;
+
+            this.rooms = new HashSet<Room>();
         }
 
         private Reservation(
@@ -58,6 +61,8 @@
 
             this.Customer = default!;
             this.PaymentType = default!;
+
+            this.rooms = new HashSet<Room>();
         }
 
         public DateTime StartDate { get; private set; }
@@ -90,7 +95,6 @@
 
         public Reservation UpdateCustomer(Customer customer)
         {
-            //this.ValidateCustomer(customer);
             this.Customer = customer;
 
             return this;
@@ -98,7 +102,6 @@
 
         public Reservation UpdatePaymentType(PaymentType paymentType)
         {
-            //this.ValidatePaymentType(paymentType);
             this.PaymentType = paymentType;
 
             return this;
@@ -129,8 +132,8 @@
         private void ValidateKids(int kids)
           => Guard.AgainstOutOfRange<InvalidReservationException>(
               kids,
-              MaxNumberOfKids,
               MinNumberOfKids,
+              MaxNumberOfKids,
               nameof(this.Kids));
 
         private void ValidatePricePerDay(decimal pricePerDay)
@@ -146,11 +149,6 @@
                Zero,
                this.TotalAmount,
                nameof(this.AdvancedPayment));
-
-        private void ValidateCustomer(Customer customer)
-        {
-           
-        }
 
     }
 }

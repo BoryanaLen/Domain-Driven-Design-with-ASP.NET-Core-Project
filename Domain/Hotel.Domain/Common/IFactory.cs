@@ -1,4 +1,4 @@
-﻿namespace Hotel.Domain.Hotel.Factories
+﻿namespace Hotel.Domain.Common
 {
     using Common;
 

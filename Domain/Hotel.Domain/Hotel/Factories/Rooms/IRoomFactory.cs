@@ -1,5 +1,6 @@
 ﻿namespace Hotel.Domain.Hotel.Factories.Rooms
 {
+    using Common;
     using Models.Rooms;
 
     public interface IRoomFactory : IFactory<Room>

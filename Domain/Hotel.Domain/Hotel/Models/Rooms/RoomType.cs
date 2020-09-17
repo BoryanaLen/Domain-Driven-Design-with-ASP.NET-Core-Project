@@ -83,9 +83,9 @@
                MaxDescriptionLength,
                nameof(this.Description));
 
-        private void ValidateImage(string imageUrl)
-           => Guard.ForValidUrl<InvalidRoomException>(
-               imageUrl,
+        private void ValidateImage(string image)
+           => Guard.AgainstEmptyString<InvalidRoomException>(
+               image,
                nameof(this.Image));
     }
 }

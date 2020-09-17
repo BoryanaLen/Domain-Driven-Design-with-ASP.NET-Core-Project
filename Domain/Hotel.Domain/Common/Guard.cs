@@ -66,7 +66,7 @@
         public static void AgainstOutOfRangeStartAndEndDates<TException>(DateTime startDate, DateTime endDate)
            where TException : BaseDomainException, new()
         {
-            if (startDate < endDate && startDate >= DateTime.Now)
+            if (startDate < endDate && startDate >= DateTime.UtcNow)
             {
                 return;
             }

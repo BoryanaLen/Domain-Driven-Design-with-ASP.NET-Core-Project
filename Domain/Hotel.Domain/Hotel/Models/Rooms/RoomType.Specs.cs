@@ -11,7 +11,7 @@
         public void ValidRoomTypeShouldNotThrowException()
         {
             // Act
-            Action act = () => new RoomType("Studio", 200, 3, 1, "pictures/club-floor-room.jpg", "Valid description text");
+            Action act = () => new RoomType("Studio", 200, 3, 1, "pictures/club-floor-room.jpg", "Valid description text Valid description text");
 
             // Assert
             act.Should().NotThrow<InvalidRoomException>();
