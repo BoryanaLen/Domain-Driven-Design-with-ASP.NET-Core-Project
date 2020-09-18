@@ -1,6 +1,6 @@
 ﻿namespace Hotel.Domain.Hotel.Models.Reservations
 {
-    using Common;
+    using Common.Models;
     public class PaymentType : Enumeration
     {
         public static readonly PaymentType Cash = new PaymentType(1, nameof(Cash));

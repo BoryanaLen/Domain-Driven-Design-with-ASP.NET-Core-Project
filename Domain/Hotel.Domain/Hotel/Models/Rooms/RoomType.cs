@@ -1,6 +1,6 @@
 ﻿namespace Hotel.Domain.Hotel.Models.Rooms
 {
-    using Common;
+    using Common.Models;
     using Exceptions;
 
     using static ModelConstants.Common;

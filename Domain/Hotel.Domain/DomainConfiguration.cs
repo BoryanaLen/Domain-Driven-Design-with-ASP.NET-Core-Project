@@ -1,7 +1,6 @@
 ﻿namespace Hotel.Domain
 {
     using Common;
-    using Hotel.Factories;
     using Hotel.Models.Rooms;
     using Microsoft.Extensions.DependencyInjection;
 

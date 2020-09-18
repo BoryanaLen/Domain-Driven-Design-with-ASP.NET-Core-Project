@@ -1,9 +1,10 @@
-﻿using Hotel.Domain.Hotel.Exceptions;
-using Hotel.Domain.Hotel.Models.Reservations;
-using System;
-
-namespace Hotel.Domain.Hotel.Factories.Reservations
+﻿namespace Hotel.Domain.Hotel.Factories.Reservations
 {
+    using Exceptions;
+    using Models.Customers;
+    using Models.Reservations;
+    using System;
+
     internal class ReservationFactory : IReservationFactory
     {
         private Customer customer = default!;
@@ -30,9 +31,6 @@ namespace Hotel.Domain.Hotel.Factories.Reservations
             this.advancedPayment = advancedPayment;
             return this;
         }
-
-        public IReservationFactory WithCustomer(string firstName, string lastName, string email)
-           => this.WithCustomer(new Customer(firstName, lastName, email));
 
         public IReservationFactory WithCustomer(Customer customer)
         {

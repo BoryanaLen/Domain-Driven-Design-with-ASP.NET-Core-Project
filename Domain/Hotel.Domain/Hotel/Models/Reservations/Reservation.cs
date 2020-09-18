@@ -3,12 +3,15 @@
     using Common;
     using Exceptions;
     using Rooms;
+    using Customers;
+    using Common.Models;
 
     using System;
     using System.Collections.Generic;
 
     using static ModelConstants.Reservation;
     using static ModelConstants.Common;
+    
 
     public class Reservation : Entity<int>, IAggregateRoot
     {
@@ -47,6 +50,7 @@
             DateTime endDate,
             int adults,
             int kids,
+            Customers.Customer customer,
             decimal pricePerDay,
             decimal advancedPayment,
             bool isPaid)

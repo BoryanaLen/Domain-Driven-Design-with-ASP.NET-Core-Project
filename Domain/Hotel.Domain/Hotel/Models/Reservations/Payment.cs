@@ -1,6 +1,6 @@
 ﻿namespace Hotel.Domain.Hotel.Models.Reservations
 {
-    using Common;
+    using Common.Models;
     using Exceptions;
     using System;
 

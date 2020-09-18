@@ -1,6 +1,7 @@
 ﻿namespace Hotel.Domain.Hotel.Factories.Reservations
 {
     using Common;
+    using Models.Customers;
     using Models.Reservations;
     using System;
 
@@ -19,8 +20,6 @@
         IReservationFactory WithAdvancedPayment(decimal advancedPayment);
 
         IReservationFactory WithIsPaid(bool isPaid);
-
-        IReservationFactory WithCustomer(string firstName, string lastName, string email);
 
         IReservationFactory WithCustomer(Customer customer);
 

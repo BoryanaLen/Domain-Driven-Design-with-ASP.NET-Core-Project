@@ -1,0 +1,18 @@
+﻿
+@model IEnumerable<Hotel.Web.ViewModels.Rooms.AvailableRoomViewModel>
+
+@foreach (var room in Model)
+{
+    <tr>
+        <td data-label="Image">
+            <img id="img-room-view" src="@room.RoomRoomTypeImage">
+        </td>
+        <td data-label="RoomType"> @room.RoomRoomTypeName</td>
+        <td data-label="Price">@(room.RoomRoomTypePrice)EUR</td>
+        <td data-label="Capacity">@room.RoomRoomTypeCapacityAdults</td>
+        <td data-label="Capacity">@room.RoomRoomTypeCapacityKids</td>
+        <td>
+            <input name="RoomIds" type="checkbox" value="@room.Id" /> Book
+        </td>
+    </tr>
+}

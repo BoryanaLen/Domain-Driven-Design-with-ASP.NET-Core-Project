@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+     <PackageReference Include="CloudinaryDotNet" Version="1.13.0" />
+     <PackageReference Include="FluentAssertions" Version="5.10.3" />
+     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.8" />
+     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.8" />
+    <PackageReference Include="MyTested.AspNetCore.Mvc.Universe" Version="3.1.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Hotel.Application\Hotel.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\Hotel.Domain\Hotel.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Hotel.Infrastructure\Hotel.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Web\Hotel.Web\Hotel.Web.csproj" />
+  </ItemGroup>
+
+</Project>
