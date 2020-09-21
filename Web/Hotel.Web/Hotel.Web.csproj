@@ -14,8 +14,4 @@
     <ProjectReference Include="..\..\Application\Hotel.Application\Hotel.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>

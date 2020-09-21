@@ -1,21 +1,17 @@
-﻿namespace Hotel.Startup
+namespace Hotel.Startup
 {
-    using Application;
-    using Domain;
-    using Infrastructure;
-    using Web;
-    using Web.Middleware;
+    using System.Reflection;
 
-    using CloudinaryDotNet;
+    //using CloudinaryDotNet;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-
-
 
     public class Startup
     {
@@ -26,6 +22,7 @@
             this.configuration = configuration;
         }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<HotelDbContext>(
@@ -34,14 +31,6 @@
             //services.AddDefaultIdentity<HotelUser>(IdentityOptionsProvider.GetIdentityOptions)
             //    .AddRoles<HotelRole>().AddEntityFrameworkStores<HotelDbContext>();
 
-
-            services
-                .AddDomain()
-                .AddApplication(this.configuration)
-                .AddInfrastructure(this.configuration)
-                .AddWebComponents();
-
-
             services.Configure<CookiePolicyOptions>(
                 options =>
                 {
@@ -49,31 +38,31 @@
                     options.MinimumSameSitePolicy = SameSiteMode.None;
                 });
 
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = this.configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = this.configuration["Authentication:Facebook:AppSecret"];
-            });
-
-            services.AddAuthentication().AddGoogle(googleOptions =>
-            {
-                googleOptions.ClientId = this.configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = this.configuration["Authentication:Google:ClientSecret"];
-            });
-
-            Account cloudinaryCredentials = new Account(
-              this.configuration["Cloudinary:CloudName"],
-              this.configuration["Cloudinary:ApiKey"],
-              this.configuration["Cloudinary:ApiSecret"]);
-
-            Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
-
-            services.AddSingleton(cloudinaryUtility);
-
-            //services.AddControllersWithViews(configure =>
+            //services.AddAuthentication().AddFacebook(facebookOptions =>
             //{
-            //    configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            //    facebookOptions.AppId = this.configuration["Authentication:Facebook:AppId"];
+            //    facebookOptions.AppSecret = this.configuration["Authentication:Facebook:AppSecret"];
             //});
+
+            //services.AddAuthentication().AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = this.configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = this.configuration["Authentication:Google:ClientSecret"];
+            //});
+
+            //Account cloudinaryCredentials = new Account(
+            //  this.configuration["Cloudinary:CloudName"],
+            //  this.configuration["Cloudinary:ApiKey"],
+            //  this.configuration["Cloudinary:ApiSecret"]);
+
+            //Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
+
+            //services.AddSingleton(cloudinaryUtility);
+
+            services.AddControllersWithViews(configure =>
+            {
+                configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);
@@ -87,6 +76,10 @@
             //services.AddTransient<IEmailSender>(
             //    serviceProvider => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             //services.AddTransient<ISettingsService, SettingsService>();
+            //services.AddTransient<IRoomsService, RoomsService>();
+            //services.AddTransient<ICloudinaryService, CloudinaryService>();
+            //services.AddTransient<IRoomTypesService, RoomTypesService>();
+
 
         }
 
@@ -99,23 +92,23 @@
             //    typeof(DetailsRoomViewModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
-            //using (var serviceScope = app.ApplicationServices.CreateScope())
-            //{
-            //    var dbContext = serviceScope.ServiceProvider.GetRequiredService<HotelDbContext>();
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                //var dbContext = serviceScope.ServiceProvider.GetRequiredService<HotelDbContext>();
 
-            //    if (env.IsDevelopment())
-            //    {
-            //        dbContext.Database.Migrate();
-            //    }
+                //if (env.IsDevelopment())
+                //{
+                //    dbContext.Database.Migrate();
+                //}
 
-            //    new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-            //}
+                //new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+            }
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
-                //app.UseDatabaseErrorPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -127,7 +120,7 @@
             app.UseHttpsRedirection();
 
             // Register Syncfusion license
-            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(this.configuration["Syncfusion:LicenseKey"]);
+           // Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(this.configuration["Syncfusion:LicenseKey"]);
 
             app.UseDefaultFiles();
 

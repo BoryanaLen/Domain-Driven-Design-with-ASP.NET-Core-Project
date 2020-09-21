@@ -1,7 +1,6 @@
 ﻿namespace Hotel.Web
 {
     using Application.Common;
-    using Application.Common.Contracts;
     using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.DependencyInjection;
