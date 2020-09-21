@@ -1,7 +1,7 @@
 ﻿namespace Hotel.Infrastructure.Common
 {
     using System.Linq;
-    using Hotel.Application.Common;
+    using Application.Common;
 
     public static class QueryableExtensions
     {

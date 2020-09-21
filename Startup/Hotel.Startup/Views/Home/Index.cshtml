@@ -1,6 +1,4 @@
-﻿@model Hotel.Web.ViewModels.Home.HomeViewModel
-
-<div class="text-center">
+﻿<div class="text-center">
     <!-- Slider1 -->
     <div class="slider agileits w3layouts">
         <div class="slider-1 agileits w3layouts">
@@ -77,18 +75,6 @@
 <div class="awards agileits w3layouts">
     <div class="awards-grids">
 
-        @foreach (var offer in Model.SpecialOffers)
-        {
-        <div class="col-md-3 col-sm-3 awards-grid agileits w3layouts awards-grid-1 wow fadeInUp">
-            <div class="wow agileits w3layouts slideInLeft">
-                <img src="~/pictures/present.png" alt="present">
-            </div>
-            <h4>@offer.Title</h4>
-            <div class="h4-underline agileits w3layouts wow slideInLeft"></div>
-            <div id="offer-content">@offer.ShortContent</div><br>
-            <a asp-controller="SpecialOffers"asp-action="Details" asp-route-id="@offer.Id" class="btn know_btn">more ...</a>
-        </div>
-        }
 
         <div class="clearfix"></div>
     </div>

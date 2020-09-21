@@ -11,7 +11,10 @@
         public void ValidSpecialOfferShouldNotThrowException()
         {
             // Act
-            Action act = () => new SpecialOffer("Valid name", "Valid content Valid content Valid content Valid content Valid content Valid content Valid content", "Valid short content");
+            Action act = () => new SpecialOffer(
+                "Valid name name", 
+                "Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content",
+                "Valid short content Valid short content");
 
             // Assert
             act.Should().NotThrow<InvalidSpecialOfferException>();

@@ -1,5 +1,10 @@
 namespace Hotel.Startup
 {
+    using Application;
+    using Domain;
+    using Infrastructure;
+    using Web;
+
     using System.Reflection;
 
     //using CloudinaryDotNet;
@@ -12,19 +17,23 @@ namespace Hotel.Startup
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Hotel.Infrastructure.Common.Persistence;
 
     public class Startup
     {
-        private readonly IConfiguration configuration;
+        public Startup(IConfiguration configuration) => this.configuration = configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-        }
+        private readonly IConfiguration configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .AddDomain()
+                .AddApplication(this.configuration)
+                .AddInfrastructure(this.configuration)
+                .AddWebComponents();
+
             //services.AddDbContext<HotelDbContext>(
             //    options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 

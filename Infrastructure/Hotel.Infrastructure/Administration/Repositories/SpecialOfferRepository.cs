@@ -1,9 +1,9 @@
 ﻿namespace Hotel.Infrastructure.Administration.Repositories
 {
     using AutoMapper;
-    using Hotel.Application.Administration.SpecialOffers;
-    using Hotel.Domain.Administration.Models.SpecialOffer;
-    using Hotel.Infrastructure.Common.Persistence;
+    using Application.Administration.SpecialOffers;
+    using Domain.Administration.Models.SpecialOffer;
+    using Infrastructure.Common.Persistence;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
@@ -39,24 +39,14 @@
             return true;
         }
 
-        public async Task<IEnumerable<TOutputModel>> GetCarAdListings<TOutputModel>(
+        public async Task<IEnumerable<TOutputModel>> GetAllSpecialOffers<TOutputModel>(
             int skip = 0,
             int take = int.MaxValue,
             CancellationToken cancellationToken = default)
             => (await this.mapper
-                .ProjectTo<TOutputModel>
+                .ProjectTo<TOutputModel>(this.All())
                 .ToListAsync(cancellationToken))
                 .Skip(skip)
-                .Take(take); // EF Core bug forces me to execute paging on the client.
-
-
-        private IQueryable<SpecialOffer> AllSpecialOffers()
-            => this
-                .All();
-
-        public async Task GetAllSpecialOffers(CancellationToken cancellationToken = default)
-        {
-            throw new System.NotImplementedException();
-        }
+                .Take(take); 
     }
 }

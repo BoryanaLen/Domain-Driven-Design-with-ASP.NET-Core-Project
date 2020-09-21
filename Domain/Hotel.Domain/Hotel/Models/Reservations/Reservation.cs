@@ -15,8 +15,6 @@
 
     public class Reservation : Entity<int>, IAggregateRoot
     {
-        private readonly HashSet<Room> rooms;
-
         internal Reservation(
             DateTime startDate,
             DateTime endDate,
@@ -42,7 +40,8 @@
             this.AdvancedPayment = advancedPayment;
             this.IsPaid = isPaid;
 
-            this.rooms = new HashSet<Room>();
+            this.Rooms = new HashSet<Room>();
+            this.Payments = new HashSet<Payment>();
         }
 
         private Reservation(
@@ -50,7 +49,6 @@
             DateTime endDate,
             int adults,
             int kids,
-            Customers.Customer customer,
             decimal pricePerDay,
             decimal advancedPayment,
             bool isPaid)
@@ -66,7 +64,8 @@
             this.Customer = default!;
             this.PaymentType = default!;
 
-            this.rooms = new HashSet<Room>();
+            this.Rooms = new HashSet<Room>();
+            this.Payments = new HashSet<Payment>();
         }
 
         public DateTime StartDate { get; private set; }
@@ -87,9 +86,9 @@
 
         public bool IsPaid { get; private set; }
 
-        public ICollection<Room> ReservationRooms { get; } = new List<Room>();
+        public ICollection<Room> Rooms { get; } = new List<Room>();
 
-        public ICollection<Payment> ReservationPayments { get; } = new List<Payment>();
+        public ICollection<Payment> Payments { get; } = new List<Payment>();
 
         public int TotalDays => (int)(this.EndDate - this.StartDate).TotalDays;
 

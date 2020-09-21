@@ -10,7 +10,7 @@
         public SpecialOfferAddedEventHandler(ISpecialOfferRepository specialOffers)
             => this.specialOffers = specialOffers;
 
-        public Task Handle(SpecialOfferAddedEvent domainEvent)
-            => this.specialOffers.IncrementSpecialOffers();
+        //public Task Handle(SpecialOfferAddedEvent domainEvent)
+        //    => this.specialOffers.IncrementSpecialOffers();
     }
 }

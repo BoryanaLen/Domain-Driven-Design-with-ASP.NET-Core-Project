@@ -20,7 +20,7 @@
                 .WithKids(1)
                 .WithStartDate(DateTime.UtcNow.AddDays(-1))
                 .WithEndDate(DateTime.UtcNow.AddDays(5))
-                .WithPaymentType(PaymentType.Cash)
+                .WithPaymentType(new PaymentType("Cash"))
                 .WithPricePerDay(100)
                 .WithAdvancedPayment(0)
                 .WithIsPaid(false)

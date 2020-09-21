@@ -1,27 +1,23 @@
 ﻿namespace Hotel.Infrastructure.Common.Persistence
 {
-    using Application.Identity;
     using System.Linq;
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    //using Dealership;
-    //using Domain.Common.Models;
-    //using Domain.Dealerships.Models.CarAds;
-    //using Domain.Dealerships.Models.Dealers;
-    //using Domain.Statistics.Models;
+    using Domain.Common.Models;
     using Events;
-    //using Identity;
+    using Domain.Hotel.Models.Reservations;
+    using Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Hotel.Infrastructure.Identity;
-    using Hotel.Domain.Common.Models;
+    using Infrastructure.Administration;
+    using Infrastructure.Hotel;
+    using Domain.Hotel.Models.Rooms;
+    using Domain.Administration.Models.SpecialOffer;
 
-    // using Statistics;
-
-    internal class HotelDbContext : IdentityDbContext<User>
-        //IDealershipDbContext,
-        //IStatisticsDbContext
+    public class HotelDbContext : IdentityDbContext<User>,
+        IAdministrationDbContext,
+        IHotelDbContext
     {
         private readonly IEventDispatcher eventDispatcher;
         private bool eventsDispatched;
@@ -36,17 +32,17 @@
             this.eventsDispatched = false;
         }
 
-        //public DbSet<CarAd> CarAds { get; set; } = default!;
+        public DbSet<Reservation> Reservations { get; set; } = default!;
 
-        //public DbSet<Category> Categories { get; set; } = default!;
+        public DbSet<Room> Rooms { get; set; } = default!;
 
-        //public DbSet<Manufacturer> Manufacturers { get; set; } = default!;
+        public DbSet<Payment> Payments { get; set; } = default!;
 
-        //public DbSet<Dealer> Dealers { get; set; } = default!;
+        public DbSet<RoomType> RoomTypes { get; set; } = default!;
 
-        //public DbSet<Statistics> Statistics { get; set; } = default!;
+        public DbSet<PaymentType> PaymentTypes { get; set; } = default!;
 
-        //public DbSet<CarAdView> CarAdViews { get; set; } = default!;
+        public DbSet<SpecialOffer> SpecialOffers { get; set; } = default!;
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

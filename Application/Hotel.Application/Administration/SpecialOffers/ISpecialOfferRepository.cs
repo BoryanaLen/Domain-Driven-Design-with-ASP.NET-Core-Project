@@ -1,5 +1,6 @@
 ﻿namespace Hotel.Application.Administration.SpecialOffers
 {
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Common.Contracts;
@@ -7,6 +8,9 @@
 
     public interface ISpecialOfferRepository : IRepository<SpecialOffer>
     {
-        Task GetAllSpecialOffers(CancellationToken cancellationToken = default);
+        Task<IEnumerable<TOutputModel>> GetAllSpecialOffers<TOutputModel>(
+           int skip = 0,
+           int take = int.MaxValue,
+           CancellationToken cancellationToken = default);
     }
 }

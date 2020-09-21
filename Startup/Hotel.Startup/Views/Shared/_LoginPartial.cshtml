@@ -1,14 +1,9 @@
-﻿@using Hotel.Common
-@using Hotel.Data.Models
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<HotelUser> SignInManager
-@inject UserManager<HotelUser> UserManager
+﻿@using Microsoft.AspNetCore.Identity
 
-
-    @if (this.SignInManager.IsSignedIn(this.User))
+    @if (true)
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello  @UserManager.GetUserAsync(User).Result.FirstName!</a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello </a>
         </li>       
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">

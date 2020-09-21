@@ -23,11 +23,19 @@
 
         }
 
+        private Payment(DateTime dateOfPayment, decimal amount)
+        {
+            this.DateOfPayment = dateOfPayment;
+            this.Amount = amount;
+
+            this.PaymentType = default!;
+        }
+
         public DateTime DateOfPayment { get; set; }
 
         public decimal Amount { get; set; }
 
-        public virtual PaymentType PaymentType { get; set; }
+        public PaymentType PaymentType { get; set; }
 
         private void Validate(decimal amount)
         {

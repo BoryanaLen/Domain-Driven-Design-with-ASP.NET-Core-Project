@@ -7,6 +7,8 @@
     using Common;
     using Common.Events;
     using Common.Persistence;
+    using Infrastructure.Administration;
+    using Infrastructure.Hotel;
     using Identity;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Identity;
@@ -35,8 +37,8 @@
                         configuration.GetConnectionString("DefaultConnection"),
                         sqlServer => sqlServer
                             .MigrationsAssembly(typeof(HotelDbContext).Assembly.FullName)))
-                //.AddScoped<IDealershipDbContext>(provider => provider.GetService<HotelDbContext>())
-                //.AddScoped<IStatisticsDbContext>(provider => provider.GetService<HotelDbContext>())
+                .AddScoped<IAdministrationDbContext>(provider => provider.GetService<HotelDbContext>())
+                .AddScoped<IHotelDbContext>(provider => provider.GetService<HotelDbContext>())
                 .AddTransient<IInitializer, DatabaseInitializer>();
 
         internal static IServiceCollection AddRepositories(this IServiceCollection services)
