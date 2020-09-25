@@ -1,30 +1,34 @@
 ﻿namespace Web.Controllers
 {
-    using System.Linq;
     using Web.Common;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
+    using Application.Administration.SpecialOffers.Queries.All;
+    using Application.Administration.SpecialOffers;
+    using Microsoft.AspNetCore.Authorization;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class HomeController : BaseController
     {
+        private ISpecialOfferRepository specialOfferRepository;
+
+        public HomeController(ISpecialOfferRepository specialOfferRepository)
+        {
+            this.specialOfferRepository = specialOfferRepository;
+        }
+
         public IActionResult Index()
         {
-            //var hotel = this.hotelsService.GetHotelByName("Hotel Boryana");
+            var offers =
+                this.specialOfferRepository.GetAllSpecialOffersList<AllSpecialOfferOutputModel>();
 
-            //var offers = this.specialOffersService
-            //    .GetAllSpecialOffers<DetailsSpecialOfferViewModel>()
-            //    .Take(4);
+            var model = new AllSpecialOffersOutputModel()
+            {
+                SpecialOffers = offers.ToList()
+            };
 
-            //var model = new HomeViewModel
-            //{
-            //    SpecialOffers = offers.ToList(),
-            //    FooterViewModel = new FooterViewModel
-            //    {
-            //        Address = hotel.Address,
-            //        Manager = hotel.Manager,
-            //        PhoneNumber = hotel.PhoneNumber,
-            //    },
-            //};
-
-            return this.View();
+            return this.View(model);
         }
 
         public IActionResult Privacy()

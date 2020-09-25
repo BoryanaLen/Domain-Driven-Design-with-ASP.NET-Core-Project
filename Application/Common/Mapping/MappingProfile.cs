@@ -3,33 +3,25 @@
     using System;
     using System.Linq;
     using System.Reflection;
+    using Application.Administration.SpecialOffers.Queries.All;
     using AutoMapper;
+    using Domain.Administration.Models.SpecialOffer;
 
     public class MappingProfile : Profile
     {
+        //public MappingProfile()
+        //    => this.ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+
         public MappingProfile()
-            => this.ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-
-        private void ApplyMappingsFromAssembly(Assembly assembly)
         {
-            var types = assembly
-                .GetExportedTypes()
-                .Where(t => t
-                    .GetInterfaces()
-                    .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
-                .ToList();
+            this.CreateMap<SpecialOffer, AllSpecialOfferOutputModel>();
+ 
+           
 
-            foreach (var type in types)
-            {
-                var instance = Activator.CreateInstance(type);
-
-                const string mappingMethodName = "Mapping";
-
-                var methodInfo = type.GetMethod(mappingMethodName)
-                                 ?? type.GetInterface("IMapFrom`1")?.GetMethod(mappingMethodName);
-
-                methodInfo?.Invoke(instance, new object[] { this });
-            }
+            //this.CreateMap<Order, ViewModels.Orders.OrderDetailsViewModel>()
+            //              .ForMember(x => x.Status, y => y.MapFrom(src => src.Status.GetDisplayName()))
+            //              .ForMember(x => x.PaymentStatus, y => y.MapFrom(src => src.PaymentStatus.GetDisplayName()))
+            //              .ForMember(x => x.PaymentType, y => y.MapFrom(src => src.PaymentType.GetDisplayName()));
         }
     }
 }

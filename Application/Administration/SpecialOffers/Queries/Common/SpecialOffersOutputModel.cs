@@ -5,13 +5,9 @@
     public abstract class SpecialOffersOutputModel<TSpecialOfferOutputModel>
     {
         internal SpecialOffersOutputModel(
-            IEnumerable<TSpecialOfferOutputModel> specialOffers,
-            int page,
-            int totalPages)
+            IEnumerable<TSpecialOfferOutputModel> specialOffers)
         {
             this.SpecialOffers = specialOffers;
-            this.Page = page;
-            this.TotalPages = totalPages;
         }
 
         public IEnumerable<TSpecialOfferOutputModel> SpecialOffers { get; }

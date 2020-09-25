@@ -5,19 +5,18 @@ namespace Startup
     using Infrastructure;
     using Web;
 
-    using System.Reflection;
-
     //using CloudinaryDotNet;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Infrastructure.Common.Persistence;
+    using Web.Middleware;
+    using AutoMapper;
+    using Application.Common.Mapping;
 
     public class Startup
     {
@@ -34,12 +33,6 @@ namespace Startup
                 .AddInfrastructure(this.configuration)
                 .AddWebComponents();
 
-            //services.AddDbContext<HotelDbContext>(
-            //    options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDefaultIdentity<HotelUser>(IdentityOptionsProvider.GetIdentityOptions)
-            //    .AddRoles<HotelRole>().AddEntityFrameworkStores<HotelDbContext>();
-
             services.Configure<CookiePolicyOptions>(
                 options =>
                 {
@@ -47,17 +40,9 @@ namespace Startup
                     options.MinimumSameSitePolicy = SameSiteMode.None;
                 });
 
-            //services.AddAuthentication().AddFacebook(facebookOptions =>
-            //{
-            //    facebookOptions.AppId = this.configuration["Authentication:Facebook:AppId"];
-            //    facebookOptions.AppSecret = this.configuration["Authentication:Facebook:AppSecret"];
-            //});
-
-            //services.AddAuthentication().AddGoogle(googleOptions =>
-            //{
-            //    googleOptions.ClientId = this.configuration["Authentication:Google:ClientId"];
-            //    googleOptions.ClientSecret = this.configuration["Authentication:Google:ClientSecret"];
-            //});
+            services.AddAutoMapper(cfg => {
+                cfg.AddProfile<MappingProfile>();
+            });
 
             //Account cloudinaryCredentials = new Account(
             //  this.configuration["Cloudinary:CloudName"],
@@ -95,24 +80,6 @@ namespace Startup
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //AutoMapperConfig.RegisterMappings(
-            //    typeof(ErrorViewModel).GetTypeInfo().Assembly,
-            //    typeof(Room).GetTypeInfo().Assembly,
-            //    typeof(DetailsRoomViewModel).GetTypeInfo().Assembly);
-
-            // Seed data on application startup
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                //var dbContext = serviceScope.ServiceProvider.GetRequiredService<HotelDbContext>();
-
-                //if (env.IsDevelopment())
-                //{
-                //    dbContext.Database.Migrate();
-                //}
-
-                //new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-            }
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -125,6 +92,23 @@ namespace Startup
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseValidationExceptionHandler();
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseCors(options => options
+                   .AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod());
+
+            app.UseAuthentication();
+
+            app.UseAuthentication();
+
+            app.Initialize();
 
             app.UseHttpsRedirection();
 
