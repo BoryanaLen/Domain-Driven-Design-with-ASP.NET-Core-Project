@@ -1,24 +1,15 @@
 ﻿namespace Infrastructure.Common.Persistence.Models.RoomData
 {
-    using Application.Hotel.Accommodations;
     using Domain.Common;
     using Infrastructure.Common.Persistence.Models.RoomTypeData;
     using System;
     using System.Collections.Generic;
     internal class RoomDataData : IInitialData
     {
-        internal readonly IRoomRepository roomRepository;
-
-        public RoomDataData(IRoomRepository roomRepository)
-        {
-            this.roomRepository = roomRepository;
-        }
         public Type EntityType => typeof(RoomData);
 
         public IEnumerable<object> GetData()
         {
-            var roomTypesList = this.roomRepository.GetAllRoomTypes();
-
             return new List<RoomData>
             {
                 new RoomData("S-1",

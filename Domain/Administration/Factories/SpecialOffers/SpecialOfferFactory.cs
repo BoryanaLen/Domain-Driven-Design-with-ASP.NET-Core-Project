@@ -1,7 +1,7 @@
-﻿using Domain.Administration.Models.SpecialOffer;
-
-namespace Domain.Administration.Factories
+﻿namespace Domain.Administration.Factories.SpecialOffers
 {
+    using Domain.Administration.Models.SpecialOffer;
+
     public class SpecialOfferFactory : ISpecialOfferFactory
     {
         private string title = default!;

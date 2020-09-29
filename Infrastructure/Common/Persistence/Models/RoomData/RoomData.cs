@@ -32,6 +32,7 @@
 
         public string Description { get; private set; }
 
+        public int RoomTypeId { get; private set; }
         public RoomTypeData RoomType { get; private set; }      
     }
 }

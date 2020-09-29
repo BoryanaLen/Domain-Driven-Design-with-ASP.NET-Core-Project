@@ -28,7 +28,7 @@ using Application.Hotel.SpecialOffers.Queries.All;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bbe6ee4bd466980e214ccb33993643d1d17b1c8b", @"/Views/Accommodations/Index.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0085670902aa868f3e44db9df2772040be392465", @"/Views/_ViewImports.cshtml")]
-    public class Views_Accommodations_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Application.Hotel.Accommodations.Queries.Home.IndexViewOutputModel>
+    public class Views_Accommodations_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Application.Hotel.Reservations.Queries.HomePage.IndexViewOutputModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "~/Views/Accommodations/_SearchFormPartial.cshtml", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
@@ -149,7 +149,7 @@ WriteAttributeValue("", 1127, type.Image, 1127, 11, false);
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<Application.Hotel.Accommodations.Queries.Home.IndexViewOutputModel> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<Application.Hotel.Reservations.Queries.HomePage.IndexViewOutputModel> Html { get; private set; }
     }
 }
 #pragma warning restore 1591

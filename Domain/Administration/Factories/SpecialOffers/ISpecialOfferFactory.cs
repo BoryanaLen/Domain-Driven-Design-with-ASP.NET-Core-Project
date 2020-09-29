@@ -1,4 +1,4 @@
-﻿namespace Domain.Administration.Factories
+﻿namespace Domain.Administration.Factories.SpecialOffers
 {
     using Administration.Models.SpecialOffer;
     using Common;

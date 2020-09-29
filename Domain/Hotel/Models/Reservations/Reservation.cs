@@ -2,7 +2,6 @@
 {
     using Common;
     using Exceptions;
-    using Rooms;
     using Customers;
     using Common.Models;
 

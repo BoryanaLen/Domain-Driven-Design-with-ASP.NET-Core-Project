@@ -3,7 +3,7 @@
     using Domain.Common;
     using Domain.Common.Models;
 
-    public class RoomTypeData : Entity<int>, IAggregateRoot
+    public class RoomTypeData : Entity<int>
     {
         internal RoomTypeData(
             string name, 

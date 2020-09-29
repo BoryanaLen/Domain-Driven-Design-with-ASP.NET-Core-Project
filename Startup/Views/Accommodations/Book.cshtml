@@ -1,0 +1,159 @@
+﻿@model Application.Hotel.Reservations.Queries.HomePage.AllAvailableRoomsViewModel;
+
+@{
+    ViewData["Title"] = "Add Reservation";
+}
+
+<div class="page" id="reservation_container" style="width:100%; display:flow-root;">
+    <div style="width:70%; float:left; margin-left:40px;">
+        <h3 class="mobile-fondsize-20 text-muted text-center" style="color:#1dc8d9">Reservation details</h3>
+        <hr />
+        <form asp-controller="Accommodations" asp-action="BookRooms" method="post" enctype="multipart/form-data" style="color: #777">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <h4 style="margin-bottom:20px;">Booking details</h4>
+
+            <div class="form-row">
+                <div class="form-group col-md-6 agileits w3layouts slideInLeft wow animated">
+                    <label asp-for="UserFirstName" class="control-label"></label>
+                    <input asp-for="UserFirstName" type="hidden" class="form-control" />
+                    <input value="@Model.UserFirstName" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="UserFirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 agileits w3layouts slideInRight wow animated">
+                    <label asp-for="UserLastName" class="control-label"></label>
+                    <input asp-for="UserLastName" type="hidden" class="form-control" />
+                    <input value="@Model.UserLastName" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="UserLastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6 agileits w3layouts slideInLeft wow animated">
+                    <label asp-for="CheckIn" class="control-label"></label>
+                    <input asp-for="CheckIn" type="hidden" class="form-control" />
+                    <input value="@DateTime.Parse(Model.CheckIn).ToString("dd/MM/yyyy")" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="CheckIn" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 agileits w3layouts slideInRight wow animated">
+                    <label asp-for="CheckOut" class="control-label"></label>
+                    <input asp-for="CheckOut" type="hidden" class="form-control" />
+                    <input value="@DateTime.Parse(Model.CheckOut).ToString("dd/MM/yyyy")" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="CheckOut" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6 agileits w3layouts slideInLeft wow animated">
+
+                </div>
+                <div class="form-group col-md-3 agileits w3layouts slideInRight wow animated">
+                    <label asp-for="Adults" class="control-label"></label>
+                    <input asp-for="Adults" type="hidden" class="form-control" />
+                    <input value="@Model.Adults" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="Adults" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3 agileits w3layouts slideInRight wow animated">
+                    <label asp-for="Kids" class="control-label"></label>
+                    <input asp-for="Kids" type="hidden" class="form-control" />
+                    <input value="@Model.Kids" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="Kids" class="text-danger"></span>
+                </div>
+            </div>
+
+            <table id="table_container">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Room type</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Adults</th>
+                        <th scope="col">Kids</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var room in Model.ListOfRoomsInReservation)
+                    {
+                        <tr>
+                            <td data-label="Image">
+                                <img id="img-room-view" src="@room.RoomTypeImage">
+                            </td>
+                            <td data-label="RoomType"> @room.RoomTypeName</td>
+                            <td data-label="Price">@(room.RoomTypePrice)EUR</td>
+                            <td data-label="Capacity">@room.RoomTypeCapacityAdults</td>
+                            <td data-label="Capacity">@room.RoomTypeCapacityKids</td>
+                            <td>
+                                <input name="RoomIds" type="checkbox" disabled="disabled" value="@room.Id" checked /> Book
+                                <input name="RoomIds" type="checkbox" hidden="hidden" value="@room.Id" checked />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="form-row">
+                <div class="form-group col-md-6 agileits w3layouts slideInLeft wow animated">
+                    <label asp-for="TotalDays" class="control-label"></label>
+                    <input asp-for="TotalDays" type="hidden" class="form-control" />
+                    <input value="@Model.TotalDays" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="TotalDays" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 agileits w3layouts slideInRight wow animated">
+                    <label asp-for="TotalAmount" class="control-label"></label>
+                    <input asp-for="TotalAmount" type="hidden" class="form-control" />
+                    <input value="@Model.TotalAmount" disabled="disabled" class="form-control" />
+                    <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="clearfix"></div>
+            <h4 style="margin-bottom:20px; padding-top:20px;">Payment details</h4>
+            <div style="margin-bottom:15px;padding:10px;">
+                The reservation must be guaranteed with a deposit of 30% of the total booking.
+                We require prepayment in order to guarantee your reservation.
+                Once the prepayment has been verified, we will send you the final booking confirmation to the e-mail address provided to us.
+            </div>
+
+           
+
+            <div class="form-row">
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-4 text-center">
+                    <button type="submit" value="" class="btn" style="background-color:#1dc8d9;color:#777">Book</button>
+                </div>
+                <div class="form-group col-md-4 text-center">
+                    <a asp-controller="Accommodations" asp-action="AvailableRooms" asp-route-checkIn="@Model.CheckIn" asp-route-checkOut="@Model.CheckOut" asp-route-adults="@Model.Adults" asp-route-kids="@Model.Kids" style="background-color:#008c9d" class="btn btn-primary">Back</a>
+                </div>
+                <div class="form-group col-md-2"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AVKCwyysCrT_qfBX7tKVBaWxfD70I_37LTG2_T1PWOssf9ABvaCTU4YTEevBuhxWZUYMaurCN6DeYFj6&currency=USD"></script>
+
+<script>
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '0.01'
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        }
+    }).render('#paypal-button-container');
+  //This function displays Smart Payment Buttons on your web page.
+</script>

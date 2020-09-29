@@ -1,4 +1,4 @@
-﻿namespace Application.Hotel.Accommodations.Queries.Home
+﻿namespace Application.Hotel.Reservations.Queries.HomePage
 {
     using System.Collections.Generic;
 

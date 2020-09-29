@@ -5,8 +5,9 @@
     using System.Collections.Generic;
     using RoomData;
     using PaymentData;
+    using Domain.Common;
 
-    public class ReservationData : Entity<int>
+    public class ReservationData : Entity<int>, IAggregateRoot
     {
         internal ReservationData(
             DateTime startDate,

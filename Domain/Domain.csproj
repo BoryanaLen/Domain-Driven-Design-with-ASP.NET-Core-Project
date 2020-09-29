@@ -34,4 +34,8 @@
     <PackageReference Include="Scrutor" Version="3.2.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Administration\Models\Rooms\" />
+  </ItemGroup>
+
 </Project>

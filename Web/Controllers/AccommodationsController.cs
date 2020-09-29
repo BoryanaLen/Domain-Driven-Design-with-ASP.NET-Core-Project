@@ -1,33 +1,28 @@
 ﻿namespace Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Application.Common.Contracts;
-    using Application.Hotel.Accommodations;
-    using Application.Hotel.Accommodations.Queries.Home;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
+    using Application.Hotel.Reservations;
+    using Application.Hotel.Reservations.Queries.HomePage;
     using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Linq;
+    using Web.Common;
 
     public class AccommodationsController : BaseController
     {
 
-        private readonly IRoomRepository roomRepository;
+        private readonly IReservationRepository reservationRepository;
         //private readonly IEmailSender emailSender;
 
         public AccommodationsController(
-            IRoomRepository roomRepository)
+           IReservationRepository reservationRepository)
         {
             
-            this.roomRepository = roomRepository;
+            this.reservationRepository = reservationRepository;
         }
 
         public IActionResult Index()
         {
-            var roomTypes = this.roomRepository
+            var roomTypes = this.reservationRepository
               .GetAllRoomTypes();
 
             var model = new IndexViewOutputModel
@@ -44,7 +39,7 @@
         {
             if (!this.ModelState.IsValid || (model.CheckIn >= model.CheckOut))
             {
-                var roomTypes = this.roomRepository
+                var roomTypes = this.reservationRepository
                     .GetAllRoomTypes();
 
                 var modelIndex = new IndexViewOutputModel
@@ -59,64 +54,41 @@
             return this.Redirect($"/Accommodations/AvailableRooms?checkIn={model.CheckIn}&checkOut={model.CheckOut}&adults={model.Adults}&kids={model.Kids}");
         }
 
-        //[Authorize]
-        //public async Task<IActionResult> AvailableRooms(string checkIn, string checkOut, int adults, int kids, int page = GlobalConstants.DefaultPageNumber, int perPage = GlobalConstants.PageSize)
-        //{
-        //    DateTime startDate = DateTime.Parse(checkIn).AddHours(14);
-        //    DateTime endDate = DateTime.Parse(checkOut).AddHours(12);
+        public IActionResult AvailableRooms(string checkIn, string checkOut, int adults, int kids, int page = GlobalConstants.DefaultPageNumber, int perPage = GlobalConstants.PageSize)
+        {
+            DateTime startDate = DateTime.Parse(checkIn).AddHours(14);
+            DateTime endDate = DateTime.Parse(checkOut).AddHours(12);
 
-        //    var reservedRoomsId = this.roomRepository
-        //        .GetAllReservedRoomsId(startDate, endDate)
-        //        .ToList();
+            var reservedRoomsId = this.reservationRepository
+                .GetAllReservedRoomsId(startDate, endDate)
+                .ToList();
 
-        //    var allAvailableRooms = this.roomsService
-        //        .GetAllRooms()
-        //        .Where(x => !reservedRoomsId.Any(x2 => x2 == x.Id))
-        //        .ToList();
+            var allAvailableRoomModels = this.reservationRepository
+                .GetAllRooms()
+                .Where(x => !reservedRoomsId.Any(x2 => x2 == x.Id))
+                .ToList();
 
-        //    var allAvailableRoomModels = new List<AvailableRoomViewModel>();
+            var rooms = allAvailableRoomModels
+               .OrderBy(x => x.RoomTypeCapacityAdults)
+               .Skip(perPage * (page - 1))
+               .Take(perPage)
+               .ToList();
 
-        //    foreach (var room in allAvailableRooms)
-        //    {
-        //        var roomType = await this.roomTypesService.GetRoomTypeByIdAsync(room.RoomTypeId);
+            var pagesCount = (int)Math.Ceiling(allAvailableRoomModels.Count() / (decimal)perPage);
 
-        //        var modelRoom = new AvailableRoomViewModel
-        //        {
-        //            Id = room.Id,
-        //            RoomNumber = room.RoomNumber,
-        //            RoomRoomTypeId = roomType.Id,
-        //            RoomRoomTypePrice = roomType.Price,
-        //            RoomRoomTypeCapacityAdults = roomType.CapacityAdults,
-        //            RoomRoomTypeCapacityKids = roomType.CapacityKids,
-        //            RoomRoomTypeImage = roomType.Image,
-        //            RoomRoomTypeName = roomType.Name,
-        //            Description = room.Description,
-        //        };
+            var model = new AllAvailableRoomsViewModel
+            {
+                Rooms = rooms.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
+                Adults = adults,
+                Kids = kids,
+                CheckIn = startDate.ToString(),
+                CheckOut = endDate.ToString(),
+            };
 
-        //        allAvailableRoomModels.Add(modelRoom);
-        //    }
-
-        //    var rooms = allAvailableRoomModels
-        //       .OrderBy(x => x.RoomRoomTypeCapacityAdults)
-        //       .Skip(perPage * (page - 1))
-        //       .Take(perPage)
-        //       .ToList();
-
-        //    var pagesCount = (int)Math.Ceiling(allAvailableRooms.Count() / (decimal)perPage);
-
-        //    var model = new AllAvailableRoomsViewModel
-        //    {
-        //        Rooms = rooms.ToList(),
-        //        CurrentPage = page,
-        //        PagesCount = pagesCount,
-        //        Adults = adults,
-        //        Kids = kids,
-        //        CheckIn = startDate.ToString(),
-        //        CheckOut = endDate.ToString(),
-        //    };
-
-        //    return this.View(model);
-        //}
+            return this.View(model);
+        }
 
         //[Authorize]
         //public async Task<IActionResult> Book(AllAvailableRoomsViewModel model)

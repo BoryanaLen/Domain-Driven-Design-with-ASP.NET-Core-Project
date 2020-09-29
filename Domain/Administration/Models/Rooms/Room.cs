@@ -1,4 +1,4 @@
-﻿namespace Domain.Hotel.Models.Rooms
+﻿namespace Domain.Administration.Models.Rooms
 {
     using Common.Models;
     using Exceptions;

@@ -633,3 +633,7 @@ C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Cor
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\bin\Debug\netcoreapp3.1\SendGrid.dll
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Accommodations\_SearchFormPartial.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Accommodations\AvailableRooms.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Accommodations\Book.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Accommodations\_ErrorMessagePartial.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\ReservedRooms\Default.cshtml.g.cs

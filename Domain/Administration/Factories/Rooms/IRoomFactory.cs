@@ -1,4 +1,4 @@
-﻿namespace Domain.Hotel.Factories.Rooms
+﻿namespace Domain.Administration.Factories.Rooms
 {
     using Common;
     using Models.Rooms;
