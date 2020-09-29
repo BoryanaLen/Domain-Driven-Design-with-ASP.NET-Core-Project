@@ -628,3 +628,8 @@ C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Startup.dll
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Startup.pdb
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Startup.genruntimeconfig.cache
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Accommodations\Index.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Accommodations\ThankYou.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\bin\Debug\netcoreapp3.1\SendGrid.dll
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Startup\obj\Debug\netcoreapp3.1\Razor\Views\Accommodations\_SearchFormPartial.cshtml.g.cs

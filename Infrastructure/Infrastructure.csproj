@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Common\Persistence\Models\Common\**" />
+    <EmbeddedResource Remove="Common\Persistence\Models\Common\**" />
+    <None Remove="Common\Persistence\Models\Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectCapability Include="DynamicFileNesting" />
   </ItemGroup>
 
@@ -38,7 +44,6 @@
 
   <ItemGroup>
     <Folder Include="Administration\Repositories\" />
-    <Folder Include="Common\Persistence\Models\Common\" />
   </ItemGroup>
 
   <ItemGroup>

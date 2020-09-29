@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aD6mBMvaIzBWtxWVz/VDKDmEXPZieFhBJ3L6ZppfOiGKmIJBxCVnEPzT12UhBC9MvLYsW8bV6SYNcw6LIcgo5Q==",
+  "dgSpecHash": "+IzcDe0RJojyebdsIsDxmwHpockb1WrqXd55h25zeq38ZmW7y+nzHQe2pnyEZFU5OnRt8iw1xN63LaUzsvBeTg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-clone\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bariz\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
@@ -52,6 +52,8 @@
     "C:\\Users\\bariz\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\scrutor\\3.2.2\\scrutor.3.2.2.nupkg.sha512",
+    "C:\\Users\\bariz\\.nuget\\packages\\sendgrid\\9.21.0\\sendgrid.9.21.0.nupkg.sha512",
+    "C:\\Users\\bariz\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

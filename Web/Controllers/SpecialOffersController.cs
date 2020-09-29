@@ -1,12 +1,6 @@
 ﻿namespace Web.Controllers
 {
     using Application.Administration.SpecialOffers;
-    using Application.Hotel.SpecialOffers.Queries.All;
-    using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Web.Common;
 
     public class SpecialOffersController : BaseController
     {

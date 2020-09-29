@@ -484,3 +484,5 @@ C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.genruntimeconfig.cache
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Infrastructure\bin\Debug\netcoreapp3.1\SendGrid.dll
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Infrastructure\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll

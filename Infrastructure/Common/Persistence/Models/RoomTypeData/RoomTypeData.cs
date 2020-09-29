@@ -1,8 +1,9 @@
 ﻿namespace Infrastructure.Common.Persistence.Models.RoomTypeData
 {
+    using Domain.Common;
     using Domain.Common.Models;
 
-    public class RoomTypeData : Entity<int>
+    public class RoomTypeData : Entity<int>, IAggregateRoot
     {
         internal RoomTypeData(
             string name, 

@@ -5,8 +5,6 @@ namespace Startup
     using Infrastructure;
     using Web;
 
-    //using CloudinaryDotNet;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -15,8 +13,6 @@ namespace Startup
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Web.Middleware;
-    using AutoMapper;
-    using Infrastructure.Common;
 
     public class Startup
     {
@@ -39,16 +35,6 @@ namespace Startup
                     options.CheckConsentNeeded = context => true;
                     options.MinimumSameSitePolicy = SameSiteMode.None;
                 });
-
-
-            //Account cloudinaryCredentials = new Account(
-            //  this.configuration["Cloudinary:CloudName"],
-            //  this.configuration["Cloudinary:ApiKey"],
-            //  this.configuration["Cloudinary:ApiSecret"]);
-
-            //Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
-
-            //services.AddSingleton(cloudinaryUtility);
 
             services.AddControllersWithViews(configure =>
             {

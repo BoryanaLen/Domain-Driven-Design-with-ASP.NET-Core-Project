@@ -12,7 +12,6 @@ C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Cor
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
-C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.dll
 C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.pdb
@@ -52,3 +51,4 @@ C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.dll
 C:\Users\bariz\OneDrive\Desktop\DDD-clone\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.pdb
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache

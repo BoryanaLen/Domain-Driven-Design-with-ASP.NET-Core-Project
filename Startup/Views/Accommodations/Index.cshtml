@@ -1,0 +1,40 @@
+﻿@model Application.Hotel.Accommodations.Queries.Home.IndexViewOutputModel;
+@{
+    ViewData["Title"] = "Accommodation";
+}
+
+<div id="contact-bg">
+
+    <div id="searchContainer" class="agileits w3layouts" style="padding-bottom: 30px;">
+        <partial name="~/Views/Accommodations/_SearchFormPartial.cshtml" model="@Model.CheckAvailableRoomsViewModel" />
+    </div>
+
+    <div id="contact-bg">
+
+        <h2 style="font-size:40px;">Accommodation</h2>
+
+        @foreach (var type in Model.RoomTypes)
+        {
+            <div class="location agileits w3layouts">
+                <div class="container">
+                    <div class="col-md-6 col-sm-6 agileits w3layouts location-grids location-grids-1 wow slideInLeft">
+                        <h3>@type.Name</h3>
+                        <div>Price: @type.Price EUR</div>
+                        <div id="room-content"> @type.Description</div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 agileits w3layouts location-grids location-grids-2 wow slideInRight" id="contact-sheet-picture">
+                        <img src="@type.Image">
+                    </div>
+                    <div class="clearfix"></div><br>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+

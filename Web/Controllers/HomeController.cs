@@ -3,7 +3,6 @@
     using Application.Hotel.SpecialOffers;
     using Application.Hotel.SpecialOffers.Queries.All;
     using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
     using Web.Common;
 
     public class HomeController : BaseController

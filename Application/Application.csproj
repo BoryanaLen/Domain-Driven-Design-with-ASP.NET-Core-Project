@@ -15,6 +15,7 @@
     <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.8" />
+    <PackageReference Include="SendGrid" Version="9.21.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Hotel\Reservations\Queries\NewFolder\" />
     <Folder Include="Hotel\SpecialOffers\Queries\" />
   </ItemGroup>
 
