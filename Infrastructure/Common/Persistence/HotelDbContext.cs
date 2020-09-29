@@ -4,76 +4,84 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using Domain.Common.Models;
-    using Events;
-    using Domain.Hotel.Models.Reservations;
-    using Identity;
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore;
-    using Infrastructure.Administration;
-    using Infrastructure.Hotel;
-    using Domain.Hotel.Models.Rooms;
-    using Domain.Administration.Models.SpecialOffer;
 
-    public class HotelDbContext : IdentityDbContext<User>,
-        IAdministrationDbContext,
-        IHotelDbContext
+    using Microsoft.EntityFrameworkCore;
+    using Domain.Common.Models;
+    using Infrastructure.Common.Persistence.Models.ReservationData;
+    using Infrastructure.Common.Persistence.Models.RoomData;
+    using Infrastructure.Common.Persistence.Models.RoomTypeData;
+    using Infrastructure.Common.Persistence.Models.PaymentTypeData;
+    using Infrastructure.Common.Persistence.Models.SpecialOfferData;
+    using Infrastructure.Common.Persistence.Models.PaymentData;
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Infrastructure.Identity;
+    using Infrastructure.Common.Events;
+
+    public class HotelDbContext : IdentityDbContext<User>, IDbContext
     {
-        private readonly IEventDispatcher eventDispatcher;
-        private bool eventsDispatched;
+        private readonly IEventDispatcher eventDispatcher = default!;
+        private readonly Stack<object> savesChangesTracker;
+
+        public HotelDbContext()
+        {
+            this.savesChangesTracker = new Stack<object>();
+        }
 
         public HotelDbContext(
             DbContextOptions<HotelDbContext> options,
-            IEventDispatcher eventDispatcher)
+            IEventDispatcher eventDispatcher
+            )
             : base(options)
         {
             this.eventDispatcher = eventDispatcher;
 
-            this.eventsDispatched = false;
+            this.savesChangesTracker = new Stack<object>();
         }
 
-        public DbSet<Reservation> Reservations { get; set; } = default!;
 
-        public DbSet<Room> Rooms { get; set; } = default!;
+        public DbSet<ReservationData> Reservations { get; set; } = default!;
 
-        public DbSet<Payment> Payments { get; set; } = default!;
+        public DbSet<RoomData> Rooms { get; set; } = default!;
 
-        public DbSet<RoomType> RoomTypes { get; set; } = default!;
+        public DbSet<PaymentData> Payments { get; set; } = default!;
 
-        public DbSet<PaymentType> PaymentTypes { get; set; } = default!;
+        public DbSet<RoomTypeData> RoomTypes { get; set; } = default!;
 
-        public DbSet<SpecialOffer> SpecialOffers { get; set; } = default!;
+        public DbSet<PaymentTypeData> PaymentTypes { get; set; } = default!;
+
+        public DbSet<SpecialOfferData> SpecialOffers { get; set; } = default!;
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var entriesModified = 0;
+            this.savesChangesTracker.Push(new object());
 
-            if (!this.eventsDispatched)
+            var entities = this.ChangeTracker
+                .Entries<IEntity>()
+                .Select(e => e.Entity)
+                .Where(e => e.Events.Any())
+                .ToArray();
+
+            foreach (var entity in entities)
             {
-                var entities = this.ChangeTracker
-                    .Entries<IEntity>()
-                    .Select(e => e.Entity)
-                    .Where(e => e.Events.Any())
-                    .ToArray();
+                var events = entity.Events.ToArray();
 
-                foreach (var entity in entities)
+                entity.ClearEvents();
+
+                foreach (var domainEvent in events)
                 {
-                    var events = entity.Events.ToArray();
-
-                    entity.ClearEvents();
-
-                    foreach (var domainEvent in events)
-                    {
-                        await this.eventDispatcher.Dispatch(domainEvent);
-                    }
+                    await this.eventDispatcher.Dispatch(domainEvent);
                 }
-
-                this.eventsDispatched = true;
-
-                entriesModified = await base.SaveChangesAsync(cancellationToken);
             }
 
-            return entriesModified;
+            this.savesChangesTracker.Pop();
+
+            if (!this.savesChangesTracker.Any())
+            {
+                return await base.SaveChangesAsync(cancellationToken);
+            }
+
+            return 0;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

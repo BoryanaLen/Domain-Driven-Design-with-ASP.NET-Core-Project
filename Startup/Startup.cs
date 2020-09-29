@@ -16,7 +16,7 @@ namespace Startup
     using Microsoft.Extensions.Hosting;
     using Web.Middleware;
     using AutoMapper;
-    using Application.Common.Mapping;
+    using Infrastructure.Common;
 
     public class Startup
     {
@@ -40,9 +40,6 @@ namespace Startup
                     options.MinimumSameSitePolicy = SameSiteMode.None;
                 });
 
-            services.AddAutoMapper(cfg => {
-                cfg.AddProfile<MappingProfile>();
-            });
 
             //Account cloudinaryCredentials = new Account(
             //  this.configuration["Cloudinary:CloudName"],
@@ -60,20 +57,6 @@ namespace Startup
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);
-
-            // Data repositories
-            //services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-            //services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            //services.AddScoped<IDbQueryRunner, DbQueryRunner>();
-
-            // Application services
-            //services.AddTransient<IEmailSender>(
-            //    serviceProvider => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-            //services.AddTransient<ISettingsService, SettingsService>();
-            //services.AddTransient<IRoomsService, RoomsService>();
-            //services.AddTransient<ICloudinaryService, CloudinaryService>();
-            //services.AddTransient<IRoomTypesService, RoomTypesService>();
-
 
         }
 

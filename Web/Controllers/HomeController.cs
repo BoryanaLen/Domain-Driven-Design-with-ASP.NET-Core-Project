@@ -1,17 +1,14 @@
 ﻿namespace Web.Controllers
 {
-    using Web.Common;
+    using Application.Hotel.SpecialOffers;
+    using Application.Hotel.SpecialOffers.Queries.All;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
-    using Application.Administration.SpecialOffers.Queries.All;
-    using Application.Administration.SpecialOffers;
-    using Microsoft.AspNetCore.Authorization;
-    using System.Collections.Generic;
     using System.Linq;
+    using Web.Common;
 
     public class HomeController : BaseController
     {
-        private ISpecialOfferRepository specialOfferRepository;
+        private readonly ISpecialOfferRepository specialOfferRepository;
 
         public HomeController(ISpecialOfferRepository specialOfferRepository)
         {
@@ -20,12 +17,12 @@
 
         public IActionResult Index()
         {
-            var offers =
-                this.specialOfferRepository.GetAllSpecialOffersList<AllSpecialOfferOutputModel>();
+            var listOffers =
+                this.specialOfferRepository.GetAllSpecialOffersList();
 
             var model = new AllSpecialOffersOutputModel()
             {
-                SpecialOffers = offers.ToList()
+                SpecialOffers = listOffers,
             };
 
             return this.View(model);

@@ -11,8 +11,8 @@
 
     public class Room : Entity<int>, IAggregateRoot
     {
-        private static readonly IEnumerable<RoomType> AllowedRoomTypes
-             = new RoomTypeData().GetData().Cast<RoomType>();
+        //private static readonly IEnumerable<RoomType> AllowedRoomTypes
+        //     = new RoomTypeData().GetData().Cast<RoomType>();
 
         internal Room(
             string roomNumber,
@@ -21,7 +21,7 @@
             )
         {
             this.Validate(roomNumber, description);
-            this.ValidateRoomType(roomType);           
+            //this.ValidateRoomType(roomType);           
 
             this.RoomNumber = roomNumber;
             this.Description = description;
@@ -61,18 +61,18 @@
                 nameof(this.Description));
         }
 
-        private void ValidateRoomType(RoomType roomType)
-        {
-            var roomTypeName = roomType?.Name;
+        //private void ValidateRoomType(RoomType roomType)
+        //{
+        //    var roomTypeName = roomType?.Name;
 
-            if (AllowedRoomTypes.Any(c => c.Name == roomTypeName))
-            {
-                return;
-            }
+        //    if (AllowedRoomTypes.Any(c => c.Name == roomTypeName))
+        //    {
+        //        return;
+        //    }
 
-            var allowedRoomTypesNames = string.Join(", ", AllowedRoomTypes.Select(c => $"'{c.Name}'"));
+        //    var allowedRoomTypesNames = string.Join(", ", AllowedRoomTypes.Select(c => $"'{c.Name}'"));
 
-            throw new InvalidRoomException($"'{roomTypeName}' is not a valid room type. Allowed values are: {allowedRoomTypesNames}.");
-        }
+        //    throw new InvalidRoomException($"'{roomTypeName}' is not a valid room type. Allowed values are: {allowedRoomTypesNames}.");
+        //}
     }
 }

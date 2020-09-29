@@ -6,7 +6,7 @@
 
     using static ModelConstants.Payment;
 
-    public class Payment : Entity<int>
+    public class Payment 
     {
         internal Payment(
             DateTime dateOfPayment,
@@ -14,13 +14,10 @@
             PaymentType paymentType
             )
         {
-            this.Validate(amount);
-
             this.PaymentType = paymentType;
 
             this.DateOfPayment = dateOfPayment;
             this.Amount = amount;
-
         }
 
         private Payment(DateTime dateOfPayment, decimal amount)
@@ -36,17 +33,5 @@
         public decimal Amount { get; set; }
 
         public PaymentType PaymentType { get; set; }
-
-        private void Validate(decimal amount)
-        {
-            this.ValidateAmount(amount);
-        }
-
-        private void ValidateAmount(decimal amount)
-           => Guard.AgainstOutOfRange<InvalidReservationException>(
-                amount,
-                Zero,
-                decimal.MaxValue,
-                nameof(this.Amount));
     }
 }

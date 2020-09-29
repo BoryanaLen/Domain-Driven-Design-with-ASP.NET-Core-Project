@@ -19,34 +19,7 @@ namespace Infrastructure.Common.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Hotel.Domain.Administration.Models.SpecialOffer.SpecialOffer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1500)")
-                        .HasMaxLength(1500);
-
-                    b.Property<string>("ShortContent")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SpecialOffers");
-                });
-
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Customers.Customer", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.CustomerData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,10 +40,10 @@ namespace Infrastructure.Common.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("CustomerData");
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Reservations.Payment", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.PaymentData.PaymentData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,19 +59,19 @@ namespace Infrastructure.Common.Persistence.Migrations
                     b.Property<int>("PaymentTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ReservationId")
+                    b.Property<int?>("ReservationDataId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PaymentTypeId");
 
-                    b.HasIndex("ReservationId");
+                    b.HasIndex("ReservationDataId");
 
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Reservations.PaymentType", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.PaymentTypeData.PaymentTypeData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,7 +88,7 @@ namespace Infrastructure.Common.Persistence.Migrations
                     b.ToTable("PaymentTypes");
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Reservations.Reservation", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.ReservationData.ReservationData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,9 +113,6 @@ namespace Infrastructure.Common.Persistence.Migrations
                     b.Property<int>("Kids")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentTypeId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(18,2)");
 
@@ -153,12 +123,10 @@ namespace Infrastructure.Common.Persistence.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("PaymentTypeId");
-
                     b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Rooms.Room", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.RoomData.RoomData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -170,7 +138,7 @@ namespace Infrastructure.Common.Persistence.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<int?>("ReservationId")
+                    b.Property<int?>("ReservationDataId")
                         .HasColumnType("int");
 
                     b.Property<string>("RoomNumber")
@@ -183,14 +151,14 @@ namespace Infrastructure.Common.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReservationId");
+                    b.HasIndex("ReservationDataId");
 
                     b.HasIndex("RoomTypeId");
 
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Rooms.RoomType", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.RoomTypeData.RoomTypeData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -225,7 +193,34 @@ namespace Infrastructure.Common.Persistence.Migrations
                     b.ToTable("RoomTypes");
                 });
 
-            modelBuilder.Entity("Hotel.Infrastructure.Identity.User", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.SpecialOfferData.SpecialOfferData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1500)")
+                        .HasMaxLength(1500);
+
+                    b.Property<string>("ShortContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpecialOffers");
+                });
+
+            modelBuilder.Entity("Infrastructure.Identity.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -421,41 +416,35 @@ namespace Infrastructure.Common.Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Reservations.Payment", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.PaymentData.PaymentData", b =>
                 {
-                    b.HasOne("Hotel.Domain.Hotel.Models.Reservations.PaymentType", "PaymentType")
+                    b.HasOne("Infrastructure.Common.Persistence.Models.PaymentTypeData.PaymentTypeData", "PaymentType")
                         .WithMany()
                         .HasForeignKey("PaymentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hotel.Domain.Hotel.Models.Reservations.Reservation", null)
+                    b.HasOne("Infrastructure.Common.Persistence.Models.ReservationData.ReservationData", null)
                         .WithMany("Payments")
-                        .HasForeignKey("ReservationId");
+                        .HasForeignKey("ReservationDataId");
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Reservations.Reservation", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.ReservationData.ReservationData", b =>
                 {
-                    b.HasOne("Hotel.Domain.Hotel.Models.Customers.Customer", "Customer")
+                    b.HasOne("Infrastructure.Common.Persistence.Models.CustomerData", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Hotel.Domain.Hotel.Models.Reservations.PaymentType", "PaymentType")
-                        .WithMany()
-                        .HasForeignKey("PaymentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
-            modelBuilder.Entity("Hotel.Domain.Hotel.Models.Rooms.Room", b =>
+            modelBuilder.Entity("Infrastructure.Common.Persistence.Models.RoomData.RoomData", b =>
                 {
-                    b.HasOne("Hotel.Domain.Hotel.Models.Reservations.Reservation", null)
+                    b.HasOne("Infrastructure.Common.Persistence.Models.ReservationData.ReservationData", null)
                         .WithMany("Rooms")
-                        .HasForeignKey("ReservationId");
+                        .HasForeignKey("ReservationDataId");
 
-                    b.HasOne("Hotel.Domain.Hotel.Models.Rooms.RoomType", "RoomType")
+                    b.HasOne("Infrastructure.Common.Persistence.Models.RoomTypeData.RoomTypeData", "RoomType")
                         .WithMany()
                         .HasForeignKey("RoomTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -473,7 +462,7 @@ namespace Infrastructure.Common.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Hotel.Infrastructure.Identity.User", null)
+                    b.HasOne("Infrastructure.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -482,7 +471,7 @@ namespace Infrastructure.Common.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Hotel.Infrastructure.Identity.User", null)
+                    b.HasOne("Infrastructure.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -497,7 +486,7 @@ namespace Infrastructure.Common.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hotel.Infrastructure.Identity.User", null)
+                    b.HasOne("Infrastructure.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -506,7 +495,7 @@ namespace Infrastructure.Common.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Hotel.Infrastructure.Identity.User", null)
+                    b.HasOne("Infrastructure.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
