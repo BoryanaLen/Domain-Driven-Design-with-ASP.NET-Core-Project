@@ -1,11 +1,9 @@
 ﻿namespace Core.Domain.Hotel.Repositories
 {
+    using Common.Domain;
+    using Core.Domain.Hotel.Models.Reservations;
 
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-
-    public interface IReservationDomainRepository
+    public interface IReservationDomainRepository: IDomainRepository<Reservation>
     {
         
     }

@@ -6,17 +6,23 @@
     using System.Linq;
     using Common;
     using Core.Infrastructure.Hotel.Repositories;
+    using Core.Infrastructure.Identity;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class AccommodationsController : BaseController
     {
 
         private readonly IReservationQueryRepository reservationRepository;
+        private readonly UserManager<User> userManager;
         //private readonly IEmailSender emailSender;
 
         public AccommodationsController(
-           IReservationQueryRepository reservationRepository)
+             UserManager<User> userManager,
+             IReservationQueryRepository reservationRepository)
         {
-            
+            this.userManager = userManager;
             this.reservationRepository = reservationRepository;
         }
 
@@ -90,143 +96,112 @@
             return this.View(model);
         }
 
-        //[Authorize]
-        //public async Task<IActionResult> Book(AllAvailableRoomsViewModel model)
-        //{
-        //    //int totalAdultsCapacity = this.roomsService
-        //    //   .GetAllRooms()
-        //    //   .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
-        //    //   .Select(x => this.roomTypesService.GetRoomTypeByIdAsync(x.RoomTypeId).Result.CapacityAdults)
-        //    //   .Sum();
+        public async Task<IActionResult> Book(AllAvailableRoomsViewModel model)
+        {
+            int totalAdultsCapacity = this.reservationRepository
+               .GetAllRooms()
+               .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
+               .Select(x => this.reservationRepository.GetRoomTypeCapacityAdultsByIdAsync(x.RoomTypeId).Result)
+               .Sum();
 
-        //    //int totalKidsCapacity = this.roomsService
-        //    //   .GetAllRooms()
-        //    //   .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
-        //    //   .Select(x => this.roomTypesService.GetRoomTypeByIdAsync(x.RoomTypeId).Result.CapacityKids)
-        //    //   .Sum();
+            int totalKidsCapacity = this.reservationRepository
+               .GetAllRooms()
+               .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
+               .Select(x => this.reservationRepository.GetRoomTypeCapacityKidsByIdAsync(x.RoomTypeId).Result)
+               .Sum();
 
-        //    var checkedRooms = this.roomsService
-        //       .GetAllRooms()
-        //       .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
-        //       .ToList();
+            var checkedRooms = this.reservationRepository
+               .GetAllRooms()
+               .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
+               .ToList();
 
-        //    int totalAdultsCapacity = 0;
-        //    int totalKidsCapacity = 0;
+            //foreach (var room in checkedRooms)
+            //{
+            //    var type = await this.roomTypesService.GetRoomTypeByIdAsync(room.RoomTypeId);
+            //    totalAdultsCapacity += this.reservationRepository.GetRoomTypeCapacityKidsByIdAsync(x.RoomTypeId).Result;
+            //    totalKidsCapacity += type.CapacityKids;
+            //}
 
-        //    foreach (var room in checkedRooms)
-        //    {
-        //        var type = await this.roomTypesService.GetRoomTypeByIdAsync(room.RoomTypeId);
-        //        totalAdultsCapacity += type.CapacityAdults;
-        //        totalKidsCapacity += type.CapacityKids;
-        //    }
+            if (model.Adults > totalAdultsCapacity ||
+                (model.Kids > totalKidsCapacity && (model.Adults + model.Kids) > totalAdultsCapacity))
+            {
+                this.TempData["capacity"] = $"The capacity of selected rooms is not enough for adults - {model.Adults} and kids - {model.Kids} ";
+                return this.Redirect($"/Accommodations/AvailableRooms?checkIn={model.CheckIn}&checkOut={model.CheckOut}&adults={model.Adults}&kids={model.Kids}");
+            }
 
-        //    if (!this.ModelState.IsValid ||
-        //        model.Adults > totalAdultsCapacity ||
-        //        (model.Kids > totalKidsCapacity && (model.Adults + model.Kids) > totalAdultsCapacity))
-        //    {
-        //        this.TempData["capacity"] = $"The capacity of selected rooms is not enough for adults - {model.Adults} and kids - {model.Kids} ";
-        //        return this.Redirect($"/Accommodations/AvailableRooms?checkIn={model.CheckIn}&checkOut={model.CheckOut}&adults={model.Adults}&kids={model.Kids}");
-        //    }
+            var rooms = new List<DetailsRoomViewOutputModel>();
 
-        //    var paymentTypes = this.paymentTypesService
-        //     .GetAllPaymentTypes<PaymentTypeDropDownViewModel>();
+            foreach (var id in model.RoomIds)
+            {
+                var room =  this.reservationRepository.GetRoomViewModelById(id);
 
-        //    var rooms = new List<DetailsRoomViewModel>();
+                rooms.Add(room);
+            }
 
-        //    foreach (var id in model.RoomIds)
-        //    {
-        //        var room = await this.roomsService.GetViewModelByIdAsync<DetailsRoomViewModel>(id);
+            var user = await this.userManager.GetUserAsync(this.User);
+            model.UserFirstName = user.FirstName;
+            model.UserLastName = user.LastName;
+            model.PricePerDay = rooms.Sum(x => x.RoomTypePrice);
+            model.TotalDays = (int)(DateTime.Parse(model.CheckOut.ToString()).Date - DateTime.Parse(model.CheckIn.ToString()).Date).TotalDays;
+            model.TotalAmount = model.PricePerDay * model.TotalDays;
+            model.ListOfRoomsInReservation = rooms;
 
-        //        rooms.Add(room);
-        //    }
+            return this.View(model);
+        }
 
-        //    var user = await this.userManager.GetUserAsync(this.User);
-        //    model.UserFirstName = user.FirstName;
-        //    model.UserLastName = user.LastName;
-        //    model.PricePerDay = rooms.Sum(x => x.RoomTypePrice);
-        //    model.TotalDays = (int)(DateTime.Parse(model.CheckOut.ToString()).Date - DateTime.Parse(model.CheckIn.ToString()).Date).TotalDays;
-        //    model.TotalAmount = model.PricePerDay * model.TotalDays;
-        //    model.ListOfRoomsInReservation = rooms;
-        //    model.ListOfPaymentTypes = paymentTypes;
+        [HttpPost]
+        public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
+        {
+            //if (!this.ModelState.IsValid)
+            //{
+            //    return this.View(model);
+            //}
 
-        //    return this.View(model);
-        //}
+            var user = await this.userManager.GetUserAsync(this.User);
 
-        //[HttpPost]
-        //public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View(model);
-        //    }
+            Reservation reservation = new Reservation
+            {
+                StartDate = DateTime.Parse(model.CheckIn).AddHours(14),
+                EndDate = DateTime.Parse(model.CheckOut).AddHours(12),
+                UserId = user.Id,
+                Adults = model.Adults,
+                Kids = model.Kids,
+                PaymentTypeId = model.PaymentTypeId,
+                PricePerDay = model.PricePerDay,
+                TotalAmount = model.TotalAmount,
+            };
 
-        //    var user = await this.userManager.GetUserAsync(this.User);
+            foreach (var id in model.RoomIds)
+            {
+                var reservationRoom = new ReservationRoom
+                {
+                    ReservationId = reservation.Id,
+                    RoomId = id,
+                };
 
-        //    string reservationStatusId = this.reservationStatusesService.GetReserVationStatusByName("Pending").Id;
+                reservation.ReservationRooms.Add(reservationRoom);
+            }
 
-        //    Reservation reservation = new Reservation
-        //    {
-        //        StartDate = DateTime.Parse(model.CheckIn).AddHours(14),
-        //        EndDate = DateTime.Parse(model.CheckOut).AddHours(12),
-        //        UserId = user.Id,
-        //        Adults = model.Adults,
-        //        Kids = model.Kids,
-        //        ReservationStatusId = reservationStatusId,
-        //        PaymentTypeId = model.PaymentTypeId,
-        //        PricePerDay = model.PricePerDay,
-        //        TotalAmount = model.TotalAmount,
-        //    };
+            await this.reservationsService.AddReservationAsync(reservation);
 
-        //    foreach (var id in model.RoomIds)
-        //    {
-        //        var reservationRoom = new ReservationRoom
-        //        {
-        //            ReservationId = reservation.Id,
-        //            RoomId = id,
-        //        };
+            //var confirmationReservation = await this.reservationsService.GetViewModelByIdAsync<ConfirmationReservationViewModel>(reservation.Id);
 
-        //        reservation.ReservationRooms.Add(reservationRoom);
-        //    }
+            var roomIds = this.reservationRoomsService
+                .GetAllRoomsByReservationId(reservation.Id).ToList();
 
-        //    await this.reservationsService.AddReservationAsync(reservation);
+            foreach (var id in roomIds)
+            {
+                var room = await this.roomsService.GetViewModelByIdAsync<DetailsRoomViewModel>(id);
+                //confirmationReservation.Rooms.Add(room);
+            }
 
-        //    var confirmationReservation = await this.reservationsService.GetViewModelByIdAsync<ConfirmationReservationViewModel>(reservation.Id);
+            return this.RedirectToAction("ThankYou");
+        }
 
-        //    var roomIds = this.reservationRoomsService
-        //        .GetAllRoomsByReservationId(reservation.Id).ToList();
-
-        //    foreach (var id in roomIds)
-        //    {
-        //        var room = await this.roomsService.GetViewModelByIdAsync<DetailsRoomViewModel>(id);
-        //        confirmationReservation.Rooms.Add(room);
-        //    }
-
-        //    var emailContent = this.GenerateEmailContent(confirmationReservation);
-
-        //    var emailAttachment = new EmailAttachment
-        //    {
-        //        Content = Encoding.UTF8.GetBytes(emailContent),
-        //        FileName = "Confirmation.doc",
-        //        MimeType = "application/msword",
-        //    };
-
-        //    var attachments = new List<EmailAttachment> { emailAttachment };
-
-        //    await this.emailSender.SendEmailAsync(
-        //            GlobalConstants.SystemEmail,
-        //            GlobalConstants.SystemName,
-        //            user.Email,
-        //            "Booking Confirmation",
-        //            $"Please find attaced file with details for your reservation No{reservation.Id}",
-        //            attachments);
-
-        //    return this.RedirectToAction("ThankYou");
-        //}
-
-        //public IActionResult ThankYou()
-        //{
-        //    return this.View();
-        //}
+        public IActionResult ThankYou()
+        {
+            return this.View();
+        }
 
         //private string GenerateEmailContent(ConfirmationReservationViewModel confirmationReservationViewModel)
         //{

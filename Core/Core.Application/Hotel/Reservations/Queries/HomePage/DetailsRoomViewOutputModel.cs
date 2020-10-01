@@ -17,5 +17,7 @@
         public string Description { get; set; } = default!;
 
         public string RoomTypeName { get; set; } = default!;
+
+        public int RoomTypeId { get; set; } = default!;
     }
 }

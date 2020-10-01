@@ -6,6 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using System.Threading.Tasks;
 
     public interface IReservationQueryRepository : IQueryRepository<ReservationData>
     {
@@ -15,5 +16,11 @@
         IEnumerable<int> GetAllReservedRoomsId(DateTime checkIn, DateTime checkOut);
 
         IEnumerable<AvailableRoomViewModel> GetAllRooms();
+
+        Task<int> GetRoomTypeCapacityAdultsByIdAsync(int id);
+
+        Task<int> GetRoomTypeCapacityKidsByIdAsync(int id);
+
+        DetailsRoomViewOutputModel GetRoomViewModelById(int id);
     }
 }
