@@ -1,0 +1,136 @@
+﻿@page
+@model Login
+
+@{
+    ViewData["Title"] = "";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="login">
+    <!-- Login form -->
+    <div class=" agileits w3layouts">
+        <div class="container-contact-form">
+            <div class="register agileits w3layouts">
+                <div>
+                    <div role="form" class="wpcf7" id="wpcf7-f258-p331-o1" lang="bg-BG" dir="ltr">
+                        <div class="screen-reader-response"></div>
+                        <form id="account" method="post" class="wpcf7-form">                         
+                            <div class="agileits w3layouts">
+                                <div class="container">
+                                    <br />
+                                    <br />
+                                    <h2> Login </h2>
+                                    <br />
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                    <div class="register agileits w3layouts">
+                                        <div class="place wow  agileits w3layoutsslideInLeft animated animated" style="visibility: visible;">
+                                            <div class="dropdown-button agileits w3layouts">
+                                                <div class="dropdown agileits w3layouts slideInRight wow animated animated" tabindex="10" data-settings="{&quot;wrapperClass&quot;:&quot;flat&quot;}">
+                                                    <br />
+                                                    <h5><label asp-for="Input.Email"></label></h5>
+                                                    <input asp-for="Input.Email" class="form-control" />
+                                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="dropdown-button agileits w3layouts">
+                                                <div class="dropdown agileits w3layouts slideInRight wow animated animated" tabindex="10" data-settings="{&quot;wrapperClass&quot;:&quot;flat&quot;}">
+                                                    <br />
+                                                    <h5><label asp-for="Input.Password"></label></h5>
+                                                    <input asp-for="Input.Password" class="form-control" />
+                                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown-button agileits w3layouts">
+                                                <div class="dropdown agileits w3layouts slideInRight wow animated animated" tabindex="10" data-settings="{&quot;wrapperClass&quot;:&quot;flat&quot;}">
+                                                    <div class="checkbox" style="margin-top:5px">
+                                                        <label style="color:#428bca" asp-for="Input.RememberMe">
+                                                            <input asp-for="Input.RememberMe" />
+                                                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br />
+
+                                            <div class="wow agileits w3layouts slideInLeft animated animated" id="btn-form" style="visibility: visible; animation-name: slideInLeft;">
+                                                <input type="submit" value="Login" class="wpcf7-form-control wpcf7-submit">
+                                            </div>
+
+                                            <div class="dropdown-button agileits w3layouts">
+                                                <div class="dropdown agileits w3layouts slideInRight wow animated animated" tabindex="10" data-settings="{&quot;wrapperClass&quot;:&quot;flat&quot;}">
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create new account</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wpcf7-response-output wpcf7-display-none"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-log">
+        <br />
+        <section>
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div class=" agileits w3layouts">
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    @if (provider.Name == "Facebook")
+                                    {
+                                        <button class="loginBtn loginBtn--facebook btn btn-default" type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                    else if (provider.Name == "Google")
+                                    {
+                                        <button class="loginBtn loginBtn--google btn-default" type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+<div class="contact agileits w3layouts">
+    <div class="container">
+        <h2 class="wow agileits w3layouts slideInLeft">Welcome back! Thank you!</h2>
+        <p class="contact-p wow agileits w3layouts slideInLeft">Log in to your account now using the form above.</p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

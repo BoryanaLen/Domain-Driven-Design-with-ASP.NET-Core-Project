@@ -1,11 +1,11 @@
 ﻿namespace Core.Web.Controllers
 {
-    using Core.Application.Hotel.Reservations.Queries;
     using Core.Application.Hotel.Reservations.Queries.HomePage;
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Linq;
     using Common;
+    using Core.Infrastructure.Hotel.Repositories;
 
     public class AccommodationsController : BaseController
     {

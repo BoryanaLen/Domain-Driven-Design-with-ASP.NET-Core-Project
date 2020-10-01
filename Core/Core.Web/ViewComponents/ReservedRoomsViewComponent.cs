@@ -1,4 +1,4 @@
-﻿namespace Hotel.Web.ViewComponents
+﻿namespace Core.Web.ViewComponents
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Core.Application.Hotel.Reservations.Queries;
     using Core.Application.Hotel.Reservations.Queries.HomePage;
+    using Core.Infrastructure.Hotel.Repositories;
     using Microsoft.AspNetCore.Mvc;
 
     public class ReservedRoomsViewComponent : ViewComponent
