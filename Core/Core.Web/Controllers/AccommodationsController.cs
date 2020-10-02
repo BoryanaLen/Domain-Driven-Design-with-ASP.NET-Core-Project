@@ -150,53 +150,53 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
-        {
-            //if (!this.ModelState.IsValid)
-            //{
-            //    return this.View(model);
-            //}
+        //public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
+        //{
+        //    //if (!this.ModelState.IsValid)
+        //    //{
+        //    //    return this.View(model);
+        //    //}
 
-            var user = await this.userManager.GetUserAsync(this.User);
+        //    var user = await this.userManager.GetUserAsync(this.User);
 
-            Reservation reservation = new Reservation
-            {
-                StartDate = DateTime.Parse(model.CheckIn).AddHours(14),
-                EndDate = DateTime.Parse(model.CheckOut).AddHours(12),
-                UserId = user.Id,
-                Adults = model.Adults,
-                Kids = model.Kids,
-                PaymentTypeId = model.PaymentTypeId,
-                PricePerDay = model.PricePerDay,
-                TotalAmount = model.TotalAmount,
-            };
+        //    Reservation reservation = new Reservation
+        //    {
+        //        StartDate = DateTime.Parse(model.CheckIn).AddHours(14),
+        //        EndDate = DateTime.Parse(model.CheckOut).AddHours(12),
+        //        UserId = user.Id,
+        //        Adults = model.Adults,
+        //        Kids = model.Kids,
+        //        PaymentTypeId = model.PaymentTypeId,
+        //        PricePerDay = model.PricePerDay,
+        //        TotalAmount = model.TotalAmount,
+        //    };
 
-            foreach (var id in model.RoomIds)
-            {
-                var reservationRoom = new ReservationRoom
-                {
-                    ReservationId = reservation.Id,
-                    RoomId = id,
-                };
+        //    foreach (var id in model.RoomIds)
+        //    {
+        //        var reservationRoom = new ReservationRoom
+        //        {
+        //            ReservationId = reservation.Id,
+        //            RoomId = id,
+        //        };
 
-                reservation.ReservationRooms.Add(reservationRoom);
-            }
+        //        reservation.ReservationRooms.Add(reservationRoom);
+        //    }
 
-            await this.reservationsService.AddReservationAsync(reservation);
+        //    await this.reservationsService.AddReservationAsync(reservation);
 
-            //var confirmationReservation = await this.reservationsService.GetViewModelByIdAsync<ConfirmationReservationViewModel>(reservation.Id);
+        //    //var confirmationReservation = await this.reservationsService.GetViewModelByIdAsync<ConfirmationReservationViewModel>(reservation.Id);
 
-            var roomIds = this.reservationRoomsService
-                .GetAllRoomsByReservationId(reservation.Id).ToList();
+        //    var roomIds = this.reservationRoomsService
+        //        .GetAllRoomsByReservationId(reservation.Id).ToList();
 
-            foreach (var id in roomIds)
-            {
-                var room = await this.roomsService.GetViewModelByIdAsync<DetailsRoomViewModel>(id);
-                //confirmationReservation.Rooms.Add(room);
-            }
+        //    foreach (var id in roomIds)
+        //    {
+        //        var room = await this.roomsService.GetViewModelByIdAsync<DetailsRoomViewModel>(id);
+        //        //confirmationReservation.Rooms.Add(room);
+        //    }
 
-            return this.RedirectToAction("ThankYou");
-        }
+        //    return this.RedirectToAction("ThankYou");
+        //}
 
         public IActionResult ThankYou()
         {

@@ -88,7 +88,6 @@
                 this.adults,
                 this.kids,
                 this.customer,
-                this.paymentType,
                 this.pricePerDay,
                 this.advancedPayment,
                 this.isPaid

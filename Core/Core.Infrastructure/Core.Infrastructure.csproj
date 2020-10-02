@@ -20,6 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Persistence\Migrations\20201002054110_Create.cs" />
+    <Compile Remove="Persistence\Migrations\20201002054110_Create.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />

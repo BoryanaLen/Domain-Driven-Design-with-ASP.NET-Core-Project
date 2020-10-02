@@ -19,7 +19,6 @@
             int adults,
             int kids,
             Customer customer,
-            PaymentType paymentType,
             decimal pricePerDay,
             decimal advancedPayment,
             bool isPaid
@@ -28,7 +27,6 @@
             this.Validate(startDate, endDate, adults, kids, pricePerDay, advancedPayment);
 
             this.Customer = customer;
-            this.PaymentType = paymentType;
 
             this.StartDate = startDate;
             this.EndDate = endDate;
@@ -60,7 +58,6 @@
             this.IsPaid = isPaid;
 
             this.Customer = default!;
-            this.PaymentType = default!;
 
             this.Rooms = new HashSet<Room>();
             this.Payments = new HashSet<Payment>();
@@ -75,8 +72,6 @@
         public int Kids { get; private set; }
 
         public Customer Customer { get; private set; }
-
-        public PaymentType PaymentType { get; private set; }
 
         public decimal PricePerDay { get; private set; }
 
@@ -100,14 +95,6 @@
 
             return this;
         }
-
-        public Reservation UpdatePaymentType(PaymentType paymentType)
-        {
-            this.PaymentType = paymentType;
-
-            return this;
-        }
-
         
         private void Validate(DateTime startDate, DateTime endDate, int adults, int kids, decimal pricePerDay, decimal advancedPayment)
         {

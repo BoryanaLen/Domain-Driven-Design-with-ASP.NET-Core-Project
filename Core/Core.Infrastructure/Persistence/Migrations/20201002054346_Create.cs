@@ -1,9 +1,9 @@
-﻿namespace Core.Infrastructure.Persistence.Migrations
-{
-    using System;
-    using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-    public partial class InitialDomainTables : Migration
+namespace Core.Infrastructure.Persistence.Migrations
+{
+    public partial class Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,10 @@
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +50,7 @@
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customer",
+                name: "CustomerData",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -58,7 +61,7 @@
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
+                    table.PrimaryKey("PK_CustomerData", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -136,7 +139,8 @@
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    ClaimValue = table.Column<string>(nullable: true),
+                    UserId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -147,6 +151,12 @@
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,7 +166,8 @@
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(nullable: false),
+                    UserId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -167,6 +178,12 @@
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,7 +191,8 @@
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    RoleId = table.Column<string>(nullable: false),
+                    UserId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -191,6 +209,12 @@
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,7 +248,6 @@
                     Adults = table.Column<int>(nullable: false),
                     Kids = table.Column<int>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false),
-                    PaymentTypeId = table.Column<int>(nullable: false),
                     PricePerDay = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AdvancedPayment = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IsPaid = table.Column<bool>(nullable: false)
@@ -233,17 +256,11 @@
                 {
                     table.PrimaryKey("PK_Reservations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reservations_Customer_CustomerId",
+                        name: "FK_Reservations_CustomerData_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customer",
+                        principalTable: "CustomerData",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reservations_PaymentTypes_PaymentTypeId",
-                        column: x => x.PaymentTypeId,
-                        principalTable: "PaymentTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -255,7 +272,7 @@
                     DateOfPayment = table.Column<DateTime>(nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PaymentTypeId = table.Column<int>(nullable: false),
-                    ReservationId = table.Column<int>(nullable: true)
+                    ReservationDataId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -267,8 +284,8 @@
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_Reservations_ReservationId",
-                        column: x => x.ReservationId,
+                        name: "FK_Payments_Reservations_ReservationDataId",
+                        column: x => x.ReservationDataId,
                         principalTable: "Reservations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -283,14 +300,14 @@
                     RoomNumber = table.Column<string>(maxLength: 10, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: false),
                     RoomTypeId = table.Column<int>(nullable: false),
-                    ReservationId = table.Column<int>(nullable: true)
+                    ReservationDataId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rooms_Reservations_ReservationId",
-                        column: x => x.ReservationId,
+                        name: "FK_Rooms_Reservations_ReservationDataId",
+                        column: x => x.ReservationDataId,
                         principalTable: "Reservations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -320,14 +337,29 @@
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId1",
+                table: "AspNetUserClaims",
+                column: "UserId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserLogins_UserId",
                 table: "AspNetUserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId1",
+                table: "AspNetUserLogins",
+                column: "UserId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
                 table: "AspNetUserRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_UserId1",
+                table: "AspNetUserRoles",
+                column: "UserId1");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -347,9 +379,9 @@
                 column: "PaymentTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_ReservationId",
+                name: "IX_Payments_ReservationDataId",
                 table: "Payments",
-                column: "ReservationId");
+                column: "ReservationDataId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_CustomerId",
@@ -357,14 +389,9 @@
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_PaymentTypeId",
-                table: "Reservations",
-                column: "PaymentTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rooms_ReservationId",
+                name: "IX_Rooms_ReservationDataId",
                 table: "Rooms",
-                column: "ReservationId");
+                column: "ReservationDataId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rooms_RoomTypeId",
@@ -405,16 +432,16 @@
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "PaymentTypes");
+
+            migrationBuilder.DropTable(
                 name: "Reservations");
 
             migrationBuilder.DropTable(
                 name: "RoomTypes");
 
             migrationBuilder.DropTable(
-                name: "Customer");
-
-            migrationBuilder.DropTable(
-                name: "PaymentTypes");
+                name: "CustomerData");
         }
     }
 }

@@ -23,7 +23,5 @@
         IReservationDataFactory WithIsPaid(bool isPaid);
 
         IReservationDataFactory WithCustomer(CustomerData customer);
-
-        IReservationDataFactory WithPaymentType(PaymentTypeData paymentType);
     }
 }

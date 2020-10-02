@@ -10,8 +10,8 @@
 
     public class EventDispatcher : IEventDispatcher
     {
-        private static readonly ConcurrentDictionary<Type, Type> HandlerTypesCache 
-            = new ConcurrentDictionary<Type, Type>();
+        private static readonly ConcurrentDictionary<Type, Type> HandlerTypesCache
+             = new ConcurrentDictionary<Type, Type>();
 
         private static readonly ConcurrentDictionary<Type, Func<object, object, Task>> HandlersCache
             = new ConcurrentDictionary<Type, Func<object, object, Task>>();
@@ -59,7 +59,7 @@
         private static Func<object, object, Task> MakeDelegate<TEvent, TEventHandler>()
             where TEvent : IDomainEvent
             where TEventHandler : IEventHandler<TEvent>
-            => (domainEvent, eventHandler) => 
+            => (domainEvent, eventHandler) =>
                 ((TEventHandler)eventHandler).Handle((TEvent)domainEvent);
     }
 }
