@@ -1,29 +1,34 @@
-﻿namespace Core.Infrastructure.Hotel.Repositories
+﻿namespace Core.Infrastructure.Hotel.Repositories.Reservation
 {
     using Application.Hotel.Reservations.Queries.HomePage;
-    using Core.Domain.Hotel.Factories.Reservations;
-    using Core.Domain.Hotel.Models.Reservations;
     using Core.Infrastructure.Persistence;
+    using Core.Infrastructure.Persistence.Factories.ReservationData;
     using Core.Infrastructure.Persistence.Models.ReservationData;
+    using Core.Infrastructure.Persistence.Models.RoomData;
+    using Core.Infrastructure.Persistence.Repositories.CustomerData;
+    using Core.Infrastructure.Persistence.Repositories.ReservationData;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ReservationRepository : DataRepository<HotelSystemDbContext, ReservationData>, IReservationQueryRepository
+    internal class ReservationRepository : DataRepository<HotelSystemDbContext, ReservationData>, 
+        IReservationDataQueryRepository, 
+        IReservationDataDomainRepository
     {
-        //private readonly IReservationFactory reservationFactory;
-        public ReservationRepository(HotelSystemDbContext db)
-            //IReservationFactory reservationFactory)
+        private readonly IReservationDataFactory reservationFactory;
+        private readonly ICustomerDataDomainRepository customerRepository;
+        public ReservationRepository(HotelSystemDbContext db,
+            ICustomerDataDomainRepository customerRepository,
+            IReservationDataFactory reservationFactory)
             : base(db)
         {
-            //this.reservationFactory = reservationFactory;
+            this.reservationFactory = reservationFactory;
+            this.customerRepository = customerRepository;
         }
 
-        public IEnumerable<DetailsRoomTypeViewOutputModel> GetAllRoomTypes(
-            CancellationToken cancellationToken = default)
+        public IEnumerable<DetailsRoomTypeViewOutputModel> GetAllRoomTypes()
         {
             var roomTypes = this.Data
                 .RoomTypes
@@ -104,56 +109,53 @@
 
         public DetailsRoomViewOutputModel GetRoomViewModelById(int id)
         {
-            var room = this.Data
-               .Rooms
-               .ToList()
-               .Select(x => new DetailsRoomViewOutputModel()
-               {
-                   Id = x.Id,
-                   RoomNumber = x.RoomNumber,
-                   Description = x.Description,
-                   RoomTypeId = x.RoomTypeId
-               })
+            var room = this.GetAllRooms()
+                .Select(x => new DetailsRoomViewOutputModel()
+                {
+                    Id = x.Id,
+                    RoomNumber = x.RoomNumber,
+                    Description = x.Description,
+                    RoomTypeId = x.RoomTypeId,
+                    RoomTypeCapacityAdults = x.RoomTypeCapacityAdults,
+                    RoomTypeCapacityKids = x.RoomTypeCapacityKids,
+                    RoomTypeImage = x.RoomTypeImage,
+                    RoomTypeName = x.RoomTypeName,
+                    RoomTypePrice = x.RoomTypePrice
+                })
                .FirstOrDefault(x => x.Id == id);
-
 
             return room;
         }
 
-        //public int CreateReservation()
-        //{
-            //var dealer = await this.dealerRepository.FindByUser(
-            //        this.currentUser.UserId,
-            //        cancellationToken);
+        public async Task<ReservationData> CreateReservation(AllAvailableRoomsViewModel model, string userId)
+        {
+            var customer = await this.customerRepository.FindByUser(userId);
 
-            //var category = await this.carAdRepository.GetCategory(
-            //    request.Category,
-            //    cancellationToken);
+            var rooms = new List<RoomData>();
 
-            //var manufacturer = await this.carAdRepository.GetManufacturer(
-            //    request.Manufacturer,
-            //    cancellationToken);
+            foreach(var id in model.RoomIds)
+            {
+                var room = await this.Data.Rooms
+                    .FirstOrDefaultAsync(r => r.Id == id);
 
-            //var factory = manufacturer == null
-            //    ? this.carAdFactory.WithManufacturer(request.Manufacturer)
-            //    : this.carAdFactory.WithManufacturer(manufacturer);
+                rooms.Add(room);
+            }
 
-            //var reservation = factory
-            //    .WithModel(request.Model)
-            //    .WithCategory(category)
-            //    .WithImageUrl(request.ImageUrl)
-            //    .WithPricePerDay(request.PricePerDay)
-            //    .WithOptions(
-            //        request.HasClimateControl,
-            //        request.NumberOfSeats,
-            //        Enumeration.FromValue<TransmissionType>(request.TransmissionType))
-            //    .Build();
+            var reservation = this.reservationFactory
+                .WithStartDate(DateTime.Parse(model.CheckIn))
+                .WithEndDate(DateTime.Parse(model.CheckOut))
+                .WithAdults(model.Adults)
+                .WithKids(model.Kids)
+                .WithCustomer(customer)
+                .WithPricePerDay(model.PricePerDay)
+                .WithAdvancedPayment(0)
+                .WithIsPaid(false)
+                .WithRooms(rooms)
+                .Build();
 
-            //dealer.AddCarAd(carAd);
+            await this.Save(reservation);
 
-            //await this.carAdRepository.Save(carAd, cancellationToken);
-
-            //return new CreateCarAdOutputModel(carAd.Id);
-        //}
+            return reservation;
+        }
     }
 }

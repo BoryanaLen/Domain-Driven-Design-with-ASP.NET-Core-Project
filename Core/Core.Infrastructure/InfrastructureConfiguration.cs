@@ -24,8 +24,18 @@
             => services
                 .AddDatabase(configuration)
                 .AddRepositories()
+                .AddFactories()
                 .AddIdentity(configuration)
                 .AddTransient<IEventDispatcher, EventDispatcher>();
+
+        private static IServiceCollection AddInitialData(this IServiceCollection services)
+          => services
+              .Scan(scan => scan
+                  .FromCallingAssembly()
+                  .AddClasses(classes => classes
+                      .AssignableTo(typeof(IInitialData)))
+                  .AsImplementedInterfaces()
+                  .WithTransientLifetime());
 
         private static IServiceCollection AddDatabase(
             this IServiceCollection services,
@@ -36,7 +46,17 @@
                         configuration.GetConnectionString("DefaultConnection"),
                         sqlServer => sqlServer
                             .MigrationsAssembly(typeof(HotelSystemDbContext).Assembly.FullName)))
-                .AddTransient<IInitializer, DatabaseInitializer>();
+                .AddTransient<IInitializer, DatabaseInitializer>()
+                .AddInitialData();
+
+        private static IServiceCollection AddFactories(this IServiceCollection services)
+          => services
+              .Scan(scan => scan
+                  .FromCallingAssembly()
+                  .AddClasses(classes => classes
+                      .AssignableTo(typeof(IFactory<>)))
+                  .AsMatchingInterface()
+                  .WithTransientLifetime());
 
         internal static IServiceCollection AddRepositories(this IServiceCollection services)
             => services
@@ -69,24 +89,6 @@
 
             var key = Encoding.ASCII.GetBytes(secret);
 
-            //services
-            //    .AddAuthentication(authentication =>
-            //    {
-            //        authentication.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //        authentication.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    })
-            //    .AddJwtBearer(bearer =>
-            //    {
-            //        bearer.RequireHttpsMetadata = false;
-            //        bearer.SaveToken = true;
-            //        bearer.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidateIssuerSigningKey = true,
-            //            IssuerSigningKey = new SymmetricSecurityKey(key),
-            //            ValidateIssuer = false,
-            //            ValidateAudience = false
-            //        };
-            //    });
 
             services.AddTransient<IIdentity, IdentityService>();
             services.AddTransient<IJwtTokenGenerator, JwtTokenGeneratorService>();

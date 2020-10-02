@@ -8653,11 +8653,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
       "projectName": "Common.Infrastructure",
-      "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8677,8 +8677,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj"
             }
           }
         }

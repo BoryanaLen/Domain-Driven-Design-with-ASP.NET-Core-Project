@@ -1,4 +1,4 @@
-﻿namespace Core.Infrastructure.Hotel.Repositories
+﻿namespace Core.Infrastructure.Hotel.Repositories.SpecialOffer
 {
     using System.Collections.Generic;
     using System.Threading;

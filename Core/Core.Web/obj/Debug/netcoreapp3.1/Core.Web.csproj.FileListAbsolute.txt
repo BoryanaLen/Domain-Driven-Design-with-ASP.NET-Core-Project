@@ -662,3 +662,4 @@ C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Proj
 C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\staticwebassets\Core.Web.StaticWebAssets.xml
 C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Core.Web.genruntimeconfig.cache
 C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs

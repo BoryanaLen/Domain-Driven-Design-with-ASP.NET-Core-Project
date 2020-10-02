@@ -1,5 +1,5 @@
 ﻿using Common.Application;
-using Core.Domain.Hotel.Repositories;
+using Core.Domain.Hotel.Repositories.Reservations;
 using FluentValidation;
 
 namespace Core.Application.Hotel.Reservations.Commands.Common

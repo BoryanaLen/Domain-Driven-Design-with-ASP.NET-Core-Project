@@ -1,9 +1,8 @@
-﻿namespace Core.Infrastructure.Hotel.Repositories
+﻿namespace Core.Infrastructure.Hotel.Repositories.SpecialOffer
 {
-    using Core.Application.Hotel.SpecialOffers.Queries;
     using Core.Application.Hotel.SpecialOffers.Queries.All;
     using Core.Domain.Hotel.Models.SpecialOffers;
-    using Core.Domain.Hotel.Repositories;
+    using Core.Domain.Hotel.Repositories.Reservations;
     using Core.Infrastructure.Persistence;
     using Core.Infrastructure.Persistence.Models.SpecialOfferData;
     using System.Collections.Generic;

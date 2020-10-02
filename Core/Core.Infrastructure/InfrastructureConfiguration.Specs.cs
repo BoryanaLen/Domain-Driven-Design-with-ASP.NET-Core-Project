@@ -4,8 +4,7 @@
     using System.Reflection;
     using AutoMapper;
     using Common.Infrastructure.Events;
-    using Core.Application.Hotel.Reservations.Queries;
-    using Core.Infrastructure.Hotel.Repositories;
+    using Core.Infrastructure.Hotel.Repositories.Reservation;
     using Core.Infrastructure.Persistence;
     using FluentAssertions;
     using Microsoft.EntityFrameworkCore;
@@ -31,7 +30,7 @@
 
             // Assert
             services
-                .GetService<IReservationQueryRepository>()
+                .GetService<IReservationDataQueryRepository>()
                 .Should()
                 .NotBeNull();
         }

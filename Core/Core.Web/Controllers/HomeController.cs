@@ -3,7 +3,7 @@
     using Core.Application.Hotel.SpecialOffers.Queries.All;
     using Common;
     using Microsoft.AspNetCore.Mvc;
-    using Core.Infrastructure.Hotel.Repositories;
+    using Core.Infrastructure.Hotel.Repositories.SpecialOffer;
 
     public class HomeController : BaseController
     {

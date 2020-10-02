@@ -6,10 +6,6 @@
 
     public class User : IdentityUser, IUser
     {
-        //internal User(string email)
-        //    : base(email)
-        //    => this.Email = email;
-
         public User()
         {
             this.Roles = new HashSet<IdentityUserRole<string>>();

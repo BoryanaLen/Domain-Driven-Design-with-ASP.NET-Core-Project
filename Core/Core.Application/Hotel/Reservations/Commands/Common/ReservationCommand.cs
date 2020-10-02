@@ -22,9 +22,5 @@
         public decimal AdvancedPayment { get; private set; }
 
         public bool IsPaid { get; private set; }
-
-        //public ICollection<RoomData> Rooms { get; } = new List<RoomData>();
-
-        //public ICollection<PaymentData> Payments { get; } = new List<PaymentData>();
     }
 }

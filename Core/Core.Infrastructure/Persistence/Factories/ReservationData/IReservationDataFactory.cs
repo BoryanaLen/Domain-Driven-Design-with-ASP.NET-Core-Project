@@ -1,10 +1,11 @@
 ﻿namespace Core.Infrastructure.Persistence.Factories.ReservationData
 {
     using Common.Domain;
+    using Models.CustomerData;
+    using Models.RoomData;
     using Models.ReservationData;
-    using Models.PaymentTypeData;
     using System;
-    using Models;
+    using System.Collections.Generic;
 
     public interface IReservationDataFactory : IFactory<ReservationData>
     {
@@ -23,5 +24,7 @@
         IReservationDataFactory WithIsPaid(bool isPaid);
 
         IReservationDataFactory WithCustomer(CustomerData customer);
+
+        IReservationDataFactory WithRooms(List<RoomData> rooms);
     }
 }

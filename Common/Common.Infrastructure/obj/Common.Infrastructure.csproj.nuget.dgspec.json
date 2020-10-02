@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj": {}
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj": {
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj",
+        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj",
         "projectName": "Common.Application",
-        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj",
+        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj",
         "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\obj\\",
+        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,8 +31,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
-                "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj"
+              "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
+                "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj"
               }
             }
           }
@@ -83,14 +83,14 @@
         }
       }
     },
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
         "projectName": "Common.Domain",
-        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
+        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
         "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\obj\\",
+        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -178,14 +178,14 @@
         }
       }
     },
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj": {
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
         "projectName": "Common.Infrastructure",
-        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -205,8 +205,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj": {
-                "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj"
+              "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj": {
+                "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj"
               }
             }
           }

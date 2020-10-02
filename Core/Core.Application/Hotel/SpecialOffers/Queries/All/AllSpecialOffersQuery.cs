@@ -1,6 +1,6 @@
 ﻿namespace Core.Application.Hotel.SpecialOffers.Queries.All
 {
-    using Core.Domain.Hotel.Repositories;
+    using Core.Domain.Hotel.Repositories.Reservations;
     using MediatR;
 
     public class AllSpecialOffersQuery : IRequest<AllSpecialOffersOutputModel>

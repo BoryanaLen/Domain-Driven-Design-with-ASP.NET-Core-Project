@@ -16,7 +16,9 @@
     using Models.RoomTypeData;
     using Models.SpecialOfferData;
     using Models.PaymentTypeData;
+    using Models.CustomerData;
     using Common.Domain.Models;
+    using Core.Infrastructure.Persistence.Models;
 
     public class HotelSystemDbContext : IdentityDbContext<User>, IDbContext
     {
@@ -47,6 +49,8 @@
         public DbSet<PaymentTypeData> PaymentTypes { get; set; } = default!;
 
         public DbSet<SpecialOfferData> SpecialOffers { get; set; } = default!;
+
+        public DbSet<CustomerData> Customers { get; set; } = default!;
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

@@ -5,30 +5,33 @@
     using System;
     using System.Linq;
     using Common;
-    using Core.Infrastructure.Hotel.Repositories;
     using Core.Infrastructure.Identity;
     using Microsoft.AspNetCore.Identity;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Core.Infrastructure.Persistence.Repositories.ReservationData;
+    using Core.Infrastructure.Hotel.Repositories.Reservation;
 
     public class AccommodationsController : BaseController
     {
 
-        private readonly IReservationQueryRepository reservationRepository;
+        private readonly IReservationDataDomainRepository reservationDataRepository;
+        private readonly IReservationDataQueryRepository reservationQueryRepository;
         private readonly UserManager<User> userManager;
-        //private readonly IEmailSender emailSender;
 
         public AccommodationsController(
              UserManager<User> userManager,
-             IReservationQueryRepository reservationRepository)
+             IReservationDataQueryRepository reservationQueryRepository,
+             IReservationDataDomainRepository reservationDataRepository)
         {
             this.userManager = userManager;
-            this.reservationRepository = reservationRepository;
+            this.reservationDataRepository = reservationDataRepository;
+            this.reservationQueryRepository = reservationQueryRepository;
         }
 
         public IActionResult Index()
         {
-            var roomTypes = this.reservationRepository
+            var roomTypes = this.reservationQueryRepository
               .GetAllRoomTypes();
 
             var model = new IndexViewOutputModel
@@ -45,7 +48,7 @@
         {
             if (!this.ModelState.IsValid || (model.CheckIn >= model.CheckOut))
             {
-                var roomTypes = this.reservationRepository
+                var roomTypes = this.reservationQueryRepository
                     .GetAllRoomTypes();
 
                 var modelIndex = new IndexViewOutputModel
@@ -65,11 +68,11 @@
             DateTime startDate = DateTime.Parse(checkIn).AddHours(14);
             DateTime endDate = DateTime.Parse(checkOut).AddHours(12);
 
-            var reservedRoomsId = this.reservationRepository
+            var reservedRoomsId = this.reservationQueryRepository
                 .GetAllReservedRoomsId(startDate, endDate)
                 .ToList();
 
-            var allAvailableRoomModels = this.reservationRepository
+            var allAvailableRoomModels = this.reservationQueryRepository
                 .GetAllRooms()
                 .Where(x => !reservedRoomsId.Any(x2 => x2 == x.Id))
                 .ToList();
@@ -98,29 +101,23 @@
 
         public async Task<IActionResult> Book(AllAvailableRoomsViewModel model)
         {
-            int totalAdultsCapacity = this.reservationRepository
+            int totalAdultsCapacity = this.reservationQueryRepository
                .GetAllRooms()
                .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
-               .Select(x => this.reservationRepository.GetRoomTypeCapacityAdultsByIdAsync(x.RoomTypeId).Result)
+               .Select(x => this.reservationQueryRepository.GetRoomTypeCapacityAdultsByIdAsync(x.RoomTypeId).Result)
                .Sum();
 
-            int totalKidsCapacity = this.reservationRepository
+            int totalKidsCapacity = this.reservationQueryRepository
                .GetAllRooms()
                .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
-               .Select(x => this.reservationRepository.GetRoomTypeCapacityKidsByIdAsync(x.RoomTypeId).Result)
+               .Select(x => this.reservationQueryRepository.GetRoomTypeCapacityKidsByIdAsync(x.RoomTypeId).Result)
                .Sum();
 
-            var checkedRooms = this.reservationRepository
+            var checkedRooms = this.reservationQueryRepository
                .GetAllRooms()
                .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
                .ToList();
 
-            //foreach (var room in checkedRooms)
-            //{
-            //    var type = await this.roomTypesService.GetRoomTypeByIdAsync(room.RoomTypeId);
-            //    totalAdultsCapacity += this.reservationRepository.GetRoomTypeCapacityKidsByIdAsync(x.RoomTypeId).Result;
-            //    totalKidsCapacity += type.CapacityKids;
-            //}
 
             if (model.Adults > totalAdultsCapacity ||
                 (model.Kids > totalKidsCapacity && (model.Adults + model.Kids) > totalAdultsCapacity))
@@ -133,7 +130,7 @@
 
             foreach (var id in model.RoomIds)
             {
-                var room =  this.reservationRepository.GetRoomViewModelById(id);
+                var room =  this.reservationQueryRepository.GetRoomViewModelById(id);
 
                 rooms.Add(room);
             }
@@ -141,6 +138,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             model.UserFirstName = user.FirstName;
             model.UserLastName = user.LastName;
+            model.UserUserId = user.Id;
             model.PricePerDay = rooms.Sum(x => x.RoomTypePrice);
             model.TotalDays = (int)(DateTime.Parse(model.CheckOut.ToString()).Date - DateTime.Parse(model.CheckIn.ToString()).Date).TotalDays;
             model.TotalAmount = model.PricePerDay * model.TotalDays;
@@ -150,110 +148,23 @@
         }
 
         [HttpPost]
-        //public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
-        //{
-        //    //if (!this.ModelState.IsValid)
-        //    //{
-        //    //    return this.View(model);
-        //    //}
+        public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
+        {
+            //if (!this.ModelState.IsValid)
+            //{
+            //    return this.View(model);
+            //}
 
-        //    var user = await this.userManager.GetUserAsync(this.User);
+            var user = await this.userManager.GetUserAsync(this.User);
 
-        //    Reservation reservation = new Reservation
-        //    {
-        //        StartDate = DateTime.Parse(model.CheckIn).AddHours(14),
-        //        EndDate = DateTime.Parse(model.CheckOut).AddHours(12),
-        //        UserId = user.Id,
-        //        Adults = model.Adults,
-        //        Kids = model.Kids,
-        //        PaymentTypeId = model.PaymentTypeId,
-        //        PricePerDay = model.PricePerDay,
-        //        TotalAmount = model.TotalAmount,
-        //    };
+            await this.reservationDataRepository.CreateReservation(model, user.Id);
 
-        //    foreach (var id in model.RoomIds)
-        //    {
-        //        var reservationRoom = new ReservationRoom
-        //        {
-        //            ReservationId = reservation.Id,
-        //            RoomId = id,
-        //        };
-
-        //        reservation.ReservationRooms.Add(reservationRoom);
-        //    }
-
-        //    await this.reservationsService.AddReservationAsync(reservation);
-
-        //    //var confirmationReservation = await this.reservationsService.GetViewModelByIdAsync<ConfirmationReservationViewModel>(reservation.Id);
-
-        //    var roomIds = this.reservationRoomsService
-        //        .GetAllRoomsByReservationId(reservation.Id).ToList();
-
-        //    foreach (var id in roomIds)
-        //    {
-        //        var room = await this.roomsService.GetViewModelByIdAsync<DetailsRoomViewModel>(id);
-        //        //confirmationReservation.Rooms.Add(room);
-        //    }
-
-        //    return this.RedirectToAction("ThankYou");
-        //}
+            return this.RedirectToAction("ThankYou");
+        }
 
         public IActionResult ThankYou()
         {
             return this.View();
         }
-
-        //private string GenerateEmailContent(ConfirmationReservationViewModel confirmationReservationViewModel)
-        //{
-        //    int totalDays = (int)(confirmationReservationViewModel.EndDate.Date - confirmationReservationViewModel.StartDate.Date).TotalDays;
-
-        //    var guestInfoHtml = string.Format(
-        //       GlobalConstants.GuestHtmlInfo,
-        //       confirmationReservationViewModel.UserFirstName + " " + confirmationReservationViewModel.UserLastName,
-        //       confirmationReservationViewModel.UserPhoneNumber,
-        //       confirmationReservationViewModel.UserEmail);
-
-        //    StringBuilder sb = new StringBuilder();
-
-        //    foreach (var room in confirmationReservationViewModel.Rooms)
-        //    {
-        //        var roomsInfoHtml = string.Format(
-        //           GlobalConstants.RoomsHtmlInfo,
-        //           room.RoomTypeName,
-        //           room.RoomTypeCapacityAdults,
-        //           room.RoomTypeCapacityKids,
-        //           room.RoomTypePrice,
-        //           room.RoomTypePrice * totalDays);
-
-        //        sb.AppendLine(roomsInfoHtml);
-        //    }
-
-        //    var reservationInfoHtml = string.Format(
-        //        GlobalConstants.ReservationHtmlInfo,
-        //        confirmationReservationViewModel.StartDate.ToString("dd/MM/yyyy"),
-        //        confirmationReservationViewModel.EndDate.ToString("dd/MM/yyyy"),
-        //        totalDays,
-        //        confirmationReservationViewModel.Adults,
-        //        confirmationReservationViewModel.Kids);
-
-        //    var paymentInfoHtml = string.Format(
-        //       GlobalConstants.PaymentHtmlInfo,
-        //       confirmationReservationViewModel.TotalAmount,
-        //       confirmationReservationViewModel.TotalAmount * 0.3M,
-        //       confirmationReservationViewModel.PaymentType.Name);
-
-        //    var path = GlobalConstants.ReservationReceiptEmailHtmlPath;
-        //    var doc = new HtmlDocument();
-        //    doc.Load(path);
-
-        //    var content = doc.Text;
-
-        //    content = content.Replace(GlobalConstants.ReservationInfoPlaceholder, reservationInfoHtml)
-        //        .Replace(GlobalConstants.PaymentInfoPlaceholder, paymentInfoHtml)
-        //        .Replace(GlobalConstants.RoomsInfoPlaceholder, sb.ToString())
-        //        .Replace(GlobalConstants.GuestInfoPlaceholder, guestInfoHtml);
-
-        //    return content;
-        //}
     }
 }

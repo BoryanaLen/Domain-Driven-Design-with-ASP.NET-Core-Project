@@ -18,13 +18,11 @@
                     <label asp-for="UserFirstName" class="control-label"></label>
                     <input asp-for="UserFirstName" type="hidden" class="form-control" />
                     <input value="@Model.UserFirstName" disabled="disabled" class="form-control" />
-                    <span asp-validation-for="UserFirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6 agileits w3layouts slideInRight wow animated">
                     <label asp-for="UserLastName" class="control-label"></label>
                     <input asp-for="UserLastName" type="hidden" class="form-control" />
                     <input value="@Model.UserLastName" disabled="disabled" class="form-control" />
-                    <span asp-validation-for="UserLastName" class="text-danger"></span>
                 </div>
             </div>
 
@@ -77,7 +75,7 @@
                     {
                         <tr>
                             <td data-label="Image">
-                                <img id="img-room-view" src="@room.RoomTypeImage">
+                                <img id="img-room-view" src="~/@room.RoomTypeImage">
                             </td>
                             <td data-label="RoomType"> @room.RoomTypeName</td>
                             <td data-label="Price">@(room.RoomTypePrice)EUR</td>
@@ -124,7 +122,7 @@
                     <button type="submit" value="" class="btn" style="background-color:#1dc8d9;color:#777">Book</button>
                 </div>
                 <div class="form-group col-md-4 text-center">
-                    <a asp-controller="Accommodations" asp-action="AvailableRooms" asp-route-checkIn="@Model.CheckIn" asp-route-checkOut="@Model.CheckOut" asp-route-adults="@Model.Adults" asp-route-kids="@Model.Kids" style="background-color:#008c9d" class="btn btn-primary">Back</a>
+                    <a asp-controller="Accommodations" asp-action="AvailableRooms" asp-route-checkIn="@Model.CheckIn" asp-route-checkOut="@Model.CheckOut" asp-route-adults="@Model.Adults" asp-route-kids="@Model.Kids" asp-route-pricePerDay="@Model.PricePerDay" asp-route-userUserId="@Model.UserUserId" asp-route-roomIds="@Model.RoomIds"style="background-color:#008c9d" class="btn btn-primary">Back</a>
                 </div>
                 <div class="form-group col-md-2"></div>
             </div>

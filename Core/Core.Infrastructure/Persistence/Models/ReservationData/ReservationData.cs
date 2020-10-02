@@ -6,6 +6,7 @@
     using Common.Domain.Models;
     using Common.Domain;
     using RoomData;
+    using CustomerData;
 
     public class ReservationData : Entity<int>, IAggregateRoot
     {
@@ -17,7 +18,8 @@
             CustomerData customer,
             decimal pricePerDay,
             decimal advancedPayment,
-            bool isPaid
+            bool isPaid,
+            List<RoomData>rooms
             )
         {
             this.Customer = customer;
@@ -30,7 +32,7 @@
             this.AdvancedPayment = advancedPayment;
             this.IsPaid = isPaid;
 
-            this.Rooms = new HashSet<RoomData>();
+            this.Rooms = rooms;
             this.Payments = new HashSet<PaymentData>();
         }
 

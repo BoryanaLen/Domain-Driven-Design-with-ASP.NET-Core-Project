@@ -21,11 +21,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6 wow slideInLeft">                                   
                                     <label asp-for="CheckIn" class="control-label"></label>
-                                    <input asp-for="CheckIn" class="form-control" type="date" min="@DateTime.UtcNow"/>                                 
+                                    <input asp-for="CheckIn" class="form-control" type="date" min="@DateTime.UtcNow" value="@DateTime.UtcNow"/>                                 
                                 </div>
                                 <div class="form-group col-md-6 wow slideInRight">
                                     <label asp-for="CheckOut" class="control-label"></label>
-                                    <input asp-for="CheckOut" class="form-control" type="date" />                                  
+                                    <input asp-for="CheckOut" class="form-control" type="date" min="ChekOut" value="@DateTime.UtcNow" />                                  
                                 </div>
                             </div>
                             <div class="form-row">

@@ -36,6 +36,8 @@
         [Display(Name = "Last name")]
         public string UserLastName { get; set; } = default!;
 
+        public string UserUserId { get; set; } = default!;
+
         public decimal PricePerDay { get; set; }
 
         public int TotalDays { get; set; }

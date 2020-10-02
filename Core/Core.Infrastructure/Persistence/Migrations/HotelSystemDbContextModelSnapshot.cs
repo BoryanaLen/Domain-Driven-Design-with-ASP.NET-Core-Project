@@ -96,7 +96,7 @@ namespace Core.Infrastructure.Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Core.Infrastructure.Persistence.Models.CustomerData", b =>
+            modelBuilder.Entity("Core.Infrastructure.Persistence.Models.CustomerData.CustomerData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,9 +115,13 @@ namespace Core.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerData");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Core.Infrastructure.Persistence.Models.PaymentData.PaymentData", b =>
@@ -458,7 +462,7 @@ namespace Core.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Core.Infrastructure.Persistence.Models.ReservationData.ReservationData", b =>
                 {
-                    b.HasOne("Core.Infrastructure.Persistence.Models.CustomerData", "Customer")
+                    b.HasOne("Core.Infrastructure.Persistence.Models.CustomerData.CustomerData", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)

@@ -1,21 +1,20 @@
 ﻿namespace Core.Web.ViewComponents
 {
+    using Core.Application.Hotel.Reservations.Queries.HomePage;
+    using Core.Infrastructure.Hotel.Repositories.Reservation;
+    using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Core.Application.Hotel.Reservations.Queries;
-    using Core.Application.Hotel.Reservations.Queries.HomePage;
-    using Core.Infrastructure.Hotel.Repositories;
-    using Microsoft.AspNetCore.Mvc;
 
     public class ReservedRoomsViewComponent : ViewComponent
     {
-        private readonly IReservationQueryRepository reservationRepository;
+        private readonly IReservationDataQueryRepository reservationRepository;
 
 
         public ReservedRoomsViewComponent(
-             IReservationQueryRepository reservationRepository)
+             IReservationDataQueryRepository reservationRepository)
         {
             this.reservationRepository = reservationRepository;
         }

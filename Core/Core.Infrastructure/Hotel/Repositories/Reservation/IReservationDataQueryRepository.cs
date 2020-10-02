@@ -1,4 +1,4 @@
-﻿namespace Core.Infrastructure.Hotel.Repositories
+﻿namespace Core.Infrastructure.Hotel.Repositories.Reservation
 {
     using Common.Application.Contracts;
     using Core.Application.Hotel.Reservations.Queries.HomePage;
@@ -8,11 +8,8 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public interface IReservationQueryRepository : IQueryRepository<ReservationData>
+    public interface IReservationDataQueryRepository : IQueryRepository<ReservationData>
     {
-        public IEnumerable<DetailsRoomTypeViewOutputModel> GetAllRoomTypes(
-            CancellationToken cancellationToken = default);
-
         IEnumerable<int> GetAllReservedRoomsId(DateTime checkIn, DateTime checkOut);
 
         IEnumerable<AvailableRoomViewModel> GetAllRooms();
@@ -22,5 +19,7 @@
         Task<int> GetRoomTypeCapacityKidsByIdAsync(int id);
 
         DetailsRoomViewOutputModel GetRoomViewModelById(int id);
+
+        IEnumerable<DetailsRoomTypeViewOutputModel> GetAllRoomTypes();
     }
 }

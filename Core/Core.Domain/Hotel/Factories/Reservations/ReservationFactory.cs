@@ -8,7 +8,6 @@
     internal class ReservationFactory : IReservationFactory
     {
         private Customer customer = default!;
-        private PaymentType paymentType = default!;
         private DateTime startDate = default!;
         private DateTime endDate = default!;
         private int adults = default!;
@@ -54,12 +53,6 @@
         public IReservationFactory WithKids(int kids)
         {
             this.kids = kids;
-            return this;
-        }
-
-        public IReservationFactory WithPaymentType(PaymentType paymentType)
-        {
-            this.paymentType = paymentType;
             return this;
         }
 
