@@ -1,12 +1,13 @@
 ﻿namespace Core.Infrastructure.Persistence.Configurations
 {
-    using Models.SpecialOfferData;
+    using Models;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using static ModelConstants.SpecialOffer;
 
-    public class SpecialOfferDataConfiguration : IEntityTypeConfiguration<SpecialOfferData>
+    internal class SpecialOfferDataConfiguration : IEntityTypeConfiguration<SpecialOfferData>
     {
         public void Configure(EntityTypeBuilder<SpecialOfferData> builder)
         {

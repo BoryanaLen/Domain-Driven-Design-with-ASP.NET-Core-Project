@@ -22,5 +22,7 @@
         IReservationFactory WithIsPaid(bool isPaid);
 
         IReservationFactory WithCustomer(Customer customer);
+
+        IReservationFactory WithCustomer(string firstName, string lastName, string email, string userId);
     }
 }

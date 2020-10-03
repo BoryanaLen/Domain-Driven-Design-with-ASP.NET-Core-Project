@@ -1,9 +1,10 @@
 namespace Core.Web
 {
+    using AutoMapper;
     using Core.Application;
     using Core.Domain;
     using Core.Infrastructure;
-
+    using global::Common.Application.Mapping;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -42,6 +43,14 @@ namespace Core.Web
 
             services.AddSingleton(this.configuration);
 
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

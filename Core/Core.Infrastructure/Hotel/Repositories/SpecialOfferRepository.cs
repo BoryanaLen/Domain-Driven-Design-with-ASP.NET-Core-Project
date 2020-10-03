@@ -6,9 +6,11 @@
     using Core.Domain.Hotel.Models.SpecialOffers;
     using Core.Domain.Hotel.Repositories.Reservations;
     using Core.Infrastructure.Persistence;
+    using Core.Infrastructure.Persistence.Models;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class SpecialOfferRepository : DataRepository<IHotelDbContext, SpecialOffer>,
         ISpecialOfferDomainRepository,
@@ -21,29 +23,20 @@
             this.mapper = mapper;
         }
 
-        public IEnumerable<AllSpecialOfferOutputModel> GetAllSpecialOffersList(
-            CancellationToken cancellationToken = default,
+        public async Task<IEnumerable<AllSpecialOfferOutputModel>> GetAllSpecialOffersList(
             int skip = 0,
             int take = int.MaxValue)
         {
-            //List<SpecialOffer> list = this.Data
-            //.SpecialOffers
-            //.ToList();
+            var query = (await this.Data.SpecialOffers
+                .ToListAsync())
+                .Skip(skip)
+                .Take(take);
 
-            List<SpecialOffer> list = this.Data
-            .SpecialOffers
-            .ToList();
+            var list = new List<AllSpecialOfferOutputModel>();
 
-            var result = list
-            .Select(x => new AllSpecialOfferOutputModel()
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Content = x.Content,
-                ShortContent = x.ShortContent
-            }).ToList();
+            var result =  mapper.Map(query, list);
 
-            return result;
+            return result.ToList();
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿namespace Core.Infrastructure.Administration
 {
     using Core.Domain.Administration.Models.Payments;
-    using Core.Domain.Administration.Models.SpecialOffers;
-    using Core.Infrastructure.Persistence;
+    using Persistence;
+    using Persistence.Models;
     using Microsoft.EntityFrameworkCore;
 
     internal interface IAdministrationDbContext : IDbContext
     {
-         DbSet<SpecialOffer> SpecialOffers { get; }
+         DbSet<SpecialOfferData> SpecialOffers { get; }
 
-        DbSet<Payment> Payments { get; }
+         DbSet<PaymentData> Payments { get; }
 
-        DbSet<PaymentType> PaymentTypes { get; }
+         DbSet<PaymentType> PaymentTypes { get; }
     }
 }

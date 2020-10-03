@@ -1,4 +1,4 @@
-﻿namespace Core.Domain.Administration.Models.SpecialOffers
+﻿namespace Core.Infrastructure.Persistence.Models
 {
     using System;
     using Core.Domain.Hotel.Exceptions;
@@ -11,7 +11,7 @@
         public void ValidSpecialOfferShouldNotThrowException()
         {
             // Act
-            Action act = () => new SpecialOffer(
+            Action act = () => new SpecialOfferData(
                 "Valid name name", 
                 "Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content Valid content",
                 "Valid short content Valid short content");
@@ -24,7 +24,7 @@
         public void InvalidTotleShouldThrowException()
         {
             // Act
-            Action act = () => new SpecialOffer("Valid name", "Valid content Valid content Valid content Valid content Valid content Valid content Valid content", "Valid short content");
+            Action act = () => new SpecialOfferData("Valid name", "Valid content Valid content Valid content Valid content Valid content Valid content Valid content", "Valid short content");
 
             // Assert
             act.Should().Throw<InvalidSpecialOfferException>();

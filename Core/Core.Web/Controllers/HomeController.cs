@@ -3,7 +3,10 @@
     using Core.Application.Hotel.SpecialOffers.Queries.All;
     using Common;
     using Microsoft.AspNetCore.Mvc;
-    using Core.Infrastructure.Hotel.Repositories.SpecialOffer;
+    using Core.Application.Hotel.SpecialOffers;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Core.Domain.Hotel.Models.SpecialOffers;
 
     public class HomeController : BaseController
     {
@@ -14,10 +17,9 @@
             this.specialOfferRepository = specialOfferRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var listOffers =
-                this.specialOfferRepository.GetAllSpecialOffersList();
+           var listOffers = await this.specialOfferRepository.GetAllSpecialOffersList();
 
             var model = new AllSpecialOffersOutputModel()
             {

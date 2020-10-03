@@ -1,12 +1,13 @@
-﻿namespace Core.Infrastructure.Persistence.Models.ReservationData
+﻿namespace Core.Infrastructure.Persistence.Models
 {
     using System;
     using System.Collections.Generic;
     using Common.Application.Mapping;
+    using Common.Domain.Models;
     using Core.Domain.Hotel.Models.Customers;
     using Core.Domain.Hotel.Models.Reservations;
 
-    internal class ReservationData : IMapTo<Reservation>
+    internal class ReservationData : Entity<int>, IMapTo<Reservation>
     {
         public DateTime StartDate { get; set; }
 
@@ -26,6 +27,6 @@
 
         public ICollection<Room> Rooms { get; } = new List<Room>();
 
-        public ICollection<Payment> Payments { get; } = new List<Payment>();
+        public ICollection<PaymentData> Payments { get; } = new List<PaymentData>();
     }
 }

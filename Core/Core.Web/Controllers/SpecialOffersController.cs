@@ -1,7 +1,7 @@
 ﻿namespace Core.Web.Controllers
 {
     using Common;
-    using Core.Infrastructure.Hotel.Repositories.SpecialOffer;
+    using Core.Application.Hotel.SpecialOffers;
 
     public class SpecialOffersController : BaseController
     {

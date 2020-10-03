@@ -18,17 +18,17 @@
         IReservationDomainRepository,
         IReservationQueryRepository
     {
-        private readonly IReservationFactory reservationFactory;
+        //private readonly IReservationFactory reservationFactory;
         private readonly ICustomerDomainRepository customerRepository;
         private readonly IMapper mapper;
 
         public ReservationRepository(HotelSystemDbContext db, IMapper mapper,
-            ICustomerDomainRepository customerRepository,
-            IReservationFactory reservationFactory)
+            ICustomerDomainRepository customerRepository)
+            //IReservationFactory reservationFactory)
             : base(db)
         {
             this.mapper = mapper;
-            this.reservationFactory = reservationFactory;
+            //this.reservationFactory = reservationFactory;
             this.customerRepository = customerRepository;
         }
 

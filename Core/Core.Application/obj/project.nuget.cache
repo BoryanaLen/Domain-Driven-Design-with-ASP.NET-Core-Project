@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2mxAWu5K0cI3usZrkmdeXuC1qvL8AmJ5Q8UfBwDo27vbFpaAE+c037tlSdKW4fBK12hMI/YEsqsGJjLxoLN4Mg==",
+  "dgSpecHash": "h81wao2mXx59f/+35ilZvaqmWEoy0U610hHg3MPMiS7gpn/ERXAJWuePXs9r02ALCyBhbhKezmEi8SgkHNauqg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Application\\Core.Application.csproj",
+  "projectFilePath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Application\\Core.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bariz\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",

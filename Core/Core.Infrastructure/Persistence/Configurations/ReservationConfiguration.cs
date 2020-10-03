@@ -1,6 +1,6 @@
 ﻿namespace Core.Infrastructure.Persistence.Configurations
 {
-    using Models.ReservationData;
+    using Core.Infrastructure.Persistence.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -41,11 +41,9 @@
                .Property(c => c.IsPaid)
                .IsRequired();
 
-
             builder
                 .HasMany(d => d.Payments)
                 .WithOne();
-
 
             builder
                .HasMany(d => d.Rooms)

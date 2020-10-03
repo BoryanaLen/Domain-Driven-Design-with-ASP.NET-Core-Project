@@ -64,3 +64,5 @@ C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Proj
 C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Common\Common.Infrastructure\obj\Debug\netcoreapp3.1\Common.Infrastructure.dll
 C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Common\Common.Infrastructure\obj\Debug\netcoreapp3.1\Common.Infrastructure.pdb
 C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Common\Common.Infrastructure\obj\Debug\netcoreapp3.1\Common.Infrastructure.genruntimeconfig.cache
+C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Common\Common.Infrastructure\bin\Debug\netcoreapp3.1\Core.Domain.dll
+C:\Users\bariz\OneDrive\Desktop\work\Domain-Driven-Design-with-ASP.NET-Core-Project\Common\Common.Infrastructure\bin\Debug\netcoreapp3.1\Core.Domain.pdb

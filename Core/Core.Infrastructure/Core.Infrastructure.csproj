@@ -22,6 +22,10 @@
   <ItemGroup>
     <Compile Remove="Persistence\Migrations\20201002054110_Create.cs" />
     <Compile Remove="Persistence\Migrations\20201002054110_Create.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\20201003104901_ReorganizeEntities.cs" />
+    <Compile Remove="Persistence\Migrations\20201003104901_ReorganizeEntities.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\20201003105835_ReorganizeEntities.cs" />
+    <Compile Remove="Persistence\Migrations\20201003105835_ReorganizeEntities.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

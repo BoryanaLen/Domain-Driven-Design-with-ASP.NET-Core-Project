@@ -68,6 +68,13 @@
             return this;
         }
 
+        public IReservationFactory WithCustomer(string firstName, string lastName, string email, string userId)
+        {
+            this.customer = new Customer(firstName, lastName, email, userId);
+            this.customerSet = true;
+            return this;
+        }
+
         public Reservation Build()
         {
             if (!this.customerSet)
@@ -86,5 +93,7 @@
                 this.isPaid
                 );
         }
+
+        
     }
 }

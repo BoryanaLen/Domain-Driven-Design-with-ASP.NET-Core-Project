@@ -1,14 +1,14 @@
-﻿namespace Core.Infrastructure.Persistence.Configurations
+﻿namespace Core.Infrastructure.Administration.Configurations
 {
-    using Models.PaymentTypeData;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using Core.Domain.Administration.Models.Payments;
 
     using static ModelConstants.Common;
 
-    public class PaymentTypesConfiguration : IEntityTypeConfiguration<PaymentTypeData>
+    public class PaymentTypesConfiguration : IEntityTypeConfiguration<PaymentType>
     {
-        public void Configure(EntityTypeBuilder<PaymentTypeData> builder)
+        public void Configure(EntityTypeBuilder<PaymentType> builder)
         {
             builder
                 .HasKey(c => c.Id);

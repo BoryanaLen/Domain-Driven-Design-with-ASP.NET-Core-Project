@@ -27,7 +27,9 @@
                .AddDatabase(configuration)
                .AddRepositories()
                .AddIdentity(configuration)
-               .AddTransient<IEventDispatcher, EventDispatcher>();
+               .AddTransient<IEventDispatcher, EventDispatcher>()
+                .AddInitialData();
+
 
         private static IServiceCollection AddDatabase(
             this IServiceCollection services,
@@ -97,5 +99,14 @@
 
             return services;
         }
+
+        private static IServiceCollection AddInitialData(this IServiceCollection services)
+           => services
+               .Scan(scan => scan
+                   .FromCallingAssembly()
+                   .AddClasses(classes => classes
+                       .AssignableTo(typeof(IInitialData)))
+                   .AsImplementedInterfaces()
+                   .WithTransientLifetime());
     }
 }

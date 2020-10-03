@@ -6,6 +6,7 @@
         private string firstName = default!;
         private string lastName = default!;
         private string email = default!;
+        private string userId = default!;
 
         public ICustomerFactory WithEmail(string email)
         {
@@ -25,9 +26,15 @@
             return this;
         }
 
+        public ICustomerFactory WithUserId(string userId)
+        {
+            this.userId = userId;
+            return this;
+        }
+
         public Customer Build()
         {
-            return new Customer(this.firstName, this.lastName, this.email);
+            return new Customer(this.firstName, this.lastName, this.email, this.userId);
         }
 
         public Customer Build(string firstName, string lastName, string email)

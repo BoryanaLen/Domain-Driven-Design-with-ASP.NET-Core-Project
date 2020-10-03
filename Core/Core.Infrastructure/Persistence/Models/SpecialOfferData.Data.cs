@@ -1,17 +1,17 @@
-﻿namespace Core.Domain.Administration.Models.SpecialOffers
+﻿namespace Core.Infrastructure.Persistence.Models
 {
     using Common.Domain;
     using System;
     using System.Collections.Generic;
 
-    internal class SpecialOfferData : IInitialData
+    public class SpecialOfferDataData : IInitialData
     {
-        public Type EntityType => typeof(SpecialOffer);
+        public Type EntityType => typeof(SpecialOfferData);
 
         public IEnumerable<object> GetData()
-            => new List<SpecialOffer>
+            => new List<SpecialOfferData>
             {
-                new SpecialOffer(
+                new SpecialOfferData(
                     "Saint Valentine",
                      @"Only 200.00 EUR for two nights
                           Stay in the beautiful room facing the mountain.                                   
@@ -22,7 +22,7 @@
                           Romantic setting with petals and chocolates in the chosen room",
                      "Romance and Relax"
                      ),
-                new SpecialOffer(
+                new SpecialOfferData(
                     "New Year",
                      @"Only 200.00 EUR for two nights
                           Stay in the beautiful room facing the mountain.                                   
@@ -33,7 +33,7 @@
                           Romantic setting with petals and chocolates in the chosen room",
                       "Fun and Holiday"
                      ),
-                new SpecialOffer(
+                new SpecialOfferData(
                     "Easter",
                     @"Only 200.00 EUR for two nights.
                           Easter dinner with selected dishes, specially prepared by our experienced chefs and accompanied by a musical-artistic program;
@@ -49,7 +49,7 @@
                         Children's play area with children's animation every day from 9:30 to 12:00 and from 16:30 to 22:00 for children from 4 to 12 years old.",
                     "Holiday and Relax"
                     ),
-                new SpecialOffer(
+                new SpecialOfferData(
                     "Christmas Party",
                     @"Christmas gifts for all hotel guests;
                     Children's party with gifts for children;

@@ -2,9 +2,9 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-    using Models.PaymentData;
+    using Core.Infrastructure.Persistence.Models;
 
-    public class PaymentConfiguration : IEntityTypeConfiguration<PaymentData>
+    internal class PaymentDataConfiguration : IEntityTypeConfiguration<PaymentData>
     {
         public void Configure(EntityTypeBuilder<PaymentData> builder)
         {

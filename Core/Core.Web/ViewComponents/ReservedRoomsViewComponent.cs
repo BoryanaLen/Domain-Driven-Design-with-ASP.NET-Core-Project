@@ -1,7 +1,7 @@
 ﻿namespace Core.Web.ViewComponents
 {
+    using Core.Application.Hotel.Reservations;
     using Core.Application.Hotel.Reservations.Queries.HomePage;
-    using Core.Infrastructure.Hotel.Repositories.Reservation;
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
@@ -10,11 +10,11 @@
 
     public class ReservedRoomsViewComponent : ViewComponent
     {
-        private readonly IReservationDataQueryRepository reservationRepository;
+        private readonly IReservationQueryRepository reservationRepository;
 
 
         public ReservedRoomsViewComponent(
-             IReservationDataQueryRepository reservationRepository)
+             IReservationQueryRepository reservationRepository)
         {
             this.reservationRepository = reservationRepository;
         }

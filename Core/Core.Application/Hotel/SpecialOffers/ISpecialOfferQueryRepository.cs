@@ -2,16 +2,15 @@
 {
     using Common.Application.Contracts;
     using Core.Application.Hotel.SpecialOffers.Queries.All;
-    using Core.Domain.Administration.Models.SpecialOffers;
+    using Core.Domain.Hotel.Models.SpecialOffers;
     using System.Collections.Generic;
-    using System.Threading;
+    using System.Threading.Tasks;
 
     public interface ISpecialOfferQueryRepository : IQueryRepository<SpecialOffer>
     {
-        IEnumerable<AllSpecialOfferOutputModel> GetAllSpecialOffersList(
-             CancellationToken cancellationToken = default,
-                 int skip = 0,
-                 int take = int.MaxValue);
+        Task<IEnumerable<AllSpecialOfferOutputModel>> GetAllSpecialOffersList(
+            int skip = 0,
+            int take = int.MaxValue);
 
     }
 }

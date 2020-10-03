@@ -147,20 +147,20 @@
             return this.View(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
-        {
-            //if (!this.ModelState.IsValid)
-            //{
-            //    return this.View(model);
-            //}
+        //[HttpPost]
+        //public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
+        //{
+        //    //if (!this.ModelState.IsValid)
+        //    //{
+        //    //    return this.View(model);
+        //    //}
 
-            var user = await this.userManager.GetUserAsync(this.User);
+        //    var user = await this.userManager.GetUserAsync(this.User);
 
-            await this.reservationDataRepository.CreateReservation(model, user.Id);
+        //    await this.reservationDataRepository.CreateReservation(model, user.Id);
 
-            return this.RedirectToAction("ThankYou");
-        }
+        //    return this.RedirectToAction("ThankYou");
+        //}
 
         public IActionResult ThankYou()
         {

@@ -2,17 +2,22 @@
 {
     using Core.Domain.Hotel.Models.Customers;
     using Core.Domain.Hotel.Models.Reservations;
-    using Core.Infrastructure.Persistence;
     using Microsoft.EntityFrameworkCore;
+    using Persistence;
+    using Persistence.Models;
 
     internal interface IHotelDbContext : IDbContext
     {
-        DbSet<Reservation> Reservations { get; }
+        DbSet<SpecialOfferData> SpecialOffers { get; }
 
-        public DbSet<Room> Rooms { get; }
+        DbSet<ReservationData> Reservations { get; }
 
-        public DbSet<RoomType> RoomTypes { get; }
+        DbSet<PaymentData> Payments { get; }      
 
-        public DbSet<Customer> Customers { get; }
+        DbSet<Room> Rooms { get; }
+
+        DbSet<RoomType> RoomTypes { get; }
+
+        DbSet<Customer> Customers { get; }
     }
 }
