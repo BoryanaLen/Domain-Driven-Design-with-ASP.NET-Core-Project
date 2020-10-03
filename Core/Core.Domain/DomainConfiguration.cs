@@ -8,6 +8,6 @@
         public static IServiceCollection AddDomain(this IServiceCollection services)
             => services
                 .AddCommonDomain();
-               // .AddTransient<IRentingScheduleService, RentingScheduleService>();
+                //.AddTransient<IRentingScheduleService, RentingScheduleService>();
     }
 }

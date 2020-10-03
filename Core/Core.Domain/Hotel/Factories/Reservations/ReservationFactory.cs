@@ -70,7 +70,7 @@
 
         public Reservation Build()
         {
-            if (!this.customerSet )
+            if (!this.customerSet)
             {
                 throw new InvalidReservationException("Customer must have a value.");
             }

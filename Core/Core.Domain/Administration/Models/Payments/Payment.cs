@@ -1,11 +1,10 @@
-﻿namespace Core.Domain.Hotel.Models.Reservations
+﻿namespace Core.Domain.Administration.Models.Payments
 {
+    using Common.Domain;
     using Common.Domain.Models;
     using System;
 
-    using static ModelConstants.Payment;
-
-    public class Payment : Entity<int>
+    public class Payment : Entity<int>, IAggregateRoot
     {
         internal Payment(
             DateTime dateOfPayment,

@@ -8,7 +8,7 @@
 
     public class Customer: Entity<int>, IAggregateRoot
     {
-        internal Customer(string firstName, string lastName, string email)
+        internal Customer(string firstName, string lastName, string email, string userId)
         {
             this.ValidateFirstName(firstName);
             this.ValidateLastName(lastName);
@@ -17,6 +17,7 @@
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Email = email;
+            this.UserId = userId;
         }
 
         public string FirstName { get; private set; }
@@ -24,6 +25,8 @@
         public string LastName { get; private set; }
 
         public string Email { get; private set; }
+
+        public string UserId { get; private set; }
 
         public Customer UpdateFirstName(string newFirstName)
         {

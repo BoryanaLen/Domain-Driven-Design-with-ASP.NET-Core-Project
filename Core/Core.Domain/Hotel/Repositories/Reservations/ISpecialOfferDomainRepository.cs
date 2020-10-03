@@ -3,7 +3,7 @@
     using Common.Domain;
     using Models.SpecialOffers;
 
-    public interface ISpecialOfferDomainRepository : IDomainRepository<HotelSpecialOffer>
+    public interface ISpecialOfferDomainRepository : IDomainRepository<SpecialOffer>
     {
        
     }

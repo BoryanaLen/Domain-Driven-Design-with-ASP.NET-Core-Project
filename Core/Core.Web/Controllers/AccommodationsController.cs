@@ -9,20 +9,20 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Core.Infrastructure.Persistence.Repositories.ReservationData;
-    using Core.Infrastructure.Hotel.Repositories.Reservation;
+    using Core.Domain.Hotel.Repositories.Reservations;
+    using Core.Application.Hotel.Reservations;
 
     public class AccommodationsController : BaseController
     {
 
-        private readonly IReservationDataDomainRepository reservationDataRepository;
-        private readonly IReservationDataQueryRepository reservationQueryRepository;
+        private readonly IReservationDomainRepository reservationDataRepository;
+        private readonly IReservationQueryRepository reservationQueryRepository;
         private readonly UserManager<User> userManager;
 
         public AccommodationsController(
              UserManager<User> userManager,
-             IReservationDataQueryRepository reservationQueryRepository,
-             IReservationDataDomainRepository reservationDataRepository)
+             IReservationQueryRepository reservationQueryRepository,
+             IReservationDomainRepository reservationDataRepository)
         {
             this.userManager = userManager;
             this.reservationDataRepository = reservationDataRepository;

@@ -4,23 +4,20 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Infrastructure.Identity;
     using Common.Infrastructure.Events;
-    using Models.RoomData;
-    using Models.PaymentData;
-    using Models.ReservationData;
-    using Models.RoomTypeData;
-    using Models.SpecialOfferData;
-    using Models.PaymentTypeData;
-    using Models.CustomerData;
     using Common.Domain.Models;
-    using Core.Infrastructure.Persistence.Models;
+    using Core.Domain.Hotel.Models.Reservations;
+    using Core.Domain.Hotel.Models.Customers;
+    using Core.Infrastructure.Hotel;
+    using Core.Infrastructure.Administration;
+    using Core.Domain.Administration.Models.SpecialOffers;
 
-    public class HotelSystemDbContext : IdentityDbContext<User>, IDbContext
+    public class HotelSystemDbContext : IdentityDbContext<User>,
+        IHotelDbContext, IAdministrationDbContext
     {
         private readonly IEventDispatcher eventDispatcher = default!;
         private readonly Stack<object> savesChangesTracker;
@@ -38,19 +35,25 @@
         }
 
 
-        public DbSet<ReservationData> Reservations { get; set; } = default!;
+        public DbSet<Reservation> Reservations { get; set; } = default!;
 
-        public DbSet<RoomData> Rooms { get; set; } = default!;
+        public DbSet<Room> Rooms { get; set; } = default!;
 
-        public DbSet<PaymentData> Payments { get; set; } = default!;
+        public DbSet<RoomType> RoomTypes { get; set; } = default!;
 
-        public DbSet<RoomTypeData> RoomTypes { get; set; } = default!;
+        public DbSet<Customer> Customers { get; set; } = default!;
 
-        public DbSet<PaymentTypeData> PaymentTypes { get; set; } = default!;
+        public DbSet<SpecialOffer> SpecialOffers { get; set; } = default!;
 
-        public DbSet<SpecialOfferData> SpecialOffers { get; set; } = default!;
+        public DbSet<Payment> Payments { get; set; } = default!;
 
-        public DbSet<CustomerData> Customers { get; set; } = default!;
+        public DbSet<PaymentType> PaymentTypes { get; set; } = default!;
+
+       
+
+        DbSet<Domain.Administration.Models.Payments.Payment> IAdministrationDbContext.Payments => throw new System.NotImplementedException();
+
+        DbSet<Domain.Administration.Models.Payments.PaymentType> IAdministrationDbContext.PaymentTypes => throw new System.NotImplementedException();
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

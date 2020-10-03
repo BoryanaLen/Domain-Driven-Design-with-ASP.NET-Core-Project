@@ -38,6 +38,8 @@
 
         public RoomType RoomType { get; set; }
 
+        public int RoomTypeId { get; set; }
+
         private void Validate(string roomNumber, string description)
         {
             Guard.ForStringLength<InvalidRoomException>(

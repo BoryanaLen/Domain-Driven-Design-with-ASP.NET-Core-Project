@@ -6,6 +6,6 @@
 
     public interface IReservationDomainRepository: IDomainRepository<Reservation>
     {
-        
+        //Task<Reservation> CreateReservation(AllAvailableRoomsViewModel model, string userId);
     }
 }

@@ -69,6 +69,5 @@
             public const int ShortContentMinLength = 10;
             public const int ShortContentMaxLength = 50;
         }
-
     }
 }

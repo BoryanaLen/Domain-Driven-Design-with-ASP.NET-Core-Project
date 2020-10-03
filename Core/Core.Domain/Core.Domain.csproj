@@ -23,10 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Administration\" />
+    <Folder Include="Administration\Factories\" />
+    <Folder Include="Administration\Specifications\" />
+    <Folder Include="Administration\Repositories\" />
     <Folder Include="Hotel\Exceptions\" />
     <Folder Include="Hotel\Factories\" />
-    <Folder Include="Hotel\Models\" />
     <Folder Include="Hotel\Specifications\" />
   </ItemGroup>
 
