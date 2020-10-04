@@ -64,7 +64,8 @@
                 .ToList();
 
             var roomIds = this.Data.ReservationRooms
-                .Where(x => reservationIds.Any(x2 => x2 == x.Id))
+                .ToList()
+                .Where(x => reservationIds.Any(x2 => x2 == x.ReservationDataId))
                 .Select(x => x.Id)
                 .ToList();
 
