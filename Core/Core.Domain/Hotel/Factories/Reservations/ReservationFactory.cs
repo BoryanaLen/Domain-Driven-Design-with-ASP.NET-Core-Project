@@ -14,7 +14,7 @@
         private DateTime endDate = default!;
         private int adults = default!;
         private int kids = default!;
-        private decimal pricePerDay = default!;
+        private decimal totalAmount = default!;
         private decimal advancedPayment = default!;
         private ICollection<Room> rooms = default!;
 
@@ -52,9 +52,9 @@
             return this;
         }
 
-        public IReservationFactory WithPricePerDay(decimal pricePerDay)
+        public IReservationFactory WithTotalAmount(decimal totalAmount)
         {
-            this.pricePerDay = pricePerDay;
+            this.totalAmount = totalAmount;
             return this;
         }
 
@@ -97,10 +97,9 @@
                 this.adults,
                 this.kids,
                 this.customer,
-                this.pricePerDay,
+                this.totalAmount,
                 this.advancedPayment,
-                this.isPaid,
-                this.rooms.ToList()
+                this.isPaid
                 );
         }
     }

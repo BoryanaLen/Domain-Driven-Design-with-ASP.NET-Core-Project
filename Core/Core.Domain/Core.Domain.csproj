@@ -26,7 +26,6 @@
     <Folder Include="Administration\" />
     <Folder Include="Hotel\Exceptions\" />
     <Folder Include="Hotel\Factories\" />
-    <Folder Include="Hotel\Models\" />
     <Folder Include="Hotel\Specifications\" />
   </ItemGroup>
 

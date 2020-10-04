@@ -6784,11 +6784,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Application\\Common.Application.csproj",
+      "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj",
       "projectName": "Common.Application",
-      "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Application\\Common.Application.csproj",
+      "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj",
       "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Application\\obj\\",
+      "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6808,8 +6808,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj"
             }
           }
         }

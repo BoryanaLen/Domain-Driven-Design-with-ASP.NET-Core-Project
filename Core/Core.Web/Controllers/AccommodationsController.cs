@@ -150,6 +150,7 @@
         public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
         {
             var user = await this.userManager.GetUserAsync(this.User);
+
             model.UserFirstName = user.FirstName;
             model.UserLastName = user.LastName;
             model.UserUserId = user.Id;

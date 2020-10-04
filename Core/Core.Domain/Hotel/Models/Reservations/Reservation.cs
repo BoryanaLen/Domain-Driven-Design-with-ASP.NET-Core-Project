@@ -19,22 +19,20 @@
             int adults,
             int kids,
             Customer customer,
-            decimal pricePerDay,
+            decimal totalAmount,
             decimal advancedPayment,
-            bool isPaid,
-            List<Room> rooms
+            bool isPaid
             )
         {
-            this.Validate(startDate, endDate, adults, kids, pricePerDay, advancedPayment);
+            this.Validate(startDate, endDate, adults, kids, totalAmount, advancedPayment);
 
             this.Customer = customer;
-            this.Rooms = rooms;
 
             this.StartDate = startDate;
             this.EndDate = endDate;
             this.Adults = adults;
             this.Kids = kids;
-            this.PricePerDay = pricePerDay;
+            this.TotalAmount = totalAmount;
             this.AdvancedPayment = advancedPayment;
             this.IsPaid = isPaid;
 
@@ -46,7 +44,7 @@
             DateTime endDate,
             int adults,
             int kids,
-            decimal pricePerDay,
+            decimal totalAmount,
             decimal advancedPayment,
             bool isPaid)
         {
@@ -54,13 +52,12 @@
             this.EndDate = endDate;
             this.Adults = adults;
             this.Kids = kids;
-            this.PricePerDay = pricePerDay;
+            this.TotalAmount = totalAmount;
             this.AdvancedPayment = advancedPayment;
             this.IsPaid = isPaid;
 
             this.Customer = default!;
 
-            this.Rooms = new HashSet<Room>();
             this.Payments = new HashSet<Payment>();
         }
 
@@ -74,19 +71,15 @@
 
         public Customer Customer { get; private set; }
 
-        public decimal PricePerDay { get; private set; }
+        public decimal TotalAmount { get; set; }
 
         public decimal AdvancedPayment { get; private set; }        
 
         public bool IsPaid { get; private set; }
 
-        public ICollection<Room> Rooms { get; } = new List<Room>();
-
         public ICollection<Payment> Payments { get; } = new List<Payment>();
 
         public int TotalDays => (int)(this.EndDate - this.StartDate).TotalDays;
-
-        public decimal TotalAmount => this.TotalDays * this.PricePerDay;
 
         public decimal AmountForPayment => this.TotalAmount - this.AdvancedPayment;
 
@@ -130,7 +123,7 @@
                 pricePerDay,
                 Zero,
                 decimal.MaxValue,
-                nameof(this.PricePerDay));
+                nameof(this.TotalAmount));
 
         private void ValidateAdvancedPayment(decimal advancedPayment)
            => Guard.AgainstOutOfRange<InvalidReservationException>(

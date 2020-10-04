@@ -16,7 +16,7 @@
 
         IReservationFactory WithKids(int kids);
 
-        IReservationFactory WithPricePerDay(decimal pricePerDay);
+        IReservationFactory WithTotalAmount(decimal pricePerDay);
 
         IReservationFactory WithAdvancedPayment(decimal advancedPayment);
 

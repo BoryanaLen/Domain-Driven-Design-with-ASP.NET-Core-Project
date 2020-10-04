@@ -19,13 +19,11 @@
 
         public Customer Customer { get; set; } = default!;
 
-        public decimal PricePerDay { get; set; }
+        public decimal TotalAmount { get; set; }
 
         public decimal AdvancedPayment { get; set; }        
 
         public bool IsPaid { get; set; }
-
-        public ICollection<Room> Rooms { get; } = new List<Room>();
 
         public ICollection<PaymentData> Payments { get; } = new List<PaymentData>();
     }

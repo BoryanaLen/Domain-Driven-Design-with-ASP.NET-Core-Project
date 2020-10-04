@@ -28,7 +28,7 @@
                 .IsRequired();
 
             builder
-                .Property(c => c.PricePerDay)
+                .Property(c => c.TotalAmount)
                 .IsRequired()
                 .HasColumnType("decimal(18,2)");
 
@@ -44,10 +44,6 @@
             builder
                 .HasMany(d => d.Payments)
                 .WithOne();
-
-            builder
-               .HasMany(d => d.Rooms)
-               .WithOne();
 
             builder
                 .HasOne(c => c.Customer)

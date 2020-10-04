@@ -19,5 +19,7 @@
         DbSet<RoomType> RoomTypes { get; }
 
         DbSet<Customer> Customers { get; }
+
+        DbSet<ReservationRoom> ReservationRooms { get; }
     }
 }

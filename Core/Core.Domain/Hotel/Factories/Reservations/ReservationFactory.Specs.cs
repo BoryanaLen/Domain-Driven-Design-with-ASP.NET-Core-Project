@@ -20,7 +20,7 @@
                 .WithKids(1)
                 .WithStartDate(DateTime.UtcNow.AddDays(-1))
                 .WithEndDate(DateTime.UtcNow.AddDays(5))
-                .WithPricePerDay(100)
+                .WithTotalAmount(100)
                 .WithAdvancedPayment(0)
                 .WithIsPaid(false)
                 .Build();
@@ -42,7 +42,7 @@
                 .WithKids(1)
                 .WithStartDate(DateTime.UtcNow.AddDays(1))
                 .WithEndDate(DateTime.UtcNow.AddDays(5))
-                .WithPricePerDay(100)
+                .WithTotalAmount(100)
                 .WithAdvancedPayment(0)
                 .WithIsPaid(false)
                 .WithCustomer("Petar", "Petrov", "abc@gmail.com", "customerId")

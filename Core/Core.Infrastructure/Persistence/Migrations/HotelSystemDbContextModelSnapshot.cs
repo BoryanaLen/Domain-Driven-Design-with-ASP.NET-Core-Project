@@ -76,9 +76,6 @@ namespace Core.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<int?>("ReservationDataId")
-                        .HasColumnType("int");
-
                     b.Property<string>("RoomNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
@@ -88,8 +85,6 @@ namespace Core.Infrastructure.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReservationDataId");
 
                     b.HasIndex("RoomTypeId");
 
@@ -261,17 +256,39 @@ namespace Core.Infrastructure.Persistence.Migrations
                     b.Property<int>("Kids")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("PricePerDay")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("Core.Infrastructure.Persistence.Models.ReservationRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ReservationDataId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReservationDataId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("ReservationRooms");
                 });
 
             modelBuilder.Entity("Core.Infrastructure.Persistence.Models.SpecialOfferData", b =>
@@ -449,10 +466,6 @@ namespace Core.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Core.Domain.Hotel.Models.Reservations.Room", b =>
                 {
-                    b.HasOne("Core.Infrastructure.Persistence.Models.ReservationData", null)
-                        .WithMany("Rooms")
-                        .HasForeignKey("ReservationDataId");
-
                     b.HasOne("Core.Domain.Hotel.Models.Reservations.RoomType", "RoomType")
                         .WithMany()
                         .HasForeignKey("RoomTypeId")
@@ -479,6 +492,21 @@ namespace Core.Infrastructure.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Infrastructure.Persistence.Models.ReservationRoom", b =>
+                {
+                    b.HasOne("Core.Infrastructure.Persistence.Models.ReservationData", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Domain.Hotel.Models.Reservations.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
