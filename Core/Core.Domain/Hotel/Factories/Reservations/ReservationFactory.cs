@@ -4,8 +4,10 @@
     using Models.Customers;
     using Models.Reservations;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    internal class ReservationFactory : IReservationFactory
+    public class ReservationFactory : IReservationFactory
     {
         private Customer customer = default!;
         private DateTime startDate = default!;
@@ -14,6 +16,7 @@
         private int kids = default!;
         private decimal pricePerDay = default!;
         private decimal advancedPayment = default!;
+        private ICollection<Room> rooms = default!;
 
         private bool isPaid = false;
         private bool customerSet = false;
@@ -28,13 +31,6 @@
         public IReservationFactory WithAdvancedPayment(decimal advancedPayment)
         {
             this.advancedPayment = advancedPayment;
-            return this;
-        }
-
-        public IReservationFactory WithCustomer(Customer customer)
-        {
-            this.customer = customer;
-            this.customerSet = true;
             return this;
         }
 
@@ -68,10 +64,23 @@
             return this;
         }
 
+        public IReservationFactory WithCustomer(Customer customer)
+        {
+            this.customer = customer;
+            this.customerSet = true;
+            return this;
+        }
+
         public IReservationFactory WithCustomer(string firstName, string lastName, string email, string userId)
         {
             this.customer = new Customer(firstName, lastName, email, userId);
             this.customerSet = true;
+            return this;
+        }
+
+        public IReservationFactory WithRooms(ICollection<Room> rooms)
+        {
+            this.rooms = rooms;
             return this;
         }
 
@@ -90,10 +99,9 @@
                 this.customer,
                 this.pricePerDay,
                 this.advancedPayment,
-                this.isPaid
+                this.isPaid,
+                this.rooms.ToList()
                 );
         }
-
-        
     }
 }

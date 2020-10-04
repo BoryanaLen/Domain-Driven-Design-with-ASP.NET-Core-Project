@@ -6,7 +6,7 @@
 
     class CreateReservationCommandValidator : AbstractValidator<CreateReservationCommand>
     {
-        public CreateReservationCommandValidator(IReservationDomainRepository reservationRepository)
-           => this.Include(new ReservationCommandValidator<CreateReservationCommand>(reservationRepository));
+        //public CreateReservationCommandValidator(IReservationDomainRepository reservationRepository)
+        //   => this.Include(new ReservationCommandValidator<CreateReservationCommand>(reservationRepository));
     }
 }

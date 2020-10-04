@@ -2521,7 +2521,6 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Common.Domain": "1.0.0",
-          "Core.Domain": "1.0.0",
           "FluentValidation": "8.6.2",
           "MediatR.Extensions.Microsoft.DependencyInjection": "8.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "3.1.4"

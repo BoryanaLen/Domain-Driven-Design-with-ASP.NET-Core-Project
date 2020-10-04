@@ -23,10 +23,18 @@
             this.Roles = user
                 .FindAll(c => c.Type == ClaimTypes.Role)
                 .Select(c => c.Value);
+
+            this.Email = user.FindFirstValue(ClaimTypes.Email);
         }
 
         public string UserId { get; }
 
         public IEnumerable<string> Roles { get; }
+
+        public string FirstName { get; }
+
+        public string LastName { get; }
+
+        public string Email { get; }
     }
 }

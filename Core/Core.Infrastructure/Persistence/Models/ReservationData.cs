@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using Common.Application.Mapping;
+    using Common.Domain;
     using Common.Domain.Models;
     using Core.Domain.Hotel.Models.Customers;
     using Core.Domain.Hotel.Models.Reservations;
 
-    internal class ReservationData : Entity<int>, IMapTo<Reservation>
+    public class ReservationData : Entity<int>, IAggregateRoot
     {
         public DateTime StartDate { get; set; }
 

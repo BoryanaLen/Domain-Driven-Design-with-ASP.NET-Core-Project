@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Domain\\Core.Domain.csproj": {}
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Domain\\Core.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj",
         "projectName": "Common.Domain",
-        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
+        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj",
         "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\obj\\",
+        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -99,14 +99,14 @@
         }
       }
     },
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Domain\\Core.Domain.csproj": {
+    "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Domain\\Core.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Domain\\Core.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Domain\\Core.Domain.csproj",
         "projectName": "Core.Domain",
-        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Domain\\Core.Domain.csproj",
+        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Domain\\Core.Domain.csproj",
         "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Domain\\obj\\",
+        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -126,8 +126,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
-                "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj"
+              "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj": {
+                "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj"
               }
             }
           }

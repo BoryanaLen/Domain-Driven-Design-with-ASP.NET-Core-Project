@@ -7,20 +7,32 @@
     public abstract class ReservationCommand<TCommand> : EntityCommand<int>
     where TCommand : EntityCommand<int>
     {
-        public DateTime StartDate { get; private set; }
+        public string CheckIn { get; set; } = default!;
 
-        public DateTime EndDate { get; private set; }
+        public string CheckOut { get; set; } = default!;
 
-        public int Adults { get; private set; }
+        public int Adults { get; set; }
 
-        public int Kids { get; private set; }
+        public int Kids { get; set; }
 
-        public int Customer { get; private set; }
+        public List<int> RoomIds { get; set; } = default!;
 
-        public decimal PricePerDay { get; private set; }
+        public string PaymentTypeId { get; set; } = default!;
 
-        public decimal AdvancedPayment { get; private set; }
+        public string ReservationStatusId { get; set; } = default!;
 
-        public bool IsPaid { get; private set; }
+        public string UserFirstName { get; set; } = default!;
+
+        public string UserLastName { get; set; } = default!;
+
+        public string UserUserId { get; set; } = default!;
+
+        public string UserEmail { get; set; } = default!;
+
+        public decimal PricePerDay { get; set; }
+
+        public int TotalDays { get; set; }
+
+        public decimal TotalAmount { get; set; }
     }
 }

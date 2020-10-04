@@ -12,7 +12,7 @@
         {
             this.ValidateFirstName(firstName);
             this.ValidateLastName(lastName);
-            this.ValidateEmail(email);
+            //this.ValidateEmail(email);
 
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -46,7 +46,7 @@
 
         public Customer UpdateEmail(string newEmail)
         {
-            this.ValidateEmail(newEmail);
+            //this.ValidateEmail(newEmail);
             this.Email = newEmail;
 
             return this;
@@ -66,9 +66,9 @@
                 MaxNameLength,
                 nameof(this.LastName));
 
-        public void ValidateEmail(string newEmail)
-            => Guard.ForValidEmail<InvalidCustomerException>(
-                newEmail,
-                nameof(this.LastName));
+        //public void ValidateEmail(string email)
+        //    => Guard.ForValidEmail<InvalidCustomerException>(
+        //        email,
+        //        nameof(this.Email));
     }
 }

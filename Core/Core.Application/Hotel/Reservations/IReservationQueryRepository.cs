@@ -20,5 +20,7 @@
         DetailsRoomViewOutputModel GetRoomViewModelById(int id);
 
         IEnumerable<DetailsRoomTypeViewOutputModel> GetAllRoomTypes();
+
+        Task<Reservation> CreateReservation(AllAvailableRoomsViewModel model);
     }
 }

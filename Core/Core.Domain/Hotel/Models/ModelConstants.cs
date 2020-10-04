@@ -49,7 +49,7 @@
             public const int MinRoomNumberLength = 2;
             public const int MaxRoomNumberLength = 10;
 
-            public const int MinDescriptionLength = 20;
+            public const int MinDescriptionLength = 5;
             public const int MaxDescriptionLength = 1000;
         }
 

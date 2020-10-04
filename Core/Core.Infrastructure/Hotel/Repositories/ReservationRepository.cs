@@ -2,12 +2,14 @@
 {
     using Application.Hotel.Reservations.Queries.HomePage;
     using AutoMapper;
+    using Common.Application.Contracts;
     using Core.Application.Hotel.Reservations;
     using Core.Domain.Hotel.Factories.Reservations;
     using Core.Domain.Hotel.Models.Reservations;
     using Core.Domain.Hotel.Repositories.Customers;
     using Core.Domain.Hotel.Repositories.Reservations;
     using Core.Infrastructure.Persistence;
+    using Core.Infrastructure.Persistence.Models;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
@@ -18,18 +20,21 @@
         IReservationDomainRepository,
         IReservationQueryRepository
     {
-        //private readonly IReservationFactory reservationFactory;
         private readonly ICustomerDomainRepository customerRepository;
+        private readonly IReservationFactory reservationFactory;
+        private readonly ICurrentUser currentUser;
         private readonly IMapper mapper;
 
         public ReservationRepository(HotelSystemDbContext db, IMapper mapper,
-            ICustomerDomainRepository customerRepository)
-            //IReservationFactory reservationFactory)
+            ICustomerDomainRepository customerRepository,
+            ICurrentUser currentUser,
+            IReservationFactory reservationFactory)
             : base(db)
         {
             this.mapper = mapper;
-            //this.reservationFactory = reservationFactory;
             this.customerRepository = customerRepository;
+            this.reservationFactory = reservationFactory;
+            this.currentUser = currentUser;
         }
 
         public IEnumerable<DetailsRoomTypeViewOutputModel> GetAllRoomTypes()
@@ -131,35 +136,53 @@
             return room;
         }
 
-        //public async Task<Reservation> CreateReservation(AllAvailableRoomsViewModel model, string userId)
-        //{
-        //    var customer = await this.customerRepository.FindByUser(userId);
+        public async Task<Room> GetRoom(int roomId)
+        {
+            return await this.Data.Rooms
+                .FirstOrDefaultAsync(r => r.Id == roomId);
+        }
 
-        //    var rooms = new List<Room>();
+        public async Task<Reservation> CreateReservation(AllAvailableRoomsViewModel model)
+        {
+            var customer = await this.customerRepository.FindByUser(model.UserUserId);
 
-        //    foreach(var id in model.RoomIds)
-        //    {
-        //        var room = await this.Data.Rooms
-        //            .FirstOrDefaultAsync(r => r.Id == id);
+            var rooms = new List<Room>();
 
-        //        rooms.Add(room);
-        //    }
+            foreach (var id in model.RoomIds)
+            {
+                var room = (await this.GetRoom(id));
 
-        //    var reservation = this.reservationFactory
-        //        .WithStartDate(DateTime.Parse(model.CheckIn))
-        //        .WithEndDate(DateTime.Parse(model.CheckOut))
-        //        .WithAdults(model.Adults)
-        //        .WithKids(model.Kids)
-        //        .WithCustomer(customer)
-        //        .WithPricePerDay(model.PricePerDay)
-        //        .WithAdvancedPayment(0)
-        //        .WithIsPaid(false)
-        //        .WithRooms(rooms)
-        //        .Build();
+                rooms.Add(room);
+            }
 
-        //    await this.Save(reservation);
+            var factory = customer == null
+                   ? this.reservationFactory.WithCustomer(
+                       model.UserFirstName,
+                       model.UserLastName,
+                       model.UserEmail,
+                       model.UserUserId)
+                   : this.reservationFactory.WithCustomer(customer);
 
-        //    return reservation;
-        //}
+            var reservation = factory
+                  .WithStartDate(DateTime.Parse(model.CheckIn))
+                  .WithEndDate(DateTime.Parse(model.CheckOut))
+                  .WithAdults(model.Adults)
+                  .WithKids(model.Kids)
+                  .WithPricePerDay(model.PricePerDay)
+                  .WithAdvancedPayment(0)
+                  .WithIsPaid(false)
+                  .WithRooms(rooms)
+                  .Build();
+
+            ReservationData reservationData = default!;
+
+            var result = mapper.Map(reservation, reservationData);
+
+            await this.Data.Reservations.AddAsync(result);
+
+            await this.Data.SaveChangesAsync();
+
+            return reservation;
+        }
     }
 }

@@ -5,7 +5,7 @@
     using Common.Domain.Models;
     using Core.Domain.Hotel.Models.SpecialOffers;
 
-    internal class SpecialOfferData : Entity<int>
+    public class SpecialOfferData : Entity<int>
     {
         internal SpecialOfferData(string title, string content, string shortContent)
         {

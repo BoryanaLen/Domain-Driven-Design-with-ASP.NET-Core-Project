@@ -2859,7 +2859,6 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Common.Domain": "1.0.0",
-          "Core.Domain": "1.0.0",
           "FluentValidation": "8.6.2",
           "MediatR.Extensions.Microsoft.DependencyInjection": "8.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "3.1.4"
@@ -9145,11 +9144,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Web\\Core.Web.csproj",
+      "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Web\\Core.Web.csproj",
       "projectName": "Core.Web",
-      "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Web\\Core.Web.csproj",
+      "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Web\\Core.Web.csproj",
       "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Web\\obj\\",
+      "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9169,23 +9168,23 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Application\\Common.Application.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Application\\Common.Application.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Application\\Common.Application.csproj"
             },
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj"
             },
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Infrastructure\\Common.Infrastructure.csproj"
             },
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Application\\Core.Application.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Application\\Core.Application.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Application\\Core.Application.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Application\\Core.Application.csproj"
             },
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Domain\\Core.Domain.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Domain\\Core.Domain.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Domain\\Core.Domain.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Domain\\Core.Domain.csproj"
             },
-            "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Infrastructure\\Core.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Core\\Core.Infrastructure\\Core.Infrastructure.csproj"
+            "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Infrastructure\\Core.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Core\\Core.Infrastructure\\Core.Infrastructure.csproj"
             }
           }
         }

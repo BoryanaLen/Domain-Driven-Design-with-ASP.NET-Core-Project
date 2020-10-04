@@ -21,12 +21,14 @@
             Customer customer,
             decimal pricePerDay,
             decimal advancedPayment,
-            bool isPaid
+            bool isPaid,
+            List<Room> rooms
             )
         {
             this.Validate(startDate, endDate, adults, kids, pricePerDay, advancedPayment);
 
             this.Customer = customer;
+            this.Rooms = rooms;
 
             this.StartDate = startDate;
             this.EndDate = endDate;
@@ -36,7 +38,6 @@
             this.AdvancedPayment = advancedPayment;
             this.IsPaid = isPaid;
 
-            this.Rooms = new HashSet<Room>();
             this.Payments = new HashSet<Payment>();
         }
 
@@ -95,7 +96,7 @@
 
             return this;
         }
-        
+
         private void Validate(DateTime startDate, DateTime endDate, int adults, int kids, decimal pricePerDay, decimal advancedPayment)
         {
             this.ValidateStartDateAndEndDate(startDate, endDate);

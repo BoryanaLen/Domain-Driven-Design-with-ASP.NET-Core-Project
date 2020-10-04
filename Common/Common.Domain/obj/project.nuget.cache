@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NXhHmRe4F/h1DdnLglP+aZlJ7NT3Oad2Yrs3B45NeS+SvmZWWWoZINCYIu1jmCOosAeokEdkNLJnhwpj4jO0bg==",
+  "dgSpecHash": "batdqmMXMEAU4mliZc08cLcqkng/HqXX9RD4Oi6LcJV7u1hADiW9ykD0+iW7G0bz/070YVJhEbZR+I8PXUTB7w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bariz\\OneDrive\\Desktop\\work\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
+  "projectFilePath": "C:\\Users\\bariz\\OneDrive\\Desktop\\OldProjects\\Domain-Driven-Design-with-ASP.NET-Core-Project_2\\Common\\Common.Domain\\Common.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bariz\\.nuget\\packages\\bogus\\29.0.2\\bogus.29.0.2.nupkg.sha512",
     "C:\\Users\\bariz\\.nuget\\packages\\castle.core\\4.3.1\\castle.core.4.3.1.nupkg.sha512",

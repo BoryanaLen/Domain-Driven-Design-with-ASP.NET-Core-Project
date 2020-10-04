@@ -4,7 +4,7 @@
     using Core.Domain.Administration.Models.Payments;
     using System;
 
-    internal class PaymentData : Entity<int>
+    public class PaymentData : Entity<int>
     {
         public DateTime DateOfPayment { get; set; }
 

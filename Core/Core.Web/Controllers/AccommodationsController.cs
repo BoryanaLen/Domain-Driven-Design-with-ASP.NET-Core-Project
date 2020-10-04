@@ -1,31 +1,27 @@
 ﻿namespace Core.Web.Controllers
 {
+    using Common;
+    using Core.Application.Hotel.Reservations;
     using Core.Application.Hotel.Reservations.Queries.HomePage;
+    using Core.Infrastructure.Identity;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using System;
-    using System.Linq;
-    using Common;
-    using Core.Infrastructure.Identity;
-    using Microsoft.AspNetCore.Identity;
-    using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Core.Domain.Hotel.Repositories.Reservations;
-    using Core.Application.Hotel.Reservations;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class AccommodationsController : BaseController
     {
-
-        private readonly IReservationDomainRepository reservationDataRepository;
         private readonly IReservationQueryRepository reservationQueryRepository;
         private readonly UserManager<User> userManager;
 
         public AccommodationsController(
              UserManager<User> userManager,
-             IReservationQueryRepository reservationQueryRepository,
-             IReservationDomainRepository reservationDataRepository)
+             IReservationQueryRepository reservationQueryRepository)
         {
             this.userManager = userManager;
-            this.reservationDataRepository = reservationDataRepository;
             this.reservationQueryRepository = reservationQueryRepository;
         }
 
@@ -63,6 +59,8 @@
             return this.Redirect($"/Accommodations/AvailableRooms?checkIn={model.CheckIn}&checkOut={model.CheckOut}&adults={model.Adults}&kids={model.Kids}");
         }
 
+
+
         public IActionResult AvailableRooms(string checkIn, string checkOut, int adults, int kids, int page = GlobalConstants.DefaultPageNumber, int perPage = GlobalConstants.PageSize)
         {
             DateTime startDate = DateTime.Parse(checkIn).AddHours(14);
@@ -99,6 +97,7 @@
             return this.View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Book(AllAvailableRoomsViewModel model)
         {
             int totalAdultsCapacity = this.reservationQueryRepository
@@ -139,6 +138,7 @@
             model.UserFirstName = user.FirstName;
             model.UserLastName = user.LastName;
             model.UserUserId = user.Id;
+            model.UserEmail = user.Email;
             model.PricePerDay = rooms.Sum(x => x.RoomTypePrice);
             model.TotalDays = (int)(DateTime.Parse(model.CheckOut.ToString()).Date - DateTime.Parse(model.CheckIn.ToString()).Date).TotalDays;
             model.TotalAmount = model.PricePerDay * model.TotalDays;
@@ -147,20 +147,19 @@
             return this.View(model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
-        //{
-        //    //if (!this.ModelState.IsValid)
-        //    //{
-        //    //    return this.View(model);
-        //    //}
+        public async Task<IActionResult> BookRooms(AllAvailableRoomsViewModel model)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            model.UserFirstName = user.FirstName;
+            model.UserLastName = user.LastName;
+            model.UserUserId = user.Id;
+            model.UserEmail = user.Email;
 
-        //    var user = await this.userManager.GetUserAsync(this.User);
+            await this.reservationQueryRepository.CreateReservation(model);
 
-        //    await this.reservationDataRepository.CreateReservation(model, user.Id);
+            return this.RedirectToAction("ThankYou");
+        }
 
-        //    return this.RedirectToAction("ThankYou");
-        //}
 
         public IActionResult ThankYou()
         {

@@ -38,6 +38,8 @@
 
         public string UserUserId { get; set; } = default!;
 
+        public string UserEmail { get; set; } = default!;
+
         public decimal PricePerDay { get; set; }
 
         public int TotalDays { get; set; }

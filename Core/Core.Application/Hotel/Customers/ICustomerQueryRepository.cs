@@ -5,6 +5,6 @@
 
     public interface ICustomerQueryRepository : IQueryRepository<Customer>
     {
-       
+
     }
 }

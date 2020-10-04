@@ -5,6 +5,7 @@ namespace Core.Web
     using Core.Domain;
     using Core.Infrastructure;
     using global::Common.Application.Mapping;
+    using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -51,6 +52,8 @@ namespace Core.Web
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            services.AddMediatR(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,49 +72,29 @@ namespace Core.Web
                 app.UseHsts();
             }
 
-           // app.UseValidationExceptionHandler();
+            // app.UseValidationExceptionHandler();
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseCors(options => options
-                   .AllowAnyOrigin()
-                   .AllowAnyHeader()
-                   .AllowAnyMethod());
-
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
             app.UseAuthentication();
-
-            app.UseAuthentication();
-
+            app.UseAuthorization();
+            app.UseEndpoints(
+               endpoints =>
+               {
+                   endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                   endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                   endpoints.MapRazorPages();
+               });
             app.Initialize();
 
             app.UseHttpsRedirection();
-
-            // Register Syncfusion license
-            // Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(this.configuration["Syncfusion:LicenseKey"]);
-
             app.UseDefaultFiles();
-
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseEndpoints(
-                endpoints =>
-                {
-                    endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                    endpoints.MapRazorPages();
-                });
+            app.UseCookiePolicy();           
         }
     }
 }

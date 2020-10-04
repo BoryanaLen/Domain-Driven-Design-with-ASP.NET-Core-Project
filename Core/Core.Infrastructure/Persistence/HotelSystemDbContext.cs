@@ -17,7 +17,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class HotelSystemDbContext : IdentityDbContext<User>,
+    public class HotelSystemDbContext : IdentityDbContext<User>,
         IHotelDbContext, IAdministrationDbContext
     {
         private readonly IEventDispatcher eventDispatcher = default!;
