@@ -1,0 +1,49 @@
+﻿@model Core.Application.Administration.Dashboard.Queries.AllReservationsViewModel
+
+@{
+    ViewData["Title"] = "_ReservationsPartial";
+}
+
+<div class="card mb-4">
+    <div class="card-header"><i class="fas fa-table mr-1"></i>Reservations for confirmation</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>CheckIn</th>
+                        <th>CheckOut</th>
+                        <th>Total amount</th>
+                        <th>Advanced payment</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Number</th>
+                        <th>CheckIn</th>
+                        <th>CheckOut</th>
+                        <th>Total amount</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var reservation in Model.Reservations)
+                    {
+                        <tr>
+                            <td>@(reservation.Id.Substring(0, 8))</td>
+                            <td>@reservation.StartDate.ToString("dd/MM/yyyy")</td>
+                            <td>@reservation.EndDate.ToString("dd/MM/yyyy")</td>
+                            <td>@(reservation.TotalAmount)EUR</td>
+                            <td>
+                                <a asp-controller="Reservations" asp-action="Confirm" asp-route-id="@reservation.Id" class="btn btn-primary btn-sm mobile-fondsize-11">Confirm</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

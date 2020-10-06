@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Administration\" />
     <Folder Include="Hotel\Exceptions\" />
     <Folder Include="Hotel\Factories\" />
     <Folder Include="Hotel\Specifications\" />

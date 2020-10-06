@@ -66,7 +66,7 @@
             var roomIds = this.Data.ReservationRooms
                 .ToList()
                 .Where(x => reservationIds.Any(x2 => x2 == x.ReservationDataId))
-                .Select(x => x.Id)
+                .Select(x => x.RoomId)
                 .ToList();
 
             return roomIds;
@@ -140,7 +140,7 @@
             return room;
         }
 
-        public async Task<Room> GetRoom(int roomId)
+        public async Task<RoomData> GetRoom(int roomId)
         {
             return await this.Data.Rooms
                 .FirstOrDefaultAsync(r => r.Id == roomId);
@@ -150,7 +150,7 @@
         {
             var customer = await this.customerRepository.FindByUser(model.UserUserId);
 
-            var rooms = new List<Room>();
+            var rooms = new List<RoomData>();
 
             var factory = customer == null
                    ? this.reservationFactory.WithCustomer(
@@ -180,7 +180,7 @@
 
             foreach (var id in model.RoomIds)
             {
-                await this.Data.ReservationRooms.AddAsync(new ReservationRoom(result.Id, id));
+                await this.Data.ReservationRooms.AddAsync(new ReservationRoomData(result.Id, id));
             }
 
             await this.Data.SaveChangesAsync();

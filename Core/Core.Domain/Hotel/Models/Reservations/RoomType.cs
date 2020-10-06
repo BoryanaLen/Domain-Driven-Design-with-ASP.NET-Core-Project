@@ -8,7 +8,7 @@
 
     public class RoomType : Entity<int>
     {
-        internal RoomType(
+        public RoomType(
             string name, 
             decimal price, 
             int capacityAdults, 

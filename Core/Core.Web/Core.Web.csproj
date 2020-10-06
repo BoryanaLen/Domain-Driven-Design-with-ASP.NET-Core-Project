@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Core.Infrastructure\Core.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Views\Shared\" />
+  </ItemGroup>
+
 </Project>

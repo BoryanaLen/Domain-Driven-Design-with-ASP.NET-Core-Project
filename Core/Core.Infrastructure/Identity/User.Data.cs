@@ -1,22 +1,43 @@
 ﻿namespace Core.Infrastructure.Identity
 {
-    using Common.Domain;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Collections.Generic;
 
     internal class UserData 
     {
-    //    public Type EntityType => typeof(User);
+        //public Type EntityType => typeof(User);
 
-    //    User admin = new User("AdminFName",
-    //                "AdminLName",
-    //                "Plovdiv",
-    //                "admin@admin.com",
-    //                "admin@admin.com");
+        //public IEnumerable<object> GetData()
+        //{
+        //    var admin = new User()
+        //    {
+        //        FirstName = "AdmimFName",
+        //        LastName = "AdminLName",
+        //        UserName = "admin@admin.com",
+        //        Email = "admin@admin.com",
+        //        Address = "Plovdiv",
+        //        PhoneNumber = "123456789",
+        //        Roles = new List<IdentityUserRole<string>>() 
+        //        { new IdentityUserRole<string>()
+        //            {
+        //                new Role("Administrator").Id,
 
-    //public IEnumerable<object> GetData()
-    //    {
-    //        new List<User>() { admin };
-    //    }
+        //            }
+        //        }
+        //    };
+
+        //    admin.Roles.Add(new IdentityUserRole<string> { new Role("Administrator")}.)
+
+        //    var password = "123456";
+
+        //    userManager.CreateAsync(user, passwordTwo);
+
+        //    userManager.AddToRoleAsync(user, "User");
+
+        //    return new List<User>
+        //    {
+
     }
 }

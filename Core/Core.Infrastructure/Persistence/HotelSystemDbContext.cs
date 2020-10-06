@@ -40,17 +40,17 @@
 
         public DbSet<SpecialOfferData> SpecialOffers { get; set; } = default!;
 
+        public DbSet<ReservationRoomData> ReservationRooms { get; set; } = default!;
+
         public DbSet<PaymentData> Payments { get; set; } = default!;
 
-        public DbSet<Room> Rooms { get; set; } = default!;
+        public DbSet<RoomData> Rooms { get; set; } = default!;
 
         public DbSet<RoomType> RoomTypes { get; set; } = default!;
 
         public DbSet<Customer> Customers { get; set; } = default!;
 
         public DbSet<PaymentType> PaymentTypes { get; set; } = default!;
-
-        public DbSet<ReservationRoom> ReservationRooms{ get; set; } = default!;
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

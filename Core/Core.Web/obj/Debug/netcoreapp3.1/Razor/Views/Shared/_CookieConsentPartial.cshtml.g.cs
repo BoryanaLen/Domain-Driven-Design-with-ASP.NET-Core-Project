@@ -41,6 +41,20 @@ using Core.Infrastructure.Identity;
 #line hidden
 #nullable disable
 #nullable restore
+#line 5 "C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\Views\_ViewImports.cshtml"
+using Core.Application.Administration.Dashboard.Queries;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\Views\_ViewImports.cshtml"
+using Core.Application.Administration.Reservations.Queries;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\Views\Shared\_CookieConsentPartial.cshtml"
 using Microsoft.AspNetCore.Http.Features;
 
@@ -48,7 +62,7 @@ using Microsoft.AspNetCore.Http.Features;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"33eac9be0eaa7dc84752abf103959101df54d342", @"/Views/Shared/_CookieConsentPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7106015e057e2fe1c9dfd337d54d189d2faca8b4", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0ec1ad29f6913ff26b88ecc5d684296bf2a91f64", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__CookieConsentPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-area", "", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -99,7 +113,7 @@ using Microsoft.AspNetCore.Http.Features;
 #line hidden
 #nullable disable
             WriteLiteral("    <div id=\"cookieConsent\" style=\"padding:20px; background-color:#bbeef3\" role=\"alert\">\r\n        We use cookies to understand how you use our site and to improve your experience. ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33eac9be0eaa7dc84752abf103959101df54d3425910", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33eac9be0eaa7dc84752abf103959101df54d3426449", async() => {
                 WriteLiteral("Learn More");
             }
             );

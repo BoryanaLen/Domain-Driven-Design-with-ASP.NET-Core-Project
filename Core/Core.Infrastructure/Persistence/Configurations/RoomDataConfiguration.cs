@@ -1,15 +1,15 @@
 ﻿namespace Core.Infrastructure.Hotel.Configurations
 {
     using Core.Domain.Hotel.Models.Reservations;
-
+    using Core.Infrastructure.Persistence.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using static ModelConstants.Room;
    
-    public class RoomConfiguration : IEntityTypeConfiguration<Room>
+    public class RoomDataConfiguration : IEntityTypeConfiguration<RoomData>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<RoomData> builder)
         {
             builder
                 .HasKey(c => c.Id);

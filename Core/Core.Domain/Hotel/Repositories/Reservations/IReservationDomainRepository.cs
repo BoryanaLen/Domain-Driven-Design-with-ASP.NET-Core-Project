@@ -6,6 +6,6 @@
 
     public interface IReservationDomainRepository: IDomainRepository<Reservation>
     {
-        Task<Room> GetRoom(int roomId);
+        
     }
 }

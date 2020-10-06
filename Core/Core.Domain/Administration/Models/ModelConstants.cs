@@ -25,5 +25,24 @@
         {
             public const int Zero = 0;
         }
+
+        public class Reservation
+        {
+            public const int MinNumberOfAdults = 1;
+            public const int MaxNumberOfAdults = 20;
+
+            public const int MinNumberOfKids = 0;
+            public const int MaxNumberOfKids = 10;
+        }
+
+        public class Room
+        {
+            public const int MinRoomNumberLength = 2;
+            public const int MaxRoomNumberLength = 10;
+
+            public const int MinDescriptionLength = 5;
+            public const int MaxDescriptionLength = 1000;
+        }
+
     }
 }

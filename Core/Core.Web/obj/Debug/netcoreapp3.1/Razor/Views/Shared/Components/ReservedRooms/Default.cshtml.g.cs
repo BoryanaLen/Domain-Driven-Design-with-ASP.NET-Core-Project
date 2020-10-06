@@ -40,8 +40,22 @@ using Core.Infrastructure.Identity;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\Views\_ViewImports.cshtml"
+using Core.Application.Administration.Dashboard.Queries;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\Views\_ViewImports.cshtml"
+using Core.Application.Administration.Reservations.Queries;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"027a338e26637e6637a14feac954be99f31a76a5", @"/Views/Shared/Components/ReservedRooms/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7106015e057e2fe1c9dfd337d54d189d2faca8b4", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0ec1ad29f6913ff26b88ecc5d684296bf2a91f64", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_ReservedRooms_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Core.Application.Hotel.Reservations.Queries.HomePage.AvailableRoomViewModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("img-room-view"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -80,7 +94,7 @@ using Core.Infrastructure.Identity;
 #line hidden
 #nullable disable
             WriteLiteral("    <tr>\r\n        <td data-label=\"Image\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "027a338e26637e6637a14feac954be99f31a76a54720", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "027a338e26637e6637a14feac954be99f31a76a55259", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

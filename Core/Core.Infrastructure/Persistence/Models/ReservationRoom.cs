@@ -17,6 +17,6 @@
 
         public int RoomId { get; set; } = default!;
 
-        public virtual Room Room { get; set; } = default!;
+        public virtual RoomData Room { get; set; } = default!;
     }
 }

@@ -1,25 +1,26 @@
-﻿namespace Core.Domain.Hotel.Models.Reservations
+﻿namespace Core.Infrastructure.Persistence.Models
 {
     using Common.Domain;
+    using Core.Domain.Hotel.Models.Reservations;
     using System;
     using System.Collections.Generic;
 
-    internal class RoomData : IInitialData
+    internal class RoomDataData : IInitialData
     {
-        public Type EntityType => typeof(Room);
+        public Type EntityType => typeof(RoomData);
 
         public IEnumerable<object> GetData()
         {
-            return new List<Room>
+            return new List<RoomData>
             {
-                new Room("S-1",
+                new RoomData("S-1",
                     "Single room",
                     new RoomType("Single room", 100, 1, 0, "pictures/single-room.jpg",
                      @"Suitable for one adult; LCD TV with cable TV;
                     Free Wi-Fi access; Individually controlled air conditioning system; 
                     Separate bathroom and toilet; Non-smoking room; Telephone Hair dryer;")),
 
-               new Room("D-1",
+               new RoomData("D-1",
                      "Double room",
                     new RoomType( "Double room", 150, 2, 1, "pictures/double room.jpg",
                    @"Panoramic window room; Suitable for two adults; 
@@ -27,7 +28,7 @@
                     Free Wi-Fi Separate beds; Separate bathroom and toilet; Non-smoking room; 
                     Mini bar; Telephone Hair dryer;")),
 
-               new Room("A-1",
+               new RoomData("A-1",
                      "Apartment",
                     new RoomType
                     ( "Apartment", 250, 4, 1, "pictures/suits.jpg",
@@ -36,7 +37,7 @@
                         revealing a splendid panoramic view of the mountain."
                     )),
 
-               new Room( "St-1",
+               new RoomData( "St-1",
                     "Studio",
                     new RoomType
                 ( "Studio", 200, 3, 1, "pictures/club-floor-room.jpg",

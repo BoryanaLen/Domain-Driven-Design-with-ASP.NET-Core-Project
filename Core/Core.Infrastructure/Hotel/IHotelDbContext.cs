@@ -14,12 +14,12 @@
 
         DbSet<PaymentData> Payments { get; }      
 
-        DbSet<Room> Rooms { get; }
+        DbSet<RoomData> Rooms { get; }
 
         DbSet<RoomType> RoomTypes { get; }
 
         DbSet<Customer> Customers { get; }
 
-        DbSet<ReservationRoom> ReservationRooms { get; }
+        DbSet<ReservationRoomData> ReservationRooms { get; }
     }
 }

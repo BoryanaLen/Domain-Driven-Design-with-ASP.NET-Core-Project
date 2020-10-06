@@ -4,6 +4,7 @@
     using Persistence;
     using Persistence.Models;
     using Microsoft.EntityFrameworkCore;
+    using Core.Domain.Hotel.Models.Reservations;
 
     internal interface IAdministrationDbContext : IDbContext
     {
@@ -12,5 +13,11 @@
          DbSet<PaymentData> Payments { get; }
 
          DbSet<PaymentType> PaymentTypes { get; }
+
+        DbSet<ReservationRoomData> ReservationRooms { get; }
+
+        DbSet<ReservationData> Reservations { get; }
+
+        DbSet<RoomData> Rooms { get; }
     }
 }

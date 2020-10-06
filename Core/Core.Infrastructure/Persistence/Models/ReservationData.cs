@@ -5,7 +5,6 @@
     using Common.Domain;
     using Common.Domain.Models;
     using Core.Domain.Hotel.Models.Customers;
-    using Core.Domain.Hotel.Models.Reservations;
 
     public class ReservationData : Entity<int>, IAggregateRoot
     {

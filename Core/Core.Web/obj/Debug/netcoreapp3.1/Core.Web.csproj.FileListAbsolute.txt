@@ -889,3 +889,13 @@ C:\Users\bariz\OneDrive\Desktop\OldProjects\Domain-Driven-Design-with-ASP.NET-Co
 C:\Users\bariz\OneDrive\Desktop\OldProjects\Domain-Driven-Design-with-ASP.NET-Core-Project_2\Core\Core.Web\obj\Debug\netcoreapp3.1\Core.Web.dll
 C:\Users\bariz\OneDrive\Desktop\OldProjects\Domain-Driven-Design-with-ASP.NET-Core-Project_2\Core\Core.Web\obj\Debug\netcoreapp3.1\Core.Web.pdb
 C:\Users\bariz\OneDrive\Desktop\OldProjects\Domain-Driven-Design-with-ASP.NET-Core-Project_2\Core\Core.Web\obj\Debug\netcoreapp3.1\Core.Web.genruntimeconfig.cache
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\_ViewImports.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\_ViewStart.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\Shared\AdminSideNavbar.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\Shared\AdminTopNavbar.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\Dashboard\Index.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\Dashboard\_ColumnChartPartial.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\Dashboard\_CtartsPartial.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Administration\Views\Dashboard\_ReservationsPartial.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Views\Views\_ViewImports.cshtml.g.cs
+C:\Users\bariz\OneDrive\Desktop\DDD-Github\Domain-Driven-Design-with-ASP.NET-Core-Project\Core\Core.Web\obj\Debug\netcoreapp3.1\Razor\Views\Views\_ViewStart.cshtml.g.cs

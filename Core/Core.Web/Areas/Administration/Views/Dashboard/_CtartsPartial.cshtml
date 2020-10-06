@@ -1,0 +1,120 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Rooms status</div>
+        <div id="piechart_div"></div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Incomes</div>
+        <div id="areachart_div"></div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+
+    google.charts.load('current', {
+        packages: ['corechart', 'bar']
+    });
+
+    google.charts.setOnLoadCallback(LoadPieData);
+
+    google.charts.setOnLoadCallback(LoadAreaData);
+
+
+    function LoadPieData() {
+        $.ajax({
+            url: 'Dashboard/RoomsChart',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (dataPie) {
+                RoomsChart(dataPie);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function RoomsChart(dataPie) {
+        var dataArray = [
+            ['Status', 'Count']
+        ];
+        $.each(dataPie, function (i, item) {
+            dataArray.push([item.status, item.count]);
+        });
+        var dataPie = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: '',
+            is3D: true,
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#42f5a1', '#f54266'],
+            hAxis: {
+                title: 'Status',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Count'
+            }
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+
+        chart.draw(dataPie, options);
+        return false;
+    }
+
+    //------------------------------------------------------------------------------------
+
+    function LoadAreaData() {
+        $.ajax({
+            url: 'Dashboard/IncomesChart',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (dataArea) {
+                AmountsChart(dataArea);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function AmountsChart(dataArea) {
+        var dataArray = [
+            ['Month', 'TotalAmount']
+        ];
+        $.each(dataArea, function (i, item) {
+            dataArray.push([item.month, item.totalAmount]);
+        });
+        var dataArea = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'Incomes',
+            is3D: true,
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#42f5a1'],
+            hAxis: {
+                title: 'Month',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Amount'
+            }
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('areachart_div'));
+
+        chart.draw(dataArea, options);
+        return false;
+    }
+</script>  
