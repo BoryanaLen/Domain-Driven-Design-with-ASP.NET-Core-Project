@@ -59,6 +59,7 @@
         public IEnumerable<int> GetAllReservedRoomsId(DateTime checkIn, DateTime checkOut)
         {
             var reservationIds = this.Data.Reservations
+                .ToList()
                 .Where(x => (x.StartDate >= checkIn && x.StartDate <= checkOut) || (x.EndDate >= checkIn && x.EndDate <= checkOut))
                 .Select(x => x.Id)
                 .ToList();

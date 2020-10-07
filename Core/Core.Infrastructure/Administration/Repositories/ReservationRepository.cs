@@ -27,11 +27,13 @@
         public int GetReservedRooms()
         {
             var reservations = this.Data.Reservations
+                .ToList()
                 .Where(x => x.StartDate < DateTime.Today && x.EndDate >= DateTime.Today)
                 .Select(x => x.Id)
                 .ToList();
 
             int currentInHouse = this.Data.ReservationRooms
+                .ToList()
                .Where(x => reservations.Any(x2 => x2 == x.ReservationDataId))
                .Count();
 
@@ -41,11 +43,13 @@
         public int GetRoomsArrivals()
         {
             var reservations = this.Data.Reservations
+                .ToList()
                 .Where(x => x.StartDate.Date == DateTime.Today.Date)
                 .Select(x => x.Id)
                 .ToList();
 
             int currentInHouse = this.Data.ReservationRooms
+                .ToList()
                .Where(x => reservations.Any(x2 => x2 == x.ReservationDataId))
                .Count();
 
@@ -55,13 +59,15 @@
         public int GetRoomsDeparture()
         {
             var reservations = this.Data.Reservations
-               .Where(x => x.EndDate.Date == DateTime.Today.Date)
-               .Select(x => x.Id)
-               .ToList();
+                .ToList()
+                .Where(x => x.EndDate.Date == DateTime.Today.Date)
+                .Select(x => x.Id)
+                .ToList();
 
             int currentInHouse = this.Data.ReservationRooms
-               .Where(x => reservations.Any(x2 => x2 == x.ReservationDataId))
-               .Count();
+                .ToList()
+                .Where(x => reservations.Any(x2 => x2 == x.ReservationDataId))
+                .Count();
 
             return currentInHouse;
         }
@@ -85,6 +91,7 @@
         public IEnumerable<ColumnChartViewModel> IncomesForCurrentYear()
         {
             var incomes = this.Data.Reservations
+                .ToList()
                .Where(x => x.StartDate.Year == DateTime.Now.Year)
                .OrderBy(x => x.StartDate)
                .GroupBy(gp => new { gp.StartDate.Month })
@@ -100,10 +107,12 @@
         public int GetAllOccupiedRooms()
         {
             var rooms = this.Data.Reservations
+                .ToList()
                .Where(x => x.StartDate <= DateTime.Now.Date && x.EndDate > DateTime.Now.Date)
                .Select(x => x.Id);
 
             var roomsCount = this.Data.ReservationRooms
+                .ToList()
                .Where(x => rooms.Any(x2 => x2 == x.RoomId))
                .Distinct()
                .Count();
