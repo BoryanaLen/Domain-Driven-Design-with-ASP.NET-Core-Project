@@ -182,6 +182,9 @@
 
         public async Task<Reservation> CreateReservation(AllAvailableRoomsViewModel model)
         {
+            var user = currentUser;
+            model.UserUserId = user.UserId;
+
             var customer = await this.customerRepository.FindByUser(model.UserUserId);
 
             var factory = customer == null

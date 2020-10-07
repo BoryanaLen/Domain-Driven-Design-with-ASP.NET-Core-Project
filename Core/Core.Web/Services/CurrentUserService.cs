@@ -4,27 +4,28 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
+    using Core.Infrastructure.Identity;
     using global::Common.Application.Contracts;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
 
     public class CurrentUserService : ICurrentUser
     {
-        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
+        private readonly UserManager<User> userManager;
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor, UserManager<User> userManager)
         {
-            var user = httpContextAccessor.HttpContext?.User;
+            var user = userManager.GetUserAsync(httpContextAccessor.HttpContext.User).Result;
 
             if (user == null)
             {
                 throw new InvalidOperationException("This request does not have an authenticated user.");
             }
 
-            this.UserId = user.FindFirstValue(ClaimTypes.NameIdentifier);
+            this.UserId = user.Id;
 
-            this.Roles = user
-                .FindAll(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value);
-
-            this.Email = user.FindFirstValue(ClaimTypes.Email);
+            this.Email = user.Email;
+            this.FirstName = user.FirstName;
+            this.LastName = user.LastName;
         }
 
         public string UserId { get; }
