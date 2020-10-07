@@ -146,11 +146,43 @@
                 .FirstOrDefaultAsync(r => r.Id == roomId);
         }
 
+        public AllAvailableRoomsViewModel AvailableRooms(string checkIn, string checkOut, int adults, int kids, int page = Constants.DefaultPageNumber, int perPage = Constants.PageSize)
+        {
+            DateTime startDate = DateTime.Parse(checkIn).AddHours(14);
+            DateTime endDate = DateTime.Parse(checkOut).AddHours(12);
+
+            var reservedRoomsId = this.GetAllReservedRoomsId(startDate, endDate)
+                .ToList();
+
+            var allAvailableRoomModels = this.GetAllRooms()
+                .Where(x => !reservedRoomsId.Any(x2 => x2 == x.Id))
+                .ToList();
+
+            var rooms = allAvailableRoomModels
+               .OrderBy(x => x.RoomTypeCapacityAdults)
+               .Skip(perPage * (page - 1))
+               .Take(perPage)
+               .ToList();
+
+            var pagesCount = (int)Math.Ceiling(allAvailableRoomModels.Count() / (decimal)perPage);
+
+            var model = new AllAvailableRoomsViewModel
+            {
+                Rooms = rooms.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
+                Adults = adults,
+                Kids = kids,
+                CheckIn = startDate.ToString(),
+                CheckOut = endDate.ToString(),
+            };
+
+            return model;
+        }
+
         public async Task<Reservation> CreateReservation(AllAvailableRoomsViewModel model)
         {
             var customer = await this.customerRepository.FindByUser(model.UserUserId);
-
-            var rooms = new List<RoomData>();
 
             var factory = customer == null
                    ? this.reservationFactory.WithCustomer(
@@ -186,6 +218,76 @@
             await this.Data.SaveChangesAsync();
 
             return reservation;
+        }
+
+        public AllAvailableRoomsViewModel Book(AllAvailableRoomsViewModel model)
+        {
+            int totalAdultsCapacity = this.GetAllRooms()
+               .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
+               .Select(x => this.GetRoomTypeCapacityAdultsByIdAsync(x.RoomTypeId).Result)
+               .Sum();
+
+            int totalKidsCapacity = this.GetAllRooms()
+               .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
+               .Select(x => this.GetRoomTypeCapacityKidsByIdAsync(x.RoomTypeId).Result)
+               .Sum();
+
+            var checkedRooms = this.GetAllRooms()
+               .Where(x => model.RoomIds.Any(x2 => x2 == x.Id))
+               .ToList();
+
+
+            if (model.Adults > totalAdultsCapacity ||
+                (model.Kids > totalKidsCapacity && (model.Adults + model.Kids) > totalAdultsCapacity))
+            {
+                throw new Exception($"The capacity of selected rooms is not enough for adults - {model.Adults} and kids - {model.Kids} ");
+            }
+
+            var rooms = new List<DetailsRoomViewOutputModel>();
+
+            foreach (var id in model.RoomIds)
+            {
+                var room = this.GetRoomViewModelById(id);
+
+                rooms.Add(room);
+            }
+
+            var user = currentUser;
+            model.UserFirstName = user.FirstName;
+            model.UserLastName = user.LastName;
+            model.UserEmail = user.Email;
+            model.PricePerDay = rooms.Sum(x => x.RoomTypePrice);
+            model.TotalDays = (int)(DateTime.Parse(model.CheckOut.ToString()).Date - DateTime.Parse(model.CheckIn.ToString()).Date).TotalDays;
+            model.TotalAmount = model.PricePerDay * model.TotalDays;
+            model.ListOfRoomsInReservation = rooms;
+
+            return model;
+        }
+
+        public async Task<AllAvailableRoomsViewModel> BookRooms(AllAvailableRoomsViewModel model)
+        {
+            var user = this.currentUser;
+
+            model.UserFirstName = user.FirstName;
+            model.UserLastName = user.LastName;
+            model.UserEmail = user.Email;
+
+            await this.CreateReservation(model);
+
+            return model;
+        }
+
+        public IndexViewOutputModel GetOffers()
+        {
+            var roomTypes = this.GetAllRoomTypes();
+
+            var model = new IndexViewOutputModel
+            {
+                RoomTypes = roomTypes,
+                CheckAvailableRoomsViewModel = new CheckAvailableRoomsViewOutputModel(),
+            };
+
+            return model;
         }
     }
 }

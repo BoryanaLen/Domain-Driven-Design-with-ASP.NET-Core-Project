@@ -1,6 +1,7 @@
 ﻿namespace Core.Infrastructure.Administration.Repositories
 {
     using AutoMapper;
+    using Core.Application.Administration.Dashboard.Queries;
     using Core.Application.Administration.Reservations;
     using Core.Application.Administration.Reservations.Queries;
     using Core.Domain.Administration.Models.Reservations;
@@ -108,6 +109,43 @@
                .Count();
 
             return roomsCount;
+        }
+
+        public async Task<IndexViewModel> GetCurrentCondition()
+        {
+            var viewModel = new IndexViewModel { };
+            int roomsCount = await this.GetAllRoomsCountAsync();
+
+            viewModel.ReservedRooms = this.GetReservedRooms();
+            viewModel.ExpectedRoomsArrivals = this.GetRoomsArrivals();
+            viewModel.ExpectedRoomsDepartures = this.GetRoomsDeparture();
+            viewModel.RoomsEndOfDay = viewModel.ReservedRooms + viewModel.ExpectedRoomsArrivals - viewModel.ExpectedRoomsDepartures;
+            viewModel.OccupiedRooms = this.GetAllOccupiedRooms();
+            viewModel.AvailableRooms = roomsCount - viewModel.OccupiedRooms;
+
+            return viewModel;
+        }
+
+        public async Task<List<PieChartViewModel>> GetRoomsChartData()
+        {
+            int occupiedRooms = this.GetAllOccupiedRooms();
+            int totalRooms = await this.GetAllRoomsCountAsync();
+
+            List<PieChartViewModel> data = new List<PieChartViewModel>()
+            {
+                new PieChartViewModel
+                {
+                    Status = "Available",
+                    Count = totalRooms - occupiedRooms,
+                },
+                new PieChartViewModel
+                {
+                    Status = "Occupied",
+                    Count = occupiedRooms,
+                },
+            };
+
+            return data;
         }
     }
 }

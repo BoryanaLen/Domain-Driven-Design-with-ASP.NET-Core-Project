@@ -22,8 +22,6 @@
   <ItemGroup>
     <Compile Remove="Persistence\Migrations\20201002054110_Create.cs" />
     <Compile Remove="Persistence\Migrations\20201002054110_Create.Designer.cs" />
-    <Compile Remove="Persistence\Migrations\20201006193534_ChangeReservation.cs" />
-    <Compile Remove="Persistence\Migrations\20201006193534_ChangeReservation.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

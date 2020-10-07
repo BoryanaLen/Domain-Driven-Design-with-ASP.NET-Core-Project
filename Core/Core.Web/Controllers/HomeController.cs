@@ -1,12 +1,10 @@
 ﻿namespace Core.Web.Controllers
 {
-    using Core.Application.Hotel.SpecialOffers.Queries.All;
     using Common;
-    using Microsoft.AspNetCore.Mvc;
     using Core.Application.Hotel.SpecialOffers;
+    using Core.Application.Hotel.SpecialOffers.Queries.All;
+    using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using Core.Domain.Hotel.Models.SpecialOffers;
 
     public class HomeController : BaseController
     {

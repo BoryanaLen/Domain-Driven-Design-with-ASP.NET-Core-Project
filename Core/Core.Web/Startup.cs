@@ -72,43 +72,29 @@ namespace Core.Web
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-
-            // Register Syncfusion license
-            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(this.configuration["Syncfusion:LicenseKey"]);
-
-            app.UseDefaultFiles();
+            // app.UseValidationExceptionHandler();
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
             app.UseRouting();
-
+            app.UseCors(options => options
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseEndpoints(
+               endpoints =>
+               {
+                   endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                   endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                   endpoints.MapRazorPages();
+               });
+            app.Initialize();
 
             app.UseHttpsRedirection();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-
-            //app.UseEndpoints(
-            //    endpoints =>
-            //    {
-            //        endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-            //        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            //        endpoints.MapRazorPages();
-            //    });
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "Administration",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseCookiePolicy();           
         }
     }
 }

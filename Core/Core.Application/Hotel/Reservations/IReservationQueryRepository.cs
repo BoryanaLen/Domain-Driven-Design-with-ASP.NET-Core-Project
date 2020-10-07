@@ -22,5 +22,13 @@
         IEnumerable<DetailsRoomTypeViewOutputModel> GetAllRoomTypes();
 
         Task<Reservation> CreateReservation(AllAvailableRoomsViewModel model);
+
+        AllAvailableRoomsViewModel AvailableRooms(string checkIn, string checkOut, int adults, int kids, int page = Constants.DefaultPageNumber, int perPage = Constants.PageSize);
+
+        AllAvailableRoomsViewModel Book(AllAvailableRoomsViewModel model);
+
+        Task<AllAvailableRoomsViewModel> BookRooms(AllAvailableRoomsViewModel model);
+
+        IndexViewOutputModel GetOffers();
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {}
+    "C:\\Users\\bariz\\Downloads\\Domain-Driven-Design-with-ASP.NET-Core-Project-5c9b8802b29a22de4810d2068272affa7fd0cbf8\\Common\\Common.Domain\\Common.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj": {
+    "C:\\Users\\bariz\\Downloads\\Domain-Driven-Design-with-ASP.NET-Core-Project-5c9b8802b29a22de4810d2068272affa7fd0cbf8\\Common\\Common.Domain\\Common.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\bariz\\Downloads\\Domain-Driven-Design-with-ASP.NET-Core-Project-5c9b8802b29a22de4810d2068272affa7fd0cbf8\\Common\\Common.Domain\\Common.Domain.csproj",
         "projectName": "Common.Domain",
-        "projectPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\Common.Domain.csproj",
+        "projectPath": "C:\\Users\\bariz\\Downloads\\Domain-Driven-Design-with-ASP.NET-Core-Project-5c9b8802b29a22de4810d2068272affa7fd0cbf8\\Common\\Common.Domain\\Common.Domain.csproj",
         "packagesPath": "C:\\Users\\bariz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bariz\\OneDrive\\Desktop\\DDD-Github\\Domain-Driven-Design-with-ASP.NET-Core-Project\\Common\\Common.Domain\\obj\\",
+        "outputPath": "C:\\Users\\bariz\\Downloads\\Domain-Driven-Design-with-ASP.NET-Core-Project-5c9b8802b29a22de4810d2068272affa7fd0cbf8\\Common\\Common.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
