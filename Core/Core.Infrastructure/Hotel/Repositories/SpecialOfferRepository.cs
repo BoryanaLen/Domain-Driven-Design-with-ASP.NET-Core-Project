@@ -38,5 +38,17 @@
 
             return result.ToList();
         }
+
+        public async Task<AllSpecialOffersOutputModel> GetOffers()
+        {
+            var listOffers = await this.GetAllSpecialOffersList();
+
+            var model = new AllSpecialOffersOutputModel()
+            {
+                SpecialOffers = listOffers,
+            };
+
+            return model;
+        }
     }
 }

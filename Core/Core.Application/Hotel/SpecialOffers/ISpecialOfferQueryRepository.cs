@@ -12,5 +12,7 @@
             int skip = 0,
             int take = int.MaxValue);
 
+        Task<AllSpecialOffersOutputModel> GetOffers();
+
     }
 }

@@ -17,12 +17,7 @@
 
         public async Task<IActionResult> Index()
         {
-            var listOffers = await this.specialOfferRepository.GetAllSpecialOffersList();
-
-            var model = new AllSpecialOffersOutputModel()
-            {
-                SpecialOffers = listOffers,
-            };
+            var model = await this.specialOfferRepository.GetOffers();
 
             return this.View(model);
         }
